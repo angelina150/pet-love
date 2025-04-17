@@ -1,0 +1,24 @@
+.descTitle {
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+  color: #262626;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+.desc {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  color: #26262680;
+  margin-top: 16px;
+}
+.descPath {
+  color: #f6b83d;
+}
+.formWrapper {
+  border: none;
+  border-radius: 60px;
+  background-color: #fff;
+  padding: 118px 84px;
+}

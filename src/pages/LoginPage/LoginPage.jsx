@@ -1,12 +1,22 @@
 import React from "react";
 import PetBlock from "../../components/PetBlock/PetBlock.jsx";
-
+import Title from "../../components/Title/Title.jsx";
+import LoginForm from "../../components/LoginForm/LoginForm.jsx";
+import css from "./LoginPage.module.css";
 function LoginPage() {
   return (
     <div>
       <PetBlock />
-      <Title>Registration</Title>
-      <p>Thank you for your interest in our platform.</p>
+      <div className={css.formWrapper}>
+        <Title>Log in</Title>
+        <p className={css.descTitle}>
+          Welcome! Please enter your credentials to login to the platform:
+        </p>
+        <LoginForm />
+        <p className={css.desc}>
+          Don't have an account? <span className={css.descPath}>Register</span>
+        </p>
+      </div>
     </div>
   );
 }

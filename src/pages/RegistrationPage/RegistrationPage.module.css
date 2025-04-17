@@ -16,3 +16,9 @@
 .descPath {
   color: #f6b83d;
 }
+.formWrapper {
+  border: none;
+  border-radius: 60px;
+  background-color: #fff;
+  padding: 118px 84px;
+}
