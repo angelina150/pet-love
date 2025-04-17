@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.btnLogin,
+.btnRegister {
+  text-transform: uppercase;
+  border-radius: 30px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  border: none;
+}
+
+.btnLogin {
+  color: #ffffff;
+  padding: 15px 35px;
+  background-color: #f6b83d;
+}
+.btnRegister {
+  color: #f6b83d;
+  padding: 15px 20px;
+  background-color: #fff4df;
+}
