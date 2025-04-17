@@ -15,6 +15,7 @@
 }
 .descPath {
   color: #f6b83d;
+  cursor: pointer;
 }
 .formWrapper {
   border: none;

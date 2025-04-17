@@ -1,0 +1,50 @@
+.titleWrapper {
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  border: none;
+  background-color: #f6b83d;
+  display: flex;
+  flex-direction: row;
+  gap: 73px;
+  align-items: end;
+  padding-top: 80px;
+  padding-bottom: 32px;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+.titlePath {
+  font-weight: 700;
+  font-size: 90px;
+  line-height: 87px;
+  letter-spacing: -0.03em;
+  color: #ffffff66;
+}
+.title {
+  font-weight: 700;
+  font-size: 90px;
+  line-height: 87px;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  min-width: 760px;
+  text-align: start;
+}
+.desc {
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  min-width: 255px;
+  text-align: start;
+}
+.img {
+  border-radius: 60px;
+  min-width: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+@media screen and (min-width: 375px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 1280px) {
+}

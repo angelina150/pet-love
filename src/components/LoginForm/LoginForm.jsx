@@ -6,17 +6,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
   password: yup
     .string()
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
-  confirmPassword: yup
-    .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
 });
+
 const LoginForm = () => {
   const {
     register,
@@ -26,13 +22,13 @@ const LoginForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data); // тут можна додати логіку логіну
   };
-  const [showPassword, setShowPassword] = useState({
-    password: false,
-    confirmPassword: false,
-  });
+
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <form className={css.formRegisrt} onSubmit={handleSubmit(onSubmit)}>
       <label>
@@ -40,22 +36,26 @@ const LoginForm = () => {
           <span className={css.error}>{errors.email.message}</span>
         )}
         <input
+          {...register("email")}
+          placeholder="Email"
           className={`${css.input} ${
-            errors.name
+            errors.email
               ? css.inputError
               : watch("email")
               ? css.inputSuccess
               : ""
           }`}
-          placeholder="Email"
         />
       </label>
+
       <label className={css.labelPassword}>
         {errors.password && (
           <span className={css.error}>{errors.password.message}</span>
         )}
         <input
+          {...register("password")}
           placeholder="Password"
+          type={showPassword ? "text" : "password"}
           className={`${css.input} ${
             errors.password
               ? css.inputError
@@ -63,18 +63,10 @@ const LoginForm = () => {
               ? css.inputSuccess
               : ""
           }`}
-          type={showPassword.password ? "text" : "password"}
-          {...register("password")}
         />
-
         <PasswordToggleButton
-          isVisible={showPassword.password}
-          onClick={() =>
-            setShowPassword((prev) => ({
-              ...prev,
-              password: !prev.password,
-            }))
-          }
+          isVisible={showPassword}
+          onClick={() => setShowPassword((prev) => !prev)}
         />
       </label>
 
@@ -84,4 +76,5 @@ const LoginForm = () => {
     </form>
   );
 };
+
 export default LoginForm;

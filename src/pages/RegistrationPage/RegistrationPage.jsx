@@ -3,6 +3,7 @@ import PetBlock from "../../components/PetBlock/PetBlock.jsx";
 import Title from "../../components/Title/Title.jsx";
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm.jsx";
 import css from "./RegistrationPage.module.css";
+import { Link } from "react-router-dom";
 const RegistrationPage = () => {
   return (
     <div>
@@ -14,7 +15,10 @@ const RegistrationPage = () => {
         </p>
         <RegistrationForm />
         <p className={css.desc}>
-          Already have an account? <span className={css.descPath}>Login</span>
+          Already have an account?{" "}
+          <Link to="/login" className={css.descPath}>
+            Login
+          </Link>
         </p>
       </div>
     </div>
