@@ -6,12 +6,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/users/operations.js";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
+  email: yup
+    .string()
+    .matches(
+      /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+      "Invalid email format"
+    )
+    .required("Email is required"),
   password: yup
     .string()
-    .min(6, "Password must be at least 6 characters")
+    .min(7, "Password must be at least 7 characters")
     .required("Password is required"),
   confirmPassword: yup
     .string()
@@ -20,6 +29,7 @@ const schema = yup.object().shape({
 });
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     register,
@@ -30,14 +40,20 @@ const RegistrationForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const data = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
-    dispatch(registerUser(data)).then(() => reset());
-    console.log("dataForm", data);
+
+    try {
+      await dispatch(registerUser(data)).unwrap();
+      reset();
+      navigate("/profile");
+    } catch (error) {
+      toast.error(error.message || "Registration failed");
+    }
   };
   const [showPassword, setShowPassword] = useState({
     password: false,

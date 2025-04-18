@@ -34,20 +34,17 @@ ol {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
+  font-family: Manrope, sans-serif;
 }
 
 button {
   cursor: pointer;
-  font-family: inherit;
+  font-family: Manrope, sans-serif;
 }
 a {
   color: currentColor;
   text-decoration: none;
+  font-family: Manrope, sans-serif;
 }
 img {
   display: block;

@@ -15,6 +15,9 @@
   justify-content: space-between;
   align-items: center;
 }
+.authDesktop {
+  display: none;
+}
 @media screen and (min-width: 375px) {
 }
 @media screen and (min-width: 768px) {
@@ -23,4 +26,8 @@
   }
 }
 @media screen and (min-width: 1280px) {
+  .authDesktop {
+    display: flex;
+    align-items: center;
+  }
 }

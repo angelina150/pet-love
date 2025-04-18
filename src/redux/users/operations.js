@@ -39,8 +39,8 @@ export const loginUser = createAsyncThunk(
     // }
     try {
       const { data } = await authInstance.post("/users/signin", formData);
-      const accessToken = data.data.accessToken;
-      setToken(accessToken);
+      const token = data.token;
+      setToken(token);
 
       return data;
     } catch (error) {

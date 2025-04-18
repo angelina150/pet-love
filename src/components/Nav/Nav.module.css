@@ -59,9 +59,16 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9;
 }
+.authMobile {
+  display: block;
+}
+
 @media (min-width: 768px) {
 }
 @media (min-width: 1280px) {
+  .authMobile {
+    display: none;
+  }
   .burger {
     display: none;
   }

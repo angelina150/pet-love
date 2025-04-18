@@ -1,0 +1,74 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px;
+  border-radius: 30px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(38, 38, 38, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.title {
+  margin-bottom: 28px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: -0.03em;
+  color: #262626;
+}
+.btnClose {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.iconClose {
+  stroke: #262626;
+}
+.btnYes {
+  border: none;
+  background-color: #f6b83d;
+  border-radius: 30px;
+  padding: 14px 57px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+}
+.btnYes:hover,
+.btnYes:focus {
+  background-color: #f9b020;
+}
+.btnCancel {
+  border: none;
+  background-color: #2626260d;
+  border-radius: 30px;
+  padding: 14px 44px;
+  color: #262626;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+}
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}

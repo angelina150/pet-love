@@ -6,16 +6,25 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
 import { loginUser } from "../../redux/users/operations.js";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
+  email: yup
+    .string()
+    .matches(
+      /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+      "Invalid email format"
+    )
+    .required("Email is required"),
   password: yup
     .string()
-    .min(6, "Password must be at least 6 characters")
+    .min(7, "Password must be at least 7 characters")
     .required("Password is required"),
 });
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     register,
@@ -27,13 +36,19 @@ const LoginForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const data = {
-      name: values.name,
       email: values.email,
       password: values.password,
     };
-    dispatch(loginUser(data)).then(() => reset());
+
+    try {
+      await dispatch(loginUser(data)).unwrap();
+      reset();
+      navigate("/profile");
+    } catch (error) {
+      toast.error(error.message || "Login failed");
+    }
   };
 
   const [showPassword, setShowPassword] = useState(false);

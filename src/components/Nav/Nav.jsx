@@ -4,7 +4,9 @@ import {
   NavLink,
   // useLocation
 } from "react-router-dom";
-const Nav = () => {
+import UserNav from "../UserNav/UserNav.jsx";
+import AuthNav from "../AuthNav/AuthNav.jsx";
+const Nav = ({ isLoggedIn }) => {
   // const location = useLocation();
 
   // const isHome = location.pathname === "/home";
@@ -55,6 +57,9 @@ const Nav = () => {
         >
           Our friends
         </NavLink>
+        <div className={css.authMobile}>
+          {isLoggedIn ? <UserNav /> : <AuthNav />}
+        </div>
       </nav>
     </>
   );

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./Header.module.css";
 import Nav from "../Nav/Nav.jsx";
 import UserNav from "../UserNav/UserNav.jsx";
 import AuthNav from "../AuthNav/AuthNav.jsx";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/users/selectors.js";
 
-const Header = ({ isLoggedIn }) => {
+const Header = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
 
   const isHome = location.pathname === "/home";
@@ -22,8 +25,10 @@ const Header = ({ isLoggedIn }) => {
           </svg>
         )}
       </Link>
-      <Nav />
-      {isLoggedIn ? <UserNav /> : <AuthNav />}
+      <Nav isLoggedIn={isLoggedIn} />
+      <div className={css.authDesktop}>
+        {isLoggedIn ? <UserNav /> : <AuthNav />}
+      </div>
     </header>
   );
 };
