@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
-
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/users/operations.js";
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -14,21 +15,29 @@ const schema = yup.object().shape({
     .required("Password is required"),
   confirmPassword: yup
     .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
+    .oneOf([yup.ref("password")], "Passwords must match")
+    .required("Confirm password is required"),
 });
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (values) => {
+    const data = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(registerUser(data)).then(() => reset());
+    console.log("dataForm", data);
   };
   const [showPassword, setShowPassword] = useState({
     password: false,
@@ -53,8 +62,9 @@ const RegistrationForm = () => {
           <span className={css.error}>{errors.email.message}</span>
         )}
         <input
+          {...register("email")}
           className={`${css.input} ${
-            errors.name
+            errors.email
               ? css.inputError
               : watch("email")
               ? css.inputSuccess

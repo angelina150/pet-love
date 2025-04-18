@@ -16,7 +16,7 @@ const HomePage = () => {
       <img
         className={css.img}
         src="./images/hero/hero.jpg"
-        srcset=" ./images/hero/hero.jpg 1x, ./images/hero/hero@2x.jpg 2x"
+        srcSet=" ./images/hero/hero.jpg 1x, ./images/hero/hero@2x.jpg 2x"
         alt="Girl and dog"
       />
     </div>

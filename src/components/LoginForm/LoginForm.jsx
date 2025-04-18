@@ -4,6 +4,8 @@ import css from "./LoginForm.module.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
+import { loginUser } from "../../redux/users/operations.js";
+import { useDispatch } from "react-redux";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -14,17 +16,24 @@ const schema = yup.object().shape({
 });
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data); // тут можна додати логіку логіну
+  const onSubmit = (values) => {
+    const data = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(loginUser(data)).then(() => reset());
   };
 
   const [showPassword, setShowPassword] = useState(false);
