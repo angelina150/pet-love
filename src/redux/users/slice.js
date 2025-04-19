@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, logout, registerUser } from "../users/operations";
+import {
+  fetchUserFullInfo,
+  loginUser,
+  logout,
+  registerUser,
+  updateUser,
+} from "../users/operations";
 
 const initialState = {
   data: {},
@@ -53,6 +59,34 @@ const usersSlice = createSlice({
         return initialState;
       })
       .addCase(logout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchUserFullInfo.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserFullInfo.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.userFullInfo = action.payload;
+        console.log("userInfSlice", action.payload);
+      })
+      .addCase(fetchUserFullInfo.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.userFullInfo = action.payload;
+        console.log("updateSlics", action.payload);
+      })
+      .addCase(updateUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

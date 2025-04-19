@@ -22,7 +22,9 @@ export const registerUser = createAsyncThunk(
     // "password": "1234567" }
     try {
       const { data } = await authInstance.post("/users/signup", formData);
-      console.log(data);
+      const token = data.token;
+      setToken(token);
+      console.log(data, token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -41,7 +43,7 @@ export const loginUser = createAsyncThunk(
       const { data } = await authInstance.post("/users/signin", formData);
       const token = data.token;
       setToken(token);
-
+      console.log(data, token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -58,3 +60,39 @@ export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const fetchUserFullInfo = createAsyncThunk(
+  "users/fetchUserFullInfo",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await authInstance.get("/users/current/full");
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "users/updateUser",
+  async (formData, thunkAPI) => {
+    //     {
+    //   "name": "TestName",
+    //   "email": "test@gmail.com",
+    //   "phone": "+381111111111",
+    //   "avatar": "https://test.png"
+    // }
+
+    try {
+      const { data } = await authInstance.patch(
+        "/users/current/edit",
+        formData
+      );
+      console.log("dataOp", data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
