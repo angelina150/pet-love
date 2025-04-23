@@ -5,8 +5,8 @@ import LogOutBtn from "../LogOutBtn/LogOutBtn.jsx";
 const UserNav = () => {
   return (
     <div>
-      <UserBar />
       <LogOutBtn />
+      <UserBar />
     </div>
   );
 };

@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import css from "./Nav.module.css";
-import {
-  NavLink,
-  // useLocation
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import UserNav from "../UserNav/UserNav.jsx";
 import AuthNav from "../AuthNav/AuthNav.jsx";
 const Nav = ({ isLoggedIn }) => {
-  // const location = useLocation();
-
-  // const isHome = location.pathname === "/home";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {

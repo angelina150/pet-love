@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.btn {
+  display: flex;
+  flex-direction: row;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #2626260d;
+  width: 44px;
+  height: 44px;
+  background-color: transparent;
+}
+.icon {
+  fill: #26262680;
+}
+.iconRight {
+  fill: #26262680;
+  transform: rotate(180deg);
+}

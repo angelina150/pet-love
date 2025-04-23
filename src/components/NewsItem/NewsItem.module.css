@@ -1,0 +1,42 @@
+.newsItem {
+  display: flex;
+  flex-direction: column;
+  max-width: 361px;
+  align-items: flex-start;
+}
+.img {
+  width: 361px;
+  height: 226px;
+  border-radius: 15px;
+  margin-bottom: 28px;
+}
+.title {
+  margin-bottom: 14px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: -0.03em;
+  text-align: start;
+}
+.desc {
+  margin-bottom: 28px;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: start;
+}
+.date {
+  color: #26262680;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+}
+.readMoreOpen {
+  border: none;
+  background-color: transparent;
+  color: #f6b83d;
+  text-decoration: underline;
+}
+.readMoreClose {
+  display: none;
+}

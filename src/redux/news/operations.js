@@ -8,13 +8,15 @@ export const authInstance = axios.create({
 
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
-  async (formData, thunkAPI) => {
-    //   {
-    // "keyword": "TestName",
-    // "page": "1",
-    // "limit": "6" }
+  async ({ keyword, page, limit }, thunkAPI) => {
     try {
-      const { data } = await authInstance.get("/news", formData);
+      const { data } = await authInstance.get("/news", {
+        params: {
+          keyword,
+          page,
+          limit,
+        },
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

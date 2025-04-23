@@ -13,8 +13,6 @@ const OurFriendsList = () => {
     dispatch(fetchFriends());
   }, [dispatch]);
 
-  console.log(friends);
-
   return (
     <div>
       {friends?.map((friend) => (

@@ -12,6 +12,7 @@ const UserBar = () => {
 
   return (
     <div
+      className={css.wrapper}
       onClick={() => {
         navigate("/profile");
       }}
