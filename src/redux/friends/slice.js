@@ -21,7 +21,6 @@ const friendsSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.friends = action.payload;
-        console.log(action.payload);
       })
       .addCase(fetchFriends.rejected, (state, action) => {
         state.loading = false;

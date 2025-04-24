@@ -4,12 +4,12 @@ import css from "./SearchField.module.css";
 const SearchField = ({ onSearch, searchQuery, setSearchQuery }) => {
   const handleSearch = (e) => {
     e.preventDefault();
-    onSearch(searchQuery.trim());
+    onSearch(searchQuery.trim()); // Call parent's handler on submit
   };
 
   const clearSearch = () => {
-    setSearchQuery("");
-    onSearch("");
+    setSearchQuery(""); // Reset local search query
+    onSearch(""); // Call parent's handler to reset search
   };
 
   return (
@@ -18,7 +18,7 @@ const SearchField = ({ onSearch, searchQuery, setSearchQuery }) => {
         type="text"
         placeholder="Search"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(e) => setSearchQuery(e.target.value)} // Local update of search query
         className={css.input}
       />
 

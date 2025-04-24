@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchCities, fetchCitiesLocations } from "./operations.js";
 
 const initialState = {
-  data: {},
+  cities: [],
+  locations: [],
   error: null,
   loading: false,
 };
@@ -32,7 +33,7 @@ const citiesSlice = createSlice({
       .addCase(fetchCitiesLocations.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.locatios = action.payload;
+        state.locations = action.payload;
       })
       .addCase(fetchCitiesLocations.rejected, (state, action) => {
         state.loading = false;

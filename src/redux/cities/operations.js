@@ -25,6 +25,7 @@ export const fetchCitiesLocations = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await authInstance.get("/cities/locations");
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

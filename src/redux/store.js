@@ -13,6 +13,8 @@ import storage from "redux-persist/lib/storage";
 import { usersReducer } from "./users/slice.js";
 import { friendsReducer } from "./friends/slice.js";
 import { newsReducer } from "./news/slice.js";
+import { citiesReducer } from "./cities/slice.js";
+import { noticesReducer } from "./notices/slice.js";
 
 const usersConfig = {
   key: "users",
@@ -21,6 +23,8 @@ const usersConfig = {
 };
 
 const rootReducer = combineReducers({
+  notices: noticesReducer,
+  cities: citiesReducer,
   news: newsReducer,
   friends: friendsReducer,
   users: persistReducer(usersConfig, usersReducer),

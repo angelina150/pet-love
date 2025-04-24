@@ -19,7 +19,6 @@ export const registerUser = createAsyncThunk(
       const { data } = await authInstance.post("/users/signup", formData);
       const token = data.token;
       setToken(token);
-      console.log(data, token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -34,7 +33,6 @@ export const loginUser = createAsyncThunk(
       const { data } = await authInstance.post("/users/signin", formData);
       const token = data.token;
       setToken(token);
-      console.log(data, token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -73,7 +71,6 @@ export const updateUser = createAsyncThunk(
         "/users/current/edit",
         formData
       );
-      console.log("dataOp", data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

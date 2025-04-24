@@ -1,58 +1,46 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, logout, registerUser } from "../users/operations";
+import { fetchNotices, fetchNoticesCategories } from "./operations.js";
 
 const initialState = {
-  data: {},
-  token: null,
+  notices: [],
+  categories: [],
   error: null,
   loading: false,
-  isLoggedIn: false,
 };
 
-const usersSlice = createSlice({
-  name: "users",
+const noticesSlice = createSlice({
+  name: "notices",
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, (state) => {
+      .addCase(fetchNotices.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(registerUser.fulfilled, (state) => {
+      .addCase(fetchNotices.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        state.notices = action.payload.results;
       })
-      .addCase(registerUser.rejected, (state, action) => {
+      .addCase(fetchNotices.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(loginUser.pending, (state) => {
+      .addCase(fetchNoticesCategories.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(fetchNoticesCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.isLoggedIn = true;
-        state.token = action.payload.data.accessToken;
-        state.data = action.payload.data;
+        state.categories = action.payload;
+        console.log("ful", action.payload);
       })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(logout.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(logout.fulfilled, () => {
-        return initialState;
-      })
-      .addCase(logout.rejected, (state, action) => {
+      .addCase(fetchNoticesCategories.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
 
-export const usersReducer = usersSlice.reducer;
+export const noticesReducer = noticesSlice.reducer;

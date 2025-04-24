@@ -30,7 +30,6 @@ const usersSlice = createSlice({
         state.isLoggedIn = true;
         state.token = action.payload.token;
         state.data = action.payload;
-        console.log(action.payload);
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
@@ -70,7 +69,6 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.userFullInfo = action.payload;
-        console.log("userInfSlice", action.payload);
       })
       .addCase(fetchUserFullInfo.rejected, (state, action) => {
         state.loading = false;
@@ -84,7 +82,6 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.userFullInfo = action.payload;
-        console.log("updateSlics", action.payload);
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.loading = false;
