@@ -1,0 +1,49 @@
+.genderWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.label-male,
+.label-female,
+.label-multiple {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 100%;
+  padding: 8px;
+}
+.label-male {
+  background-color: #54adff1a;
+}
+.active.label-male,
+.label-male:hover {
+  background-color: #54adff;
+  stroke: #fff;
+}
+.label-female {
+  background-color: #f43f5e1a;
+}
+.active.label-female,
+.label-female:hover {
+  background-color: #f43f5e;
+  stroke: #fff;
+}
+.label-multiple {
+  background-color: #fff4df;
+}
+.active.label-multiple,
+.label-multiple:hover {
+  background-color: #f6b83d;
+  stroke: #fff;
+  fill: #fff;
+}
+.icon:hover {
+  fill: #fff;
+}
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}

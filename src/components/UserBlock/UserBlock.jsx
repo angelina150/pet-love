@@ -1,16 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { selectUserFullInfo } from "../../redux/users/selectors.js";
 import EditUserBtn from "../EditUserBtn/EditUserBtn.jsx";
-import { fetchUserFullInfo } from "../../redux/users/operations.js";
 import css from "./UserBlock.module.css";
 
 const UserBlock = () => {
-  const dispatch = useDispatch();
   const userFullInfo = useSelector(selectUserFullInfo);
-  useEffect(() => {
-    dispatch(fetchUserFullInfo());
-  }, [dispatch]);
   return (
     <div>
       {userFullInfo?.avatar ? (

@@ -26,20 +26,23 @@ const NoticesItem = ({ notice }) => {
         </div>
       </div>
       <div className={css.infoWrap}>
-        <p>
-          Name <span>{notice.name}</span>
+        <p className={css.nameInfo}>
+          Name <span className={css.nameInfoPart}>{notice.name}</span>
         </p>
-        <p>
-          Birthday <span>{formatDate(notice.birthday)}</span>
+        <p className={css.nameInfo}>
+          Birthday
+          <span className={css.nameInfoPart}>
+            {formatDate(notice.birthday)}
+          </span>
         </p>
-        <p>
-          Sex <span>{notice.sex}</span>
+        <p className={css.nameInfo}>
+          Sex <span className={css.nameInfoPart}>{notice.sex}</span>
         </p>
-        <p>
-          Species <span>{notice.species}</span>
+        <p className={css.nameInfo}>
+          Species <span className={css.nameInfoPart}>{notice.species}</span>
         </p>
-        <p>
-          Category <span>{notice.category}</span>
+        <p className={css.nameInfo}>
+          Category <span className={css.nameInfoPart}>{notice.category}</span>
         </p>
       </div>
       <div className={css.wrapperDesc}>

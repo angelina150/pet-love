@@ -3,12 +3,15 @@
   flex-direction: column;
   max-width: 361px;
   align-items: flex-start;
+  border-radius: 15px;
+  padding-bottom: 28px;
 }
 .img {
   width: 361px;
   height: 226px;
   border-radius: 15px;
   margin-bottom: 28px;
+  object-fit: cover;
 }
 .title {
   margin-bottom: 14px;
@@ -39,4 +42,10 @@
 }
 .readMoreClose {
   display: none;
+}
+.downPartWrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

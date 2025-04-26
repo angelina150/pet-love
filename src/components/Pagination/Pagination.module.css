@@ -1,9 +1,66 @@
 .wrapper {
   display: flex;
   flex-direction: row;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+.btnWrap {
+  display: flex;
+  flex-direction: row;
   gap: 8px;
 }
 .btn {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #26262633;
+  width: 44px;
+  height: 44px;
+  background-color: transparent;
+  fill: #262626;
+}
+.btn:hover {
+  border: 1px solid #f6b83d;
+}
+.btn.noActive {
+  border: 1px solid #2626260d;
+  fill: #26262680;
+  cursor: default;
+}
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translate(50%, -50%);
+  right: 50%;
+}
+.iconRight {
+  right: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(50%, -50%) rotate(180deg);
+}
+
+.iconSecond {
+  left: 5px;
+}
+.iconRightSecond {
+  left: 5px;
+}
+.pages {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.pageItem {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0;
   display: flex;
   flex-direction: row;
   border-radius: 100%;
@@ -13,11 +70,19 @@
   width: 44px;
   height: 44px;
   background-color: transparent;
+  color: #262626;
+  cursor: pointer;
 }
-.icon {
-  fill: #26262680;
+.pageItem:hover {
+  border: 1px solid #f6b83d;
 }
-.iconRight {
-  fill: #26262680;
-  transform: rotate(180deg);
+.pageItem.active {
+  color: #ffffff;
+  background-color: #f6b83d;
+  border: 1px solid #f6b83d;
+}
+.dots {
+  pointer-events: none;
+  color: #aaa;
+  cursor: default;
 }

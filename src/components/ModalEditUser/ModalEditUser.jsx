@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Modal from "react-modal";
 import css from "./ModalEditUser.module.css";
 import * as yup from "yup";
@@ -31,9 +31,9 @@ const schema = yup.object().shape({
 const ModalEditUser = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
   const userFullInfo = useSelector(selectUserFullInfo);
-  useEffect(() => {
-    dispatch(fetchUserFullInfo());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchUserFullInfo());
+  // }, [dispatch]);
   const {
     register,
     handleSubmit,
@@ -56,16 +56,16 @@ const ModalEditUser = ({ onClose, isOpen }) => {
     const changedFields = getChangedFields(userFullInfo, values);
 
     if (Object.keys(changedFields).length === 0) {
-      toast.info("Немає змін для оновлення");
       return;
     }
 
     try {
       await dispatch(updateUser(changedFields)).unwrap();
-      toast.success("Дані оновлено успішно!");
+      dispatch(fetchUserFullInfo());
+      toast.success("Data updated successfully!");
       onClose();
     } catch (error) {
-      toast.error(error.message || "Помилка при оновленні");
+      toast.error(error.message || "Error while updating");
     }
   };
 

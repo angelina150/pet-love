@@ -16,14 +16,16 @@ function NewsItem({ newsItem }) {
       <img className={css.img} src={newsItem.imgUrl} alt="" />
       <h3 className={css.title}>{newsItem.title}</h3>
       <p className={css.desc}>{newsItem.text}</p>
-      <p className={css.date}>{formatDate(newsItem.date)}</p>
-      <button
-        type="button"
-        className={isOpenMore ? css.readMoreClose : css.readMoreOpen}
-        onClick={() => setIsOpenMore(!isOpenMore)}
-      >
-        Read more
-      </button>
+      <div className={css.downPartWrap}>
+        <p className={css.date}>{formatDate(newsItem.date)}</p>
+        <button
+          type="button"
+          className={isOpenMore ? css.readMoreClose : css.readMoreOpen}
+          onClick={() => setIsOpenMore(!isOpenMore)}
+        >
+          Read more
+        </button>
+      </div>
     </li>
   );
 }

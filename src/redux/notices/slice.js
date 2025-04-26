@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchNotices, fetchNoticesCategories } from "./operations.js";
 
 const initialState = {
+  data: [],
   notices: [],
   categories: [],
   error: null,
@@ -21,6 +22,7 @@ const noticesSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.notices = action.payload.results;
+        state.data = action.payload;
       })
       .addCase(fetchNotices.rejected, (state, action) => {
         state.loading = false;

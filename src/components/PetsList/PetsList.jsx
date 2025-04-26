@@ -5,11 +5,11 @@ import { fetchUserFullInfo } from "../../redux/users/operations.js";
 import PetsItem from "../PetsItem/PetsItem.jsx";
 
 const PetsList = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const userFullInfo = useSelector(selectUserFullInfo);
-  useEffect(() => {
-    dispatch(fetchUserFullInfo());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchUserFullInfo());
+  // }, [dispatch]);
   const pets = userFullInfo?.pets;
 
   return (

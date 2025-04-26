@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import Title from "../../components/Title/Title.jsx";
 import NoticesFilters from "../../components/NoticesFilters/NoticesFilters.jsx";
 import NoticesList from "../../components/NoticesList/NoticesList.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchNotices } from "../../redux/notices/operations.js";
 import Pagination from "../../components/Pagination/Pagination.jsx";
+import { selectTotalPages } from "../../redux/notices/selectors.js";
+import css from "./NoticesPage.module.css";
 
 const NoticesPage = () => {
+  const totalPages = useSelector(selectTotalPages);
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
   const [species, setSpecies] = useState("");
@@ -82,9 +85,8 @@ const NoticesPage = () => {
         break;
     }
   };
-
   return (
-    <div>
+    <div className={css.wrapper}>
       <Title>Find your favorite pet</Title>
 
       <NoticesFilters
@@ -112,7 +114,11 @@ const NoticesPage = () => {
         sex={sex}
       />
 
-      <Pagination page={page} setPage={setPage} />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={page}
+        setCurrentPage={setPage}
+      />
     </div>
   );
 };
