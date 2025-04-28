@@ -5,7 +5,10 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../redux/users/operations.js";
+import {
+  fetchUserFullInfo,
+  registerUser,
+} from "../../redux/users/operations.js";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -49,6 +52,7 @@ const RegistrationForm = () => {
 
     try {
       await dispatch(registerUser(data)).unwrap();
+      dispatch(fetchUserFullInfo());
       reset();
       navigate("/profile");
     } catch (error) {

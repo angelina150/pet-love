@@ -34,6 +34,7 @@ const citiesSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.locations = action.payload;
+        console.log(action.payload);
       })
       .addCase(fetchCitiesLocations.rejected, (state, action) => {
         state.loading = false;

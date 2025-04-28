@@ -1,10 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchNotices, fetchNoticesCategories } from "./operations.js";
+import {
+  fetchNotices,
+  fetchNoticesCategories,
+  fetchNoticesSex,
+  fetchNoticesSpecies,
+} from "./operations.js";
 
 const initialState = {
   data: [],
   notices: [],
   categories: [],
+  sex: [],
+  species: [],
   error: null,
   loading: false,
 };
@@ -39,6 +46,33 @@ const noticesSlice = createSlice({
         console.log("ful", action.payload);
       })
       .addCase(fetchNoticesCategories.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchNoticesSex.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchNoticesSex.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.sex = action.payload;
+        console.log(action.payload);
+      })
+      .addCase(fetchNoticesSex.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchNoticesSpecies.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchNoticesSpecies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.species = action.payload;
+      })
+      .addCase(fetchNoticesSpecies.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

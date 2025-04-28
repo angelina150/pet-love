@@ -1,14 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addPets,
   fetchUserFullInfo,
+  fetchUserInfo,
   loginUser,
   logout,
   registerUser,
+  removePet,
   updateUser,
 } from "../users/operations";
 
 const initialState = {
   data: {},
+  userFullInfo: {},
+  userInfo: {},
   token: null,
   error: null,
   loading: false,
@@ -81,9 +86,46 @@ const usersSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.userFullInfo = action.payload;
+        state.data = action.payload;
       })
       .addCase(updateUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchUserInfo.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserInfo.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.userInfo = action.payload;
+      })
+      .addCase(fetchUserInfo.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(addPets.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addPets.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(addPets.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(removePet.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(removePet.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(removePet.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

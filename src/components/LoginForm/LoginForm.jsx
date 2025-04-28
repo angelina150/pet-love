@@ -4,7 +4,7 @@ import css from "./LoginForm.module.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
-import { loginUser } from "../../redux/users/operations.js";
+import { fetchUserFullInfo, loginUser } from "../../redux/users/operations.js";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -44,6 +44,7 @@ const LoginForm = () => {
 
     try {
       await dispatch(loginUser(data)).unwrap();
+      dispatch(fetchUserFullInfo());
       reset();
       navigate("/profile");
     } catch (error) {

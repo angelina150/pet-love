@@ -25,3 +25,14 @@
 .info:last-child {
   margin-bottom: 40px;
 }
+.iconUserWrap {
+  width: 110px;
+  height: 110px;
+  padding: 30px;
+  border-radius: 100%;
+  background-color: #fff4df;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}

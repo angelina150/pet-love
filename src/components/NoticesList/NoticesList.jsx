@@ -9,7 +9,8 @@ const NoticesList = () => {
   return (
     <ul className={css.list}>
       {notices?.map((notice) => {
-        return <NoticesItem key={notice.id} notice={notice} />;
+        console.log(notice);
+        return <NoticesItem key={notice._id} notice={notice} />;
       })}
     </ul>
   );

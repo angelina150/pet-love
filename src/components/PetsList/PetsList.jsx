@@ -16,7 +16,7 @@ const PetsList = () => {
     <ul>
       {pets &&
         pets.map((pet) => {
-          return <PetsItem key={pet.id} pet={pet} />;
+          return <PetsItem key={pet._id} pet={pet} />;
         })}
     </ul>
   );

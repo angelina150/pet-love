@@ -58,3 +58,26 @@ export const fetchNoticesCategories = createAsyncThunk(
     }
   }
 );
+export const fetchNoticesSex = createAsyncThunk(
+  "notices/fetchNoticesSex",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await authInstance.get("/notices/sex");
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const fetchNoticesSpecies = createAsyncThunk(
+  "notices/fetchNoticesSpecies",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await authInstance.get("/notices/species");
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
