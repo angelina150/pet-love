@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./SearchField.module.css";
 
-const SearchField = ({ onSearch, searchQuery, setSearchQuery }) => {
+const SearchField = ({ onSearch, searchQuery, setSearchQuery, pageType }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(searchQuery.trim());
@@ -19,7 +19,9 @@ const SearchField = ({ onSearch, searchQuery, setSearchQuery }) => {
         placeholder="Search"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className={css.input}
+        className={`${css.wrapper} ${
+          pageType === "notices" ? css.inputNotices : css.input
+        }`}
       />
 
       {searchQuery && (

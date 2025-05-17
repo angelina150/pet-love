@@ -10,13 +10,11 @@ export const fetchNews = createAsyncThunk(
   "news/fetchNews",
   async ({ keyword, page, limit }, thunkAPI) => {
     try {
-      const { data } = await authInstance.get("/news", {
-        params: {
-          keyword,
-          page,
-          limit,
-        },
-      });
+      const params = {};
+      if (keyword?.trim()) params.keyword = keyword.trim();
+      if (page) params.page = page;
+      if (limit) params.limit = limit;
+      const { data } = await authInstance.get("/news", { params });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

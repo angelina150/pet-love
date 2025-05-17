@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import css from "./AddPetForm.module.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,11 +6,14 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { selectNoticesSpecies } from "../../redux/notices/selectors.js";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNoticesSpecies } from "../../redux/notices/operations.js";
+import { addPets, fetchUserFullInfo } from "../../redux/users/operations.js";
 const schema = yup.object().shape({
   title: yup.string().required("Title is required"),
   name: yup.string().required("Name is required"),
-  imgUrl: yup
+  imgURL: yup
     .string()
     .matches(
       /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
@@ -25,12 +28,27 @@ const schema = yup.object().shape({
   sex: yup.string().required("Sex is required"),
 });
 
-const options = ["female", "male", "multiple"];
-
 const AddPetForm = () => {
+  const dispatch = useDispatch();
+  const types = useSelector(selectNoticesSpecies);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedType, setSelectedType] = useState("");
+
+  const handleSelectType = (type) => {
+    setSelectedType(type);
+    setValue("species", type);
+    setIsDropdownOpen(false);
+  };
+  useEffect(() => {
+    if (types.length === 0) {
+      dispatch(fetchNoticesSpecies());
+    }
+  }, [dispatch, types]);
+
+  const options = ["female", "male", "multiple"];
+
   const [gender, setGender] = useState("");
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -47,12 +65,12 @@ const AddPetForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
+      dispatch(addPets(data));
+      dispatch(fetchUserFullInfo());
       toast.success("Pet added successfully!");
       navigate("/profile");
     } catch (error) {
-      console.log(error);
-      toast.error("Failed to add pet. Please try again.");
+      toast.error(error || "Failed to add pet. Please try again.");
     }
   };
 
@@ -62,8 +80,8 @@ const AddPetForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-      <h2>
-        Add my pet / <span>Personal details</span>
+      <h2 className={css.title}>
+        Add my pet / <span className={css.titlePath}>Personal details</span>
       </h2>
 
       <div className={css.genderWrapper}>
@@ -105,33 +123,60 @@ const AddPetForm = () => {
       {errors.name && <p className={css.error}>{errors.name.message}</p>}
 
       <input
-        {...register("imgUrl")}
+        {...register("imgURL")}
         placeholder="Enter URL"
         className={css.inputText}
       />
-      {errors.imgUrl && <p className={css.error}>{errors.imgUrl.message}</p>}
-
-      <input
-        {...register("species")}
-        placeholder="Type of pet"
-        className={css.inputText}
-      />
-      {errors.species && <p className={css.error}>{errors.species.message}</p>}
-
-      <input
-        {...register("birthday")}
-        placeholder="00.00.0000"
-        className={css.inputText}
-      />
-      {errors.birthday && (
-        <p className={css.error}>{errors.birthday.message}</p>
-      )}
+      {errors.imgURL && <p className={css.error}>{errors.imgURL.message}</p>}
+      <div className={css.inputDownWrapper}>
+        <input
+          {...register("birthday")}
+          type="date"
+          className={css.inputText}
+        />
+        {errors.birthday && (
+          <p className={css.error}>{errors.birthday.message}</p>
+        )}
+        <div className={css.dropdownWrapper}>
+          <input
+            {...register("species")}
+            placeholder="Type of pet"
+            className={css.inputText}
+            value={selectedType}
+            onFocus={() => setIsDropdownOpen(true)}
+            onChange={(e) => {
+              setSelectedType(e.target.value);
+              setValue("species", e.target.value);
+            }}
+          />
+          {isDropdownOpen && (
+            <ul className={css.dropdownMenu}>
+              {types?.map((type, index) => (
+                <li
+                  key={index}
+                  className={css.dropdownItem}
+                  onClick={() => handleSelectType(type)}
+                >
+                  {type}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        {errors.species && (
+          <p className={css.error}>{errors.species.message}</p>
+        )}
+      </div>
 
       <div className={css.buttons}>
-        <button type="button" onClick={handleBack} className={css.backButton}>
+        <button
+          type="button"
+          onClick={handleBack}
+          className={`${css.backButton} ${css.btn}`}
+        >
           Back
         </button>
-        <button type="submit" className={css.submitButton}>
+        <button type="submit" className={`${css.submitButton} ${css.btn}`}>
           Submit
         </button>
       </div>

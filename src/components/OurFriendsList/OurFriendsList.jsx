@@ -10,11 +10,13 @@ const OurFriendsList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchFriends());
-  }, [dispatch]);
+    if (!friends || friends.length === 0) {
+      dispatch(fetchFriends());
+    }
+  }, [dispatch, friends]);
 
   return (
-    <div>
+    <div className={css.wrapper}>
       {friends?.map((friend) => (
         <OurFriendsItem key={friend?._id} friend={friend} />
       ))}

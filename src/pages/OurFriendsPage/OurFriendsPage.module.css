@@ -1,0 +1,18 @@
+.wrapper {
+  display: grid;
+  gap: 40px;
+  padding: 34px 0px 80px 0px;
+  text-align: start;
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    gap: 44px;
+    padding: 53px 0px 80px 0px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    gap: 60px;
+    padding: 64px 32px 80px 32px;
+  }
+}

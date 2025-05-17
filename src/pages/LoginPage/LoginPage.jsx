@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 
 function LoginPage() {
   return (
-    <div>
-      <PetBlock />
+    <div className={css.wrapper}>
+      <PetBlock imageUrl={"/images/login/login.jpg"} altText={"Corgi"} />
       <div className={css.formWrapper}>
         <Title>Log in</Title>
         <p className={css.descTitle}>

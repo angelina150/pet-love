@@ -27,7 +27,7 @@ const Header = () => {
       </Link>
       <Nav isLoggedIn={isLoggedIn} />
       <div className={css.authDesktop}>
-        {isLoggedIn ? <UserNav /> : <AuthNav />}
+        {isLoggedIn ? <UserNav isHome={isHome} /> : <AuthNav />}
       </div>
     </header>
   );

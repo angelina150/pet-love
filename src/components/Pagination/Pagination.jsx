@@ -2,14 +2,12 @@ import React from "react";
 import css from "./Pagination.module.css";
 
 const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
-  if (totalPages <= 1) {
+  if (totalPages <= 1 || isNaN(totalPages)) {
     return null;
   }
-
   const generatePages = () => {
     const pages = [];
-
-    if (totalPages <= 5) {
+    if (totalPages <= 3) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
@@ -17,30 +15,19 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
       if (currentPage <= 3) {
         pages.push(1, 2, 3, "...");
       } else if (currentPage >= totalPages - 2) {
-        pages.push(
-          1,
-          "...",
-          totalPages - 3,
-          totalPages - 2,
-          totalPages - 1,
-          totalPages
-        );
+        pages.push("...", totalPages - 2, totalPages - 1, totalPages);
       } else {
-        pages.push(
-          1,
-          "...",
-          currentPage - 1,
-          currentPage,
-          currentPage + 1,
-          "...",
-          totalPages
-        );
+        pages.push("...", currentPage - 1, currentPage, currentPage + 1, "...");
       }
     }
 
     return pages;
   };
-
+  const handlePageChange = (page) => {
+    if (page !== currentPage && page !== "...") {
+      setCurrentPage(page);
+    }
+  };
   const handleFirst = () => {
     if (currentPage !== 1) setCurrentPage(1);
   };
@@ -96,9 +83,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
             className={`${css.pageItem} ${
               page === currentPage ? css.active : ""
             } ${page === "..." ? css.dots : ""}`}
-            onClick={() => {
-              if (page !== "...") setCurrentPage(page);
-            }}
+            onClick={() => handlePageChange(page)}
           >
             {page}
           </li>

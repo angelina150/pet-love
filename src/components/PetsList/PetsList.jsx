@@ -3,17 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserFullInfo } from "../../redux/users/selectors.js";
 import { fetchUserFullInfo } from "../../redux/users/operations.js";
 import PetsItem from "../PetsItem/PetsItem.jsx";
-
+import css from "./PetsList.module.css";
 const PetsList = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const userFullInfo = useSelector(selectUserFullInfo);
-  // useEffect(() => {
-  //   dispatch(fetchUserFullInfo());
-  // }, [dispatch]);
+  useEffect(() => {
+    if (!userFullInfo) {
+      dispatch(fetchUserFullInfo());
+    }
+  }, [dispatch, userFullInfo]);
   const pets = userFullInfo?.pets;
 
   return (
-    <ul>
+    <ul className={css.list}>
       {pets &&
         pets.map((pet) => {
           return <PetsItem key={pet._id} pet={pet} />;

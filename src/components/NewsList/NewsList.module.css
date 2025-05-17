@@ -1,7 +1,21 @@
 .list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 35px;
-  row-gap: 40px;
-  margin-bottom: 60px;
+  grid-template-columns: 1fr;
+  row-gap: 24px;
+  margin-bottom: 44px;
+}
+@media screen and (min-width: 768px) {
+  .list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    row-gap: 32px;
+    margin-bottom: 60px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .list {
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 35px;
+    row-gap: 40px;
+  }
 }

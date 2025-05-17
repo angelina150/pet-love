@@ -5,7 +5,7 @@ import UserNav from "../UserNav/UserNav.jsx";
 import AuthNav from "../AuthNav/AuthNav.jsx";
 const Nav = ({ isLoggedIn }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const isHome = location.pathname === "/home";
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
@@ -30,7 +30,9 @@ const Nav = ({ isLoggedIn }) => {
         <NavLink
           to="/news"
           className={({ isActive }) =>
-            isActive ? `${css.link} ${css.active}` : css.link
+            isHome
+              ? css.linkHome
+              : `${css.link} ${isActive ? css.active : ""}`.trim()
           }
         >
           News
@@ -38,7 +40,9 @@ const Nav = ({ isLoggedIn }) => {
         <NavLink
           to="/notices"
           className={({ isActive }) =>
-            isActive ? `${css.link} ${css.active}` : css.link
+            isHome
+              ? css.linkHome
+              : `${css.link} ${isActive ? css.active : ""}`.trim()
           }
         >
           Find pet
@@ -46,7 +50,9 @@ const Nav = ({ isLoggedIn }) => {
         <NavLink
           to="/friends"
           className={({ isActive }) =>
-            isActive ? `${css.link} ${css.active}` : css.link
+            isHome
+              ? css.linkHome
+              : `${css.link} ${isActive ? css.active : ""}`.trim()
           }
         >
           Our friends

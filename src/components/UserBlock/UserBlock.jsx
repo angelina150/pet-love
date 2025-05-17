@@ -17,7 +17,9 @@ const UserBlock = () => {
               <use href="/images/icons.svg#icon-user"></use>
             </svg>
           </div>
-          <EditUserBtn />
+          <button className={css.btnUpload} type="button">
+            Upload photo
+          </button>
         </>
       )}
       <h3 className={css.title}>My information</h3>

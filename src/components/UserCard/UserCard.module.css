@@ -1,0 +1,29 @@
+.wrapper {
+  padding: 40px;
+  border-radius: 60px;
+  background-color: #fff;
+  display: grid;
+}
+.btn {
+  text-transform: uppercase;
+  color: #f6b83d;
+  background-color: #fff4df;
+  border: 1px #fff4df;
+  border-radius: 30px;
+  border: none;
+  padding: 15px 35px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  justify-self: start;
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    padding: 15px 35px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}

@@ -16,22 +16,27 @@
 }
 .label-male {
   background-color: #54adff1a;
+  stroke: #54adff;
 }
 .active.label-male,
 .label-male:hover {
   background-color: #54adff;
   stroke: #fff;
+  fill: #fff;
 }
 .label-female {
   background-color: #f43f5e1a;
+  stroke: #f43f5e;
 }
 .active.label-female,
 .label-female:hover {
   background-color: #f43f5e;
   stroke: #fff;
+  fill: #fff;
 }
 .label-multiple {
   background-color: #fff4df;
+  fill: #f6b83d;
 }
 .active.label-multiple,
 .label-multiple:hover {
@@ -39,11 +44,93 @@
   stroke: #fff;
   fill: #fff;
 }
-.icon:hover {
-  fill: #fff;
+.title {
+  text-align: start;
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 32px;
+  letter-spacing: -0.03em;
+  margin-bottom: 40px;
+}
+.titlePath {
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  vertical-align: middle;
+  color: #2b2b2a66;
 }
 .input {
   position: absolute;
   opacity: 0;
   pointer-events: none;
+}
+.inputText {
+  padding: 16px;
+  font-family: Manrope;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  border-radius: 30px;
+  border: 1px solid #26262626;
+  background-color: transparent;
+}
+.inputText:hover,
+.inputText:focus,
+.inputText:active {
+  border: 1px solid #f6b83d;
+}
+.inputText::placeholder {
+  font-family: Manrope;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  color: #26262680;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 60px 80px;
+  background-color: #ffffff;
+  border-radius: 60px;
+}
+.inputDownWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.btn {
+  padding: 14px;
+  width: 170px;
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  border-radius: 30px;
+}
+.backButton {
+  color: #262626;
+  border: 1px #2626260d;
+  background-color: #2626260d;
+}
+.submitButton {
+  color: #ffffff;
+  border: 1px #f6b83d;
+  background-color: #f6b83d;
+}
+.dropdownItem::first-letter {
+  text-transform: uppercase;
+}
+@media (min-width: 1280px) {
 }

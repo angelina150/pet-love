@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import EditUserBtn from "../EditUserBtn/EditUserBtn.jsx";
-import LogOutBtn from "../LogOutBtn/LogOutBtn.jsx";
 import UserBlock from "../UserBlock/UserBlock.jsx";
 import PetsBlock from "../PetsBlock/PetsBlock.jsx";
-
+import css from "./UserCard.module.css";
+import ModalApproveAction from "../ModalApproveAction/ModalApproveAction.jsx";
 const UserCard = () => {
+  const [isModalApproveAction, setIsModalApproveAction] = useState(false);
   return (
-    <div>
+    <div className={css.wrapper}>
       <EditUserBtn />
       <UserBlock />
       <PetsBlock />
-      <LogOutBtn />
+      <button onClick={() => setIsModalApproveAction(true)} className={css.btn}>
+        Log out
+      </button>
+      {isModalApproveAction && (
+        <ModalApproveAction
+          isOpen={isModalApproveAction}
+          onClose={() => setIsModalApproveAction(false)}
+        />
+      )}
     </div>
   );
 };

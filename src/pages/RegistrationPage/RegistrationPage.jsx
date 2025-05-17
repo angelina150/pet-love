@@ -6,8 +6,11 @@ import css from "./RegistrationPage.module.css";
 import { Link } from "react-router-dom";
 const RegistrationPage = () => {
   return (
-    <div>
-      <PetBlock />
+    <div className={css.wrapper}>
+      <PetBlock
+        imageUrl={"/images/registration/register.jpg"}
+        altText={"Cat"}
+      />
       <div className={css.formWrapper}>
         <Title>Registration</Title>
         <p className={css.descTitle}>

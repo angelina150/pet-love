@@ -1,5 +1,67 @@
-.wrapper {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  column-gap: 16px;
+.input {
+  border: 1px solid #26262626;
+  padding: 14px 30px 14px 14px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  height: 48px;
+  color: #262626;
+  font-family: Manrope;
+}
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.radioLabel {
+  cursor: pointer;
+  padding: 14px;
+  background-color: #ffffff;
+  border-radius: 30px;
+}
+.input::placeholder {
+  color: #262626;
+}
+.input:focus,
+.input:hover {
+  border: 1px solid #f6b83d;
+}
+@media (min-width: 1280px) {
+  .wrapper {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: #fff4df;
+    border-radius: 30px;
+    display: grid;
+    grid-template-rows: 68px 68px;
+  }
+  .inputsWrapper {
+    display: grid;
+    grid-template-columns: 265px 200px 190px 190px 227px;
+    column-gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #2626261a;
+  }
+  .input {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .sortOptions {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: flex-start;
+    font-family: Manrope;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+  }
+}
+.selectInput {
+  max-height: 48px; /* Максимальна висота */
+  overflow-y: auto; /* Додати прокручування, якщо вміст більше */
 }

@@ -2,6 +2,7 @@
   width: 110;
   height: 110;
   border-radius: 100px;
+  margin-bottom: 38px;
 }
 .title {
   font-weight: 700;
@@ -11,6 +12,7 @@
   vertical-align: middle;
   color: #2b2b2a;
   margin-bottom: 20px;
+  text-align: start;
 }
 .info {
   border: 1px solid #f6b83d;
@@ -35,4 +37,15 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+}
+.btnUpload {
+  border: none;
+  background-color: inherit;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0;
+  margin-bottom: 20px;
 }

@@ -14,6 +14,7 @@ const initialState = {
   species: [],
   error: null,
   loading: false,
+  isFetched: false,
 };
 
 const noticesSlice = createSlice({
@@ -43,7 +44,6 @@ const noticesSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.categories = action.payload;
-        console.log("ful", action.payload);
       })
       .addCase(fetchNoticesCategories.rejected, (state, action) => {
         state.loading = false;
@@ -57,7 +57,6 @@ const noticesSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.sex = action.payload;
-        console.log(action.payload);
       })
       .addCase(fetchNoticesSex.rejected, (state, action) => {
         state.loading = false;

@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchFriends } from "./operations.js";
 
 const initialState = {
-  data: {},
-  token: null,
+  friends: [],
   error: null,
   loading: false,
 };

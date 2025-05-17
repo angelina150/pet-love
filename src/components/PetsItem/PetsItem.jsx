@@ -1,23 +1,35 @@
 import React from "react";
-
+import css from "./PetsItem.module.css";
+import { formatDatePetsList } from "../../js.js";
+import { useDispatch } from "react-redux";
+import { removePet } from "../../redux/users/operations.js";
 const PetsItem = ({ pet, key }) => {
+  const dispatch = useDispatch();
+  const deletePet = (id) => {
+    dispatch(removePet({ id }));
+  };
   return (
-    <li key={key}>
-      <img src={pet?.imgURL} alt={pet?.title} />
-      <h3>{pet?.title}</h3>
-      <p>
-        Name <span>{pet?.name}</span>
+    <li key={key} className={css.item}>
+      <img src={pet?.imgURL} alt={pet?.title} className={css.img} />
+      <h3 className={css.title}>{pet?.title}</h3>
+      <p className={css.name}>
+        Name <span className={css.info}>{pet?.name}</span>
       </p>
-      <p>
-        Birthday <span>{pet?.birthday}</span>
+      <p className={css.name}>
+        Birthday
+        <span className={css.info}>{formatDatePetsList(pet?.birthday)}</span>
       </p>
-      <p>
-        Sex <span>{pet?.sex}</span>
+      <p className={css.name}>
+        Sex <span className={css.info}>{pet?.sex}</span>
       </p>
-      <p>
-        Species <span>{pet?.species}</span>
+      <p className={css.name}>
+        Species <span className={css.info}>{pet?.species}</span>
       </p>
-      <button>
+      <button
+        className={css.btn}
+        type="button"
+        onClick={() => deletePet(pet._id)}
+      >
         <svg width="18" height="18">
           <use href="/images/icons.svg#icon-trash"></use>
         </svg>

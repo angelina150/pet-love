@@ -1,0 +1,17 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  column-gap: 20px;
+  row-gap: 20px;
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(342px, 1fr));
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    row-gap: 28px;
+  }
+}

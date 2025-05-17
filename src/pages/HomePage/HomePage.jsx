@@ -13,12 +13,21 @@ const HomePage = () => {
           life with immeasurable joy and tenderness.
         </p>
       </div>
-      <img
-        className={css.img}
-        src="./images/hero/hero.jpg"
-        srcSet=" ./images/hero/hero.jpg 1x, ./images/hero/hero@2x.jpg 2x"
-        alt="Girl and dog"
-      />
+      <picture>
+        <source
+          media="(min-width: 1280px)"
+          srcSet="/images/home/home-desktop.jpg 1x, /images/home/home-desktop@2x.png 2x"
+        />
+        <source
+          media="(min-width: 768px)"
+          srcSet="/images/home/home-tab.jpg 1x, /images/home/home-tab@2x.png 2x"
+        />
+        <source
+          media="(min-width: 320px)"
+          srcSet="/images/home/home-mob.jpg 1x, /images/home/home-mob@2x.png 2x"
+        />
+        <img src="/images/home/home-desktop.jpg" alt="Girl and dog" />
+      </picture>
     </div>
   );
 };

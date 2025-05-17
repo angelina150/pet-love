@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import css from "./NoticesItem.module.css";
+import ModalNotice from "./ModalNotice/ModalNotice.jsx";
+import { formatDate, formatDatePetsList } from "../../js.js";
 
 const NoticesItem = ({ notice }) => {
-  const formatDate = (isoDate) => {
-    const date = new Date(isoDate);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}.${month}.${year}`;
+  const [isOpenModalNotice, setIsOpenModalNotice] = useState(false);
+  const closeMoadalNotice = () => {
+    setIsOpenModalNotice(false);
   };
+
   return (
     <li className={css.card}>
       <img
@@ -32,7 +32,7 @@ const NoticesItem = ({ notice }) => {
         <p className={css.nameInfo}>
           Birthday
           <span className={css.nameInfoPart}>
-            {formatDate(notice.birthday)}
+            {formatDatePetsList(notice.birthday)}
           </span>
         </p>
         <p className={css.nameInfo}>
@@ -47,11 +47,15 @@ const NoticesItem = ({ notice }) => {
       </div>
       <div className={css.wrapperDesc}>
         <p className={css.desc}>{notice.comment}</p>
-        <p className={css.price}>${notice.price}</p>
+        {notice.price && <p className={css.price}>${notice.price}</p>}
       </div>
 
       <div className={css.btnWrapper}>
-        <button className={css.btnLearnMore} type="button">
+        <button
+          className={css.btnLearnMore}
+          type="button"
+          onClick={() => setIsOpenModalNotice(true)}
+        >
           Learn more
         </button>
         <button type="button" className={css.btnHeart}>
@@ -59,6 +63,13 @@ const NoticesItem = ({ notice }) => {
             <use href="/images/icons.svg#icon-heart"></use>
           </svg>
         </button>
+        {isOpenModalNotice && (
+          <ModalNotice
+            notice={notice}
+            onClose={closeMoadalNotice}
+            isOpen={isOpenModalNotice}
+          />
+        )}
       </div>
     </li>
   );

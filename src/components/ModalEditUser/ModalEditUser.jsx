@@ -118,6 +118,12 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       onRequestClose={onClose}
       className={css.modal}
       overlayClassName={css.overlay}
+      onAfterOpen={() => {
+        document.body.style.overflow = "hidden";
+      }}
+      onAfterClose={() => {
+        document.body.style.overflow = "auto";
+      }}
     >
       <button type="button" className={css.btnClose} onClick={onClose}>
         <svg width="24" height="24" className={css.iconClose}>

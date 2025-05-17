@@ -1,10 +1,100 @@
 .img {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
 .list {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 80px auto;
+  gap: 12px;
+  padding: 40px 20px;
+  position: relative;
+  border-radius: 15px;
+  background-color: #fff;
+  text-align: start;
+}
+.worksDay {
+  border: none;
+  background-color: #fff4df;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border-radius: 30px;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  color: #f6b83d;
+  padding: 8px;
+}
+
+.address {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+.title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.04em;
+  margin-bottom: 14px;
+}
+.name {
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  color: #26262680;
+}
+.name:not(:last-child) {
+  margin-bottom: 8px;
+}
+.info {
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  color: #262626;
+}
+.link {
+  cursor: pointer;
+}
+.link:hover {
+  color: #f6b83d;
+}
+@media screen and (min-width: 375px) {
+  .address {
+    max-width: 196px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .img {
+    width: 90px;
+    height: 90px;
+  }
+  .list {
+    grid-template-columns: 90px auto;
+    gap: 16px;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+  }
+  .worksDay {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .list {
+    gap: 20px;
+  }
+  .address {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 201px;
+  }
 }

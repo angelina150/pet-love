@@ -6,11 +6,28 @@
   line-height: 20px;
   letter-spacing: -0.03em;
   border: 1px solid #26262626;
+  font-size: 16px;
 }
 
 .link:hover,
 .link:focus,
 .active {
+  border: 1px solid #f6b83d;
+}
+.linkHome {
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 30px;
+  padding: 15px 20px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  border: 1px solid #ffffff66;
+  color: #ffffff;
+  font-size: 16px;
+}
+.linkHome:hover {
+  background-color: #fff4df;
+  color: #f6b83d;
   border: 1px solid #f6b83d;
 }
 .burger {

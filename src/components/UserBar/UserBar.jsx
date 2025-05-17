@@ -3,7 +3,7 @@ import css from "./UserBar.module.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserFullInfo } from "../../redux/users/selectors.js";
-const UserBar = () => {
+const UserBar = ({ isHome }) => {
   const navigate = useNavigate();
 
   const userFullInfo = useSelector(selectUserFullInfo);
@@ -22,11 +22,11 @@ const UserBar = () => {
       ) : (
         <div className={css.userAvatar}>
           <svg className={css.iconUser} width="24" height="24">
-            <use href="/public/images/icons.svg#icon-user"></use>
+            <use href="/images/icons.svg#icon-user"></use>
           </svg>
         </div>
       )}
-      <p>{userName}</p>
+      <p className={isHome ? css.nameHome : css.name}>{userName}</p>
     </div>
   );
 };

@@ -5,39 +5,47 @@ import NoticesList from "../../components/NoticesList/NoticesList.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNotices } from "../../redux/notices/operations.js";
 import Pagination from "../../components/Pagination/Pagination.jsx";
-import { selectTotalPages } from "../../redux/notices/selectors.js";
+import {
+  selectNotices,
+  selectNoticesPage,
+  selectTotalPages,
+} from "../../redux/notices/selectors.js";
 import css from "./NoticesPage.module.css";
 
 const NoticesPage = () => {
+  const notices = useSelector(selectNotices);
   const totalPages = useSelector(selectTotalPages);
+  const currentPage = useSelector(selectNoticesPage);
+
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
   const [species, setSpecies] = useState("");
   const [locationId, setLocationId] = useState("");
-  const [byDate, setByDate] = useState(true);
-  const [byPrice, setByPrice] = useState(false);
-  const [byPopularity, setByPopularity] = useState(false);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(6);
+  const [byDate, setByDate] = useState(null);
+  const [byPrice, setByPrice] = useState(null);
+  const [byPopularity, setByPopularity] = useState(null);
   const [sex, setSex] = useState("");
+
+  const limit = 6;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      fetchNotices({
-        keyword,
-        category,
-        species,
-        locationId,
-        byDate,
-        byPrice,
-        byPopularity,
-        page,
-        limit,
-        sex,
-      })
-    );
+    const filters = {};
+
+    if (keyword) filters.keyword = keyword;
+    if (category) filters.category = category;
+    if (species) filters.species = species;
+    if (locationId) filters.locationId = locationId;
+    if (sex) filters.sex = sex;
+    if (byDate !== undefined) filters.byDate = byDate;
+    if (byPrice !== undefined) filters.byPrice = byPrice;
+    if (byPopularity !== undefined) filters.byPopularity = byPopularity;
+
+    filters.page = currentPage;
+    filters.limit = limit;
+
+    dispatch(fetchNotices(filters));
   }, [
     dispatch,
     keyword,
@@ -47,9 +55,9 @@ const NoticesPage = () => {
     byDate,
     byPrice,
     byPopularity,
-    page,
-    limit,
+    currentPage,
     sex,
+    limit,
   ]);
 
   const handleFilterChange = (name, value) => {
@@ -78,17 +86,16 @@ const NoticesPage = () => {
       case "sex":
         setSex(value);
         break;
-      case "page":
-        setPage(value);
-        break;
       default:
         break;
     }
   };
-  return (
-    <div className={css.wrapper}>
-      <Title>Find your favorite pet</Title>
 
+  return (
+    <div>
+      <div className={css.wrapper}>
+        <Title>Find your favorite pet</Title>
+      </div>
       <NoticesFilters
         keyword={keyword}
         category={category}
@@ -100,25 +107,34 @@ const NoticesPage = () => {
         sex={sex}
         handleFilterChange={handleFilterChange}
       />
+      <div className={css.wrapper}>
+        {notices.length > 0 ? (
+          <NoticesList notices={notices} />
+        ) : (
+          <div>Not found</div>
+        )}
 
-      <NoticesList
-        keyword={keyword}
-        category={category}
-        species={species}
-        locationId={locationId}
-        byDate={byDate}
-        byPrice={byPrice}
-        byPopularity={byPopularity}
-        page={page}
-        limit={limit}
-        sex={sex}
-      />
-
-      <Pagination
-        totalPages={totalPages}
-        currentPage={page}
-        setCurrentPage={setPage}
-      />
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          setCurrentPage={(page) => {
+            dispatch(
+              fetchNotices({
+                keyword,
+                category,
+                species,
+                locationId,
+                sex,
+                byDate,
+                byPrice,
+                byPopularity,
+                page,
+                limit,
+              })
+            );
+          }}
+        />
+      </div>
     </div>
   );
 };

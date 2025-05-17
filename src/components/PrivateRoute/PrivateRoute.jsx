@@ -1,9 +1,12 @@
-import { Navigate } from "react-router-dom";
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/users/selectors.js";
 
-export const PrivateRoute = ({ component: Component, redirectTo = "/" }) => {
+const PrivateRoute = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  return isLoggedIn ? Component : <Navigate to={redirectTo} />;
+  return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
 };
+
+export default PrivateRoute;

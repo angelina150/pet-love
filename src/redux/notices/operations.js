@@ -8,40 +8,27 @@ export const authInstance = axios.create({
 
 export const fetchNotices = createAsyncThunk(
   "notices/fetchNotices",
-  async (
-    {
-      keyword,
-      category,
-      species,
-      locationId,
-      byDate,
-      byPrice,
-      byPopularity,
-      page,
-      limit,
-      sex,
-    },
-    thunkAPI
-  ) => {
+  async (filters, thunkAPI) => {
     try {
+      const params = {};
+      console.log(params);
+      if (filters.keyword) params.keyword = filters.keyword;
+      if (filters.category) params.category = filters.category;
+      if (filters.species) params.species = filters.species;
+      if (filters.locationId) params.locationId = filters.locationId;
+      if (filters.sex) params.sex = filters.sex;
+      if (filters.byDate !== undefined) params.byDate = filters.byDate;
+      if (filters.byPrice !== undefined) params.byPrice = filters.byPrice;
+      if (filters.byPopularity !== undefined)
+        params.byPopularity = filters.byPopularity;
+      if (filters.page) params.page = filters.page;
+      if (filters.limit) params.limit = filters.limit;
       const { data } = await authInstance.get("/notices", {
-        params: {
-          keyword,
-          category,
-          species,
-          locationId,
-          byDate,
-          byPrice,
-          byPopularity,
-          page,
-          limit,
-          sex,
-        },
+        params,
       });
       console.log(data);
       return data;
     } catch (error) {
-      console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -63,7 +50,6 @@ export const fetchNoticesSex = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await authInstance.get("/notices/sex");
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

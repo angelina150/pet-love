@@ -1,33 +1,44 @@
 .headerDefault {
-  padding: 32px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  padding-top: 18px;
+  padding-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: none;
+  outline: none;
 }
 .headerHome {
   border-top-left-radius: 60px;
   border-top-right-radius: 60px;
   background-color: #f6b83d;
-  padding: 32px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: none;
+  outline: none;
 }
 .authDesktop {
-  display: none;
+  /* display: none; */
+}
+.logo {
+  justify-self: start;
+  align-self: center;
+  border-bottom: none;
+  outline: none;
 }
 @media screen and (min-width: 375px) {
 }
 @media screen and (min-width: 768px) {
   .headerHome {
-    padding: 32px 64px;
+    padding: 16px 64px;
+  }
+  .headerDefault {
+    padding: 16px 32px;
   }
 }
 @media screen and (min-width: 1280px) {
   .authDesktop {
     display: flex;
     align-items: center;
+    justify-self: end;
   }
 }

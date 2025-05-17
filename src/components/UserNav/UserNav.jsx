@@ -1,12 +1,12 @@
 import React from "react";
 import UserBar from "../UserBar/UserBar.jsx";
 import LogOutBtn from "../LogOutBtn/LogOutBtn.jsx";
-
-const UserNav = () => {
+import css from "./UserNav.module.css";
+const UserNav = ({ isHome }) => {
   return (
-    <div>
-      <LogOutBtn />
-      <UserBar />
+    <div className={css.wrapper}>
+      {!isHome && <LogOutBtn />}
+      <UserBar isHome={isHome} />
     </div>
   );
 };

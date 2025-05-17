@@ -5,3 +5,6 @@ export const selectUserData = (state) => state.users.data;
 export const selectIsLoggedIn = (state) => state.users.isLoggedIn;
 export const selectUserFullInfo = (state) => state.users.userFullInfo;
 export const selectUserInfo = (state) => state.users.userInfo;
+export const selectUserNotices = (state) =>
+  state.users.userFullInfo.noticesViewed;
+export const selectUserPets = (state) => state.users.userFullInfo.pets;

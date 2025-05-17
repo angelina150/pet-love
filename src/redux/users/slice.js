@@ -124,6 +124,9 @@ const usersSlice = createSlice({
       .addCase(removePet.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
+        state.userFullInfo.pets = state.pets.filter(
+          (pet) => pet._id !== action.payload
+        );
       })
       .addCase(removePet.rejected, (state, action) => {
         state.loading = false;

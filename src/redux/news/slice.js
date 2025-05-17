@@ -2,9 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchNews } from "./operations.js";
 
 const initialState = {
-  data: {},
+  news: [],
   error: null,
   loading: false,
+  totalPages: null,
+  page: null,
 };
 
 const newsSlice = createSlice({
@@ -20,7 +22,8 @@ const newsSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.news = action.payload.results;
-        state.data = action.payload;
+        state.totalPages = action.payload.totalPages;
+        state.page = action.payload.page;
       })
       .addCase(fetchNews.rejected, (state, action) => {
         state.loading = false;
