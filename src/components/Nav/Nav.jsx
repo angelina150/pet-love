@@ -1,25 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import css from "./Nav.module.css";
 import { NavLink } from "react-router-dom";
 import UserNav from "../UserNav/UserNav.jsx";
 import AuthNav from "../AuthNav/AuthNav.jsx";
-const Nav = ({ isLoggedIn }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isHome = location.pathname === "/home";
-  const toggleMenu = () => {
-    setIsMenuOpen((prevState) => !prevState);
-  };
-  const closeModal = () => setIsMenuOpen(false);
+const Nav = ({ isLoggedIn, isHome, isMenuOpen, closeModal }) => {
   return (
     <>
-      <button className={css.burger} onClick={toggleMenu}>
-        <svg className={css.iconBurger} width="28" height="28">
-          <use href="/images/icons.svg#icon-menu"></use>
-        </svg>
-      </button>
-
-      {isMenuOpen && <div className={css.backdrop} onClick={toggleMenu}></div>}
-
       <nav className={isMenuOpen ? css.navWrapperOpen : css.navWrapper}>
         <button className={css.btnClose} onClick={closeModal}>
           <svg className={css.iconClose} width="28" height="28">

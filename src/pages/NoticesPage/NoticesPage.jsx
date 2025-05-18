@@ -11,12 +11,13 @@ import {
   selectTotalPages,
 } from "../../redux/notices/selectors.js";
 import css from "./NoticesPage.module.css";
+import { selectFavoritesNotices } from "../../redux/users/selectors.js";
 
 const NoticesPage = () => {
   const notices = useSelector(selectNotices);
   const totalPages = useSelector(selectTotalPages);
   const currentPage = useSelector(selectNoticesPage);
-
+  const favoritesNotices = useSelector(selectFavoritesNotices);
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
   const [species, setSpecies] = useState("");
@@ -109,7 +110,7 @@ const NoticesPage = () => {
       />
       <div className={css.wrapper}>
         {notices.length > 0 ? (
-          <NoticesList notices={notices} />
+          <NoticesList notices={notices} favoritesNotices={favoritesNotices} />
         ) : (
           <div>Not found</div>
         )}

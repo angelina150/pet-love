@@ -30,14 +30,7 @@
   color: #f6b83d;
   border: 1px solid #f6b83d;
 }
-.burger {
-  display: block;
-  width: 30px;
-  height: 35px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
+
 .navWrapper {
   display: none;
 }
@@ -86,9 +79,7 @@
   .authMobile {
     display: none;
   }
-  .burger {
-    display: none;
-  }
+
   .navWrapper {
     display: flex;
     flex-direction: row;

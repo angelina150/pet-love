@@ -17,6 +17,7 @@ export const registerUser = createAsyncThunk(
     try {
       const { data } = await authInstance.post("/users/signup", formData);
       const token = data.token;
+      localStorage.setItem("token", token);
       setToken(token);
       return data;
     } catch (error) {
@@ -31,6 +32,7 @@ export const loginUser = createAsyncThunk(
     try {
       const { data } = await authInstance.post("/users/signin", formData);
       const token = data.token;
+      localStorage.setItem("token", token);
       setToken(token);
       return data;
     } catch (error) {

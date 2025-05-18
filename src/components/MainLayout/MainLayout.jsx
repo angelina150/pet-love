@@ -20,10 +20,7 @@ const MainLayout = () => {
 
   return (
     <div>
-      <header>
-        <Header />
-      </header>
-
+      <Header />
       <main>
         {loading && (
           <div className={css.wrapperLoader}>

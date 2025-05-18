@@ -1,14 +1,18 @@
-.titleWrapper {
+.container {
+  background-color: #f6b83d;
   border-bottom-left-radius: 60px;
   border-bottom-right-radius: 60px;
-  border: none;
-  background-color: #f6b83d;
-  display: grid;
-  gap: 24px;
   padding-top: 42px;
   padding-bottom: 50px;
   padding-left: 20px;
   padding-right: 20px;
+}
+.titleWrapper {
+  border: none;
+  display: grid;
+  max-width: 1216px;
+  gap: 24px;
+
   text-align: start;
 }
 .titlePath {
@@ -32,17 +36,25 @@
   line-height: 18px;
   letter-spacing: -0.02em;
   color: #ffffff;
-  text-align: justify;
+  text-align: start;
+  justify-self: end;
 }
 .img {
   border-radius: 60px;
-  object-fit: fill;
-  width: 335px;
-  height: 402px;
+  object-fit: cover;
+  width: 100%;
+  max-width: 335px;
+  max-height: 402px;
 }
 @media screen and (min-width: 375px) {
 }
 @media screen and (min-width: 768px) {
+  .container {
+    padding-top: 96px;
+    padding-bottom: 44px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
   .title {
     font-size: 80px;
     line-height: 76px;
@@ -54,10 +66,6 @@
     line-height: 76px;
   }
   .titleWrapper {
-    padding-top: 96px;
-    padding-bottom: 44px;
-    padding-left: 32px;
-    padding-right: 32px;
     grid-template-columns: 1fr 255px;
   }
   .desc {
@@ -66,8 +74,15 @@
     text-align: start;
     grid-column: 2 / 3;
   }
+  .img {
+    max-width: 1280px;
+  }
 }
 @media screen and (min-width: 1280px) {
+  .container {
+    padding-bottom: 32px;
+    padding-inline: 64px;
+  }
   .title {
     min-width: 760px;
     text-align: start;
@@ -88,7 +103,8 @@
   .titleWrapper {
     gap: 73px;
     grid-template-columns: 760px 255px;
-    padding-bottom: 32px;
-    padding-inline: 64px;
+  }
+  .img {
+    max-width: 2000px;
   }
 }

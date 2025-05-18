@@ -3,13 +3,13 @@ import css from "./PetsItem.module.css";
 import { formatDatePetsList } from "../../js.js";
 import { useDispatch } from "react-redux";
 import { removePet } from "../../redux/users/operations.js";
-const PetsItem = ({ pet, key }) => {
+const PetsItem = ({ pet }) => {
   const dispatch = useDispatch();
   const deletePet = (id) => {
     dispatch(removePet({ id }));
   };
   return (
-    <li key={key} className={css.item}>
+    <li key={pet._id} className={css.item}>
       <img src={pet?.imgURL} alt={pet?.title} className={css.img} />
       <h3 className={css.title}>{pet?.title}</h3>
       <p className={css.name}>

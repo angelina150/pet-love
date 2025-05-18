@@ -119,5 +119,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.heart {
+  stroke: #f6b83d;
+  fill: none;
+}
+.heartActive {
+  fill: #f6b83d;
   stroke: #f6b83d;
 }

@@ -3,6 +3,7 @@ import "./App.css";
 import Loader from "./components/Loader/Loader.jsx";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
+import { setToken } from "./redux/users/operations.js";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
 const MainPage = lazy(() => import("./pages/MainPage/MainPage.jsx"));
@@ -19,6 +20,10 @@ const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage.jsx"));
 const AddPetPage = lazy(() => import("./pages/AddPetPage/AddPetPage.jsx"));
 function App() {
+  const token = localStorage.getItem("token");
+  if (token) {
+    setToken(token);
+  }
   return (
     <Suspense fallback={<Loader />}>
       <Routes>

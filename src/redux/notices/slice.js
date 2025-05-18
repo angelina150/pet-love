@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addFavoritesNotices,
   fetchNotices,
   fetchNoticesCategories,
   fetchNoticesSex,
   fetchNoticesSpecies,
+  removeFavoritesNoticesById,
 } from "./operations.js";
 
 const initialState = {
@@ -12,6 +14,7 @@ const initialState = {
   categories: [],
   sex: [],
   species: [],
+  favorites: [],
   error: null,
   loading: false,
   isFetched: false,
@@ -72,6 +75,30 @@ const noticesSlice = createSlice({
         state.species = action.payload;
       })
       .addCase(fetchNoticesSpecies.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(addFavoritesNotices.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addFavoritesNotices.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(addFavoritesNotices.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(removeFavoritesNoticesById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(removeFavoritesNoticesById.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(removeFavoritesNoticesById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
