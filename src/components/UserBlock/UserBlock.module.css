@@ -3,6 +3,8 @@
   height: 110;
   border-radius: 100px;
   margin-bottom: 38px;
+  background-color: #eeeeee;
+  margin: 0 auto;
 }
 .title {
   font-weight: 700;

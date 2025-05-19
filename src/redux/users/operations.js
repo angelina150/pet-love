@@ -111,10 +111,7 @@ export const removePet = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await authInstance.delete(
-        `users/current/pets/remove/${id}`,
-        {
-          params: { id },
-        }
+        `users/current/pets/remove/${id}`
       );
       return data;
     } catch (error) {

@@ -6,10 +6,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { selectNoticesSpecies } from "../../redux/notices/selectors.js";
 import { useDispatch, useSelector } from "react-redux";
+import { selectNoticesSpecies } from "../../redux/notices/selectors.js";
 import { fetchNoticesSpecies } from "../../redux/notices/operations.js";
 import { addPets, fetchUserFullInfo } from "../../redux/users/operations.js";
+
 const schema = yup.object().shape({
   title: yup.string().required("Title is required"),
   name: yup.string().required("Name is required"),
@@ -33,12 +34,14 @@ const AddPetForm = () => {
   const types = useSelector(selectNoticesSpecies);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedType, setSelectedType] = useState("");
+  const fileInputRef = useRef(null);
 
   const handleSelectType = (type) => {
     setSelectedType(type);
     setValue("species", type);
     setIsDropdownOpen(false);
   };
+
   useEffect(() => {
     if (types.length === 0) {
       dispatch(fetchNoticesSpecies());
@@ -46,9 +49,9 @@ const AddPetForm = () => {
   }, [dispatch, types]);
 
   const options = ["female", "male", "multiple"];
-
   const [gender, setGender] = useState("");
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -65,8 +68,8 @@ const AddPetForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      dispatch(addPets(data));
-      dispatch(fetchUserFullInfo());
+      await dispatch(addPets(data));
+      await dispatch(fetchUserFullInfo());
       toast.success("Pet added successfully!");
       navigate("/profile");
     } catch (error) {
@@ -76,6 +79,28 @@ const AddPetForm = () => {
 
   const handleBack = () => {
     navigate("/profile");
+  };
+
+  const handleUpload = async (event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "pet-love");
+
+    try {
+      const response = await fetch(
+        "https://api.cloudinary.com/v1_1/dxmqb54k2/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      setValue("imgURL", data.secure_url);
+      toast.success("Photo uploaded successfully!");
+    } catch (error) {
+      toast.error(error || "Failed to upload image.");
+    }
   };
 
   return (
@@ -124,10 +149,30 @@ const AddPetForm = () => {
 
       <input
         {...register("imgURL")}
-        placeholder="Enter URL"
+        placeholder="Enter image URL"
         className={css.inputText}
       />
       {errors.imgURL && <p className={css.error}>{errors.imgURL.message}</p>}
+
+      <button
+        className={css.btnUpload}
+        type="button"
+        onClick={() => fileInputRef.current.click()}
+      >
+        Upload photo
+        <svg width="18" height="18" className={css.iconUpload}>
+          <use href="/images/icons.svg#icon-upload-cloud"></use>
+        </svg>
+      </button>
+
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        style={{ display: "none" }}
+        onChange={handleUpload}
+      />
+
       <div className={css.inputDownWrapper}>
         <input
           {...register("birthday")}
@@ -137,6 +182,7 @@ const AddPetForm = () => {
         {errors.birthday && (
           <p className={css.error}>{errors.birthday.message}</p>
         )}
+
         <div className={css.dropdownWrapper}>
           <input
             {...register("species")}

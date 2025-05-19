@@ -111,14 +111,24 @@
   padding: 14px;
   text-align: center;
 }
-.btnHeart {
+.btnHeart,
+.btnTrash {
   border: none;
   background-color: #fff4df;
   border-radius: 100%;
-  padding: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.btnHeart {
+  padding: 15px;
+  width: 48px;
+  height: 48px;
+}
+.btnTrash {
+  padding: 13px;
+  width: 44px;
+  height: 44px;
 }
 .heart {
   stroke: #f6b83d;

@@ -1,11 +1,5 @@
-// import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authInstance } from "../users/operations.js";
-
-// export const authInstance = axios.create({
-//   baseURL: "https://petlove.b.goit.study/api",
-//   headers: { "Content-Type": "application/json" },
-// });
 
 export const fetchCities = createAsyncThunk(
   "cities/fetchCities",

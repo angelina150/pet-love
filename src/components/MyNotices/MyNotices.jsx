@@ -1,44 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserNotices } from "../../redux/users/selectors.js";
+import { selectViewedNotices } from "../../redux/users/selectors.js";
 import NoticesItem from "../NoticesItem/NoticesItem.jsx";
-
+import { selectFavoritesNotices } from "../../redux/users/selectors.js";
+import { removeFavoritesNoticesById } from "../../redux/notices/operations.js";
+import css from "./MyNotices.module.css";
+import { fetchUserFullInfo } from "../../redux/users/operations.js";
 const MyNotices = () => {
-  const notices = useSelector(selectUserNotices);
+  const favorites = useSelector(selectFavoritesNotices);
+  const viewedNotices = useSelector(selectViewedNotices);
+  console.log(viewedNotices);
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("favorites");
 
-  const favorites = useSelector((state) => state.notices.favorites);
-  const viewed = useSelector((state) => state.notices.viewed);
+  useEffect(() => {
+    if (activeTab === "favorites") {
+      dispatch(fetchUserFullInfo());
+    } else {
+      dispatch(fetchUserFullInfo());
+    }
+  }, [activeTab, dispatch]);
 
-  // useEffect(() => {
-  //   if (activeTab === "favorites") {
-  //     dispatch(fetchFavorites());
-  //   } else {
-  //     dispatch(fetchViewed());
-  //   }
-  // }, [activeTab, dispatch]);
-
-  // const handleTabClick = (tab) => {
-  //   setActiveTab(tab);
-  // };
-
-  // const handleRemoveFromFavorites = (noticeId) => {
-  //   dispatch(removeFromFavorites(noticeId));
-  // };
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
 
   return (
     <div>
       <div className="tabs">
         <button
-          className={activeTab === "favorites" ? "active" : ""}
-          // onClick={() => handleTabClick("favorites")}
+          className={`${css.tab} ${
+            activeTab === "favorites" ? css.active : ""
+          }`}
+          onClick={() => handleTabClick("favorites")}
         >
           My favorites pets
         </button>
         <button
-          className={activeTab === "viewed" ? "active" : ""}
-          // onClick={() => handleTabClick("viewed")}
+          className={`${css.tab} ${activeTab === "viewed" ? css.active : ""}`}
+          onClick={() => handleTabClick("viewed")}
         >
           Viewed
         </button>
@@ -46,19 +46,24 @@ const MyNotices = () => {
 
       <div className="content">
         {activeTab === "favorites" &&
-          favorites?.map((notice) => (
-            <NoticesItem key={notice._id} notice={notice}>
-              <button
-                className="remove-btn"
-                // onClick={() => handleRemoveFromFavorites(notice._id)}
-              >
-                🗑️
-              </button>
-            </NoticesItem>
+          (favorites?.length > 0 ? (
+            favorites.map((notice) => (
+              <NoticesItem key={notice._id} notice={notice} />
+            ))
+          ) : (
+            <p className={css.desc}>
+              Oops,
+              <span className={css.descPart}>
+                {" "}
+                looks like there aren't any furries
+              </span>{" "}
+              on our adorable page yet. Do not worry! View your pets on the
+              "find your favorite pet" page and add them to your favorites.
+            </p>
           ))}
 
         {activeTab === "viewed" &&
-          viewed?.map((notice) => (
+          viewedNotices?.map((notice) => (
             <NoticesItem key={notice._id} notice={notice} />
           ))}
       </div>

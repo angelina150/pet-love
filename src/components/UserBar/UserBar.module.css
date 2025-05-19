@@ -1,15 +1,22 @@
 .wrapper {
   display: none;
 }
-.userAvatar {
+.userAvatar,
+.userAvatarSvg {
   width: 40px;
   height: 40px;
   border-radius: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff4df;
+
   object-fit: cover;
+}
+.userAvatar {
+  background-color: #eeeeee;
+}
+.userAvatarSvg {
+  background-color: #fff4df;
 }
 .name {
   font-weight: 700;

@@ -2,12 +2,21 @@ import React from "react";
 import css from "./PetsItem.module.css";
 import { formatDatePetsList } from "../../js.js";
 import { useDispatch } from "react-redux";
-import { removePet } from "../../redux/users/operations.js";
+import { fetchUserFullInfo, removePet } from "../../redux/users/operations.js";
+import { toast } from "react-toastify";
 const PetsItem = ({ pet }) => {
   const dispatch = useDispatch();
-  const deletePet = (id) => {
-    dispatch(removePet({ id }));
+
+  const deletePet = async (petId) => {
+    try {
+      await dispatch(removePet(petId)).unwrap();
+      await dispatch(fetchUserFullInfo());
+      toast.success("Pet removed");
+    } catch (error) {
+      toast.error(error || "Failed to delete pet");
+    }
   };
+
   return (
     <li key={pet._id} className={css.item}>
       <img src={pet?.imgURL} alt={pet?.title} className={css.img} />

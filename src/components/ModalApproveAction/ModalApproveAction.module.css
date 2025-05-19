@@ -7,8 +7,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px;
+  padding: 40px 28px;
   border-radius: 30px;
+  max-width: 335px;
+  max-height: 270px;
 }
 
 .overlay {
@@ -42,10 +44,10 @@
   stroke: #262626;
 }
 .btnYes {
-  border: none;
+  border-color: transparent;
   background-color: #f6b83d;
   border-radius: 30px;
-  padding: 14px 57px;
+  padding: 12px 57px;
   color: #ffffff;
   font-weight: 700;
   font-size: 16px;
@@ -57,10 +59,10 @@
   background-color: #f9b020;
 }
 .btnCancel {
-  border: none;
+  border-color: transparent;
   background-color: #2626260d;
   border-radius: 30px;
-  padding: 14px 44px;
+  padding: 12px 44px;
   color: #262626;
   font-weight: 700;
   font-size: 16px;
@@ -71,4 +73,20 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
+}
+.imgWrapper {
+  margin-bottom: 20px;
+  border-color: transparent;
+  background-color: #fff4df;
+  padding: 18px;
+  border-radius: 100px;
+}
+@media (min-width: 768px) {
+  .modal {
+    padding: 80px;
+  }
+  .btnCancel,
+  .btnYes {
+    padding-block: 14px;
+  }
 }

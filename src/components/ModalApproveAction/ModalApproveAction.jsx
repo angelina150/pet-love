@@ -3,17 +3,26 @@ import css from "./ModalApproveAction.module.css";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/users/operations.js";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
 const ModalApproveAction = ({ onClose, isOpen }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch(logout());
-    onClose();
+  const handleLogout = async () => {
+    try {
+      await dispatch(logout()).unwrap();
+    } catch (error) {
+      toast.error(error || "Logout failed");
+    } finally {
+      localStorage.removeItem("persist:root");
+      onClose();
+      navigate("/");
+    }
   };
-
   return (
     <Modal
       isOpen={isOpen}
@@ -32,7 +41,13 @@ const ModalApproveAction = ({ onClose, isOpen }) => {
           <use href="/images/icons.svg#icon-close"></use>
         </svg>
       </button>
-      <img src="" alt="Log out illustration" className={css.image} />
+      <div className={css.imgWrapper}>
+        <img
+          className={css.img}
+          src="/images/cat.png"
+          alt="Log out illustration"
+        />
+      </div>
       <h2 className={css.title}>Already leaving?</h2>
       <div className={css.actions}>
         <button onClick={handleLogout} type="button" className={css.btnYes}>

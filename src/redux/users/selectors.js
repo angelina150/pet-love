@@ -10,3 +10,5 @@ export const selectUserNotices = (state) =>
 export const selectUserPets = (state) => state.users.userFullInfo.pets;
 export const selectFavoritesNotices = (state) =>
   state.users.userFullInfo.noticesFavorites;
+export const selectViewedNotices = (state) =>
+  state.users.userFullInfo.noticesViewed;

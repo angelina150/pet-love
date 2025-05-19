@@ -89,26 +89,36 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       return;
     }
 
-    const formData = new FormData();
-
-    for (const key in changedFields) {
-      formData.append(key, changedFields[key]);
-    }
-
-    if (values.avatar && values.avatar.startsWith("blob:")) {
-      const file = values.avatar;
-      formData.append("avatar", file);
-    } else if (values.avatar) {
-      formData.append("avatar", values.avatar);
-    }
-
     try {
-      await dispatch(updateUser(formData)).unwrap();
+      await dispatch(updateUser(changedFields)).unwrap();
       dispatch(fetchUserFullInfo());
       toast.success("Data updated successfully!");
       onClose();
     } catch (error) {
       toast.error(error.message || "Error while updating");
+    }
+  };
+  const handleUpload = async (event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "pet-love");
+
+    try {
+      const response = await fetch(
+        "https://api.cloudinary.com/v1_1/dxmqb54k2/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      console.log("Uploaded URL:", data.secure_url);
+      setValue("avatar", data.secure_url);
+      toast.success("Photo uploaded successfully!");
+    } catch (error) {
+      console.error("Upload error:", error);
+      toast.error("Failed to upload image.");
     }
   };
 
@@ -181,14 +191,9 @@ const ModalEditUser = ({ onClose, isOpen }) => {
           accept="image/*"
           ref={fileInputRef}
           style={{ display: "none" }}
-          onChange={(e) => {
-            const file = e.target.files[0];
-            if (file) {
-              setValue("avatar", file);
-            }
-          }}
+          onChange={handleUpload}
         />
-        {/* Name */}
+
         <label>
           <Controller
             name="name"
@@ -201,7 +206,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
             <span className={css.error}>{errors.name.message}</span>
           )}
         </label>
-        {/* Email */}
+
         <label>
           <Controller
             name="email"
@@ -218,7 +223,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
             <span className={css.error}>{errors.email.message}</span>
           )}
         </label>
-        {/* Phone */}
+
         <label className={css.label}>
           <Controller
             name="phone"

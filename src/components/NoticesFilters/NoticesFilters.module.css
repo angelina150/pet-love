@@ -62,6 +62,6 @@
   }
 }
 .selectInput {
-  max-height: 48px; /* Максимальна висота */
-  overflow-y: auto; /* Додати прокручування, якщо вміст більше */
+  max-height: 48px;
+  overflow-y: auto;
 }

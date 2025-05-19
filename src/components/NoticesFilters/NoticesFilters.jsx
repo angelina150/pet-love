@@ -69,17 +69,6 @@ const NoticesFilters = ({
     handleFilterChange("sortBy", e.target.value);
   };
 
-  // const handleReset = () => {
-  //   resetFilters();
-  //   setFilters({
-  //     keyword: "",
-  //     category: "",
-  //     species: "",
-  //     locationId: "",
-  //     sex: "",
-  //     sortBy: "date",
-  //   });
-  // };
   return (
     <div className={css.wrapper}>
       <div className={css.inputsWrapper}>

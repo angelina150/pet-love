@@ -9,7 +9,6 @@ const UserBar = ({ isHome }) => {
   const userFullInfo = useSelector(selectUserFullInfo);
   const userName = userFullInfo?.name;
   const userAvatar = userFullInfo?.avatar;
-
   return (
     <div
       className={css.wrapper}
@@ -18,9 +17,9 @@ const UserBar = ({ isHome }) => {
       }}
     >
       {userAvatar ? (
-        <img className={css.userAvatar} href={userAvatar} alt="Avatar" />
+        <img className={css.userAvatar} src={userAvatar} alt="Avatar" />
       ) : (
-        <div className={css.userAvatar}>
+        <div className={css.userAvatarSvg}>
           <svg className={css.iconUser} width="24" height="24">
             <use href="/images/icons.svg#icon-user"></use>
           </svg>

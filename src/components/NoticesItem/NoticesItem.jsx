@@ -7,24 +7,53 @@ import {
   removeFavoritesNoticesById,
 } from "../../redux/notices/operations.js";
 import { useDispatch, useSelector } from "react-redux";
-import { selectFavoritesNotices } from "../../redux/users/selectors.js";
+import {
+  selectFavoritesNotices,
+  selectIsLoggedIn,
+} from "../../redux/users/selectors.js";
 import { fetchUserFullInfo } from "../../redux/users/operations.js";
+import ModalAttention from "../ModalAttention/ModalAttention.jsx";
+import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 const NoticesItem = ({ notice }) => {
+  const location = useLocation();
+  const isProfile = location.pathname === "/profile";
   const dispatch = useDispatch();
+  const [showModalAttention, setShowModalAttention] = useState(false);
   const [isOpenModalNotice, setIsOpenModalNotice] = useState(false);
+  const isLoggenIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(selectFavoritesNotices);
   const favoriteId = (fav) => fav._id === notice._id;
   const isFavorite = favorites?.some(favoriteId);
-  const closeMoadalNotice = () => {
+  const closeModalNotice = () => {
     setIsOpenModalNotice(false);
   };
-  const toggleFavorite = () => {
-    if (isFavorite) {
-      dispatch(removeFavoritesNoticesById(notice._id));
-      dispatch(fetchUserFullInfo());
+  const closeModalAttention = () => {
+    setShowModalAttention(false);
+  };
+  const toggleFavorite = async () => {
+    try {
+      if (isFavorite) {
+        await dispatch(removeFavoritesNoticesById(notice._id)).unwrap();
+      } else {
+        await dispatch(addFavoritesNotices(notice._id)).unwrap();
+      }
+    } catch (error) {
+      toast.error(error?.message || "Something went wrong");
+    } finally {
+      try {
+        await dispatch(fetchUserFullInfo()).unwrap();
+      } catch (fetchError) {
+        console.error("Error updating user information:", fetchError);
+      }
+    }
+  };
+
+  const handleHeartClick = () => {
+    if (isLoggenIn) {
+      toggleFavorite();
     } else {
-      dispatch(addFavoritesNotices(notice._id));
-      dispatch(fetchUserFullInfo());
+      setShowModalAttention(true);
     }
   };
   return (
@@ -72,24 +101,52 @@ const NoticesItem = ({ notice }) => {
         <button
           className={css.btnLearnMore}
           type="button"
-          onClick={() => setIsOpenModalNotice(true)}
+          onClick={
+            isLoggenIn
+              ? () => setIsOpenModalNotice(true)
+              : () => setShowModalAttention(true)
+          }
         >
           Learn more
         </button>
-        <button type="button" className={css.btnHeart} onClick={toggleFavorite}>
-          <svg
-            className={isFavorite ? css.heartActive : css.heart}
-            height="18"
-            width="18"
+        {isProfile ? (
+          <button
+            type="button"
+            className={css.btnTrash}
+            onClick={() => dispatch(removeFavoritesNoticesById(notice._id))}
           >
-            <use href="/images/icons.svg#icon-heart"></use>
-          </svg>
-        </button>
+            <svg className={css.trash} height="18" width="18">
+              <use href="/images/icons.svg#icon-trash"></use>
+            </svg>
+          </button>
+        ) : (
+          <button
+            type="button"
+            className={css.btnHeart}
+            onClick={handleHeartClick}
+          >
+            <svg
+              className={isFavorite ? css.heartActive : css.heart}
+              height="18"
+              width="18"
+            >
+              <use href="/images/icons.svg#icon-heart"></use>
+            </svg>
+          </button>
+        )}
+
         {isOpenModalNotice && (
           <ModalNotice
             notice={notice}
-            onClose={closeMoadalNotice}
+            onClose={closeModalNotice}
             isOpen={isOpenModalNotice}
+          />
+        )}
+        {showModalAttention && (
+          <ModalAttention
+            isOpen={showModalAttention}
+            onClose={closeModalAttention}
+            notice={notice}
           />
         )}
       </div>
