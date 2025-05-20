@@ -2,9 +2,16 @@ import React from "react";
 import Modal from "react-modal";
 import css from "./ModalNotice.module.css";
 import { formatDatePetsList } from "../../js.js";
+import { toast } from "react-toastify";
 Modal.setAppElement("#root");
 
-const ModalNotice = ({ onClose, isOpen, notice }) => {
+const ModalNotice = ({
+  onClose,
+  isOpen,
+  notice,
+  handleHeartClick,
+  isFavorite,
+}) => {
   return (
     <Modal
       overlayClassName={css.overlay}
@@ -63,16 +70,25 @@ const ModalNotice = ({ onClose, isOpen, notice }) => {
         {notice.price && <p className={css.price}>${notice.price}</p>}
       </div>
       <div className={css.wrapperBtns}>
-        <button className={css.btnAdd} type="button">
-          Add to
+        <button onClick={handleHeartClick} className={css.btnAdd} type="button">
+          {isFavorite ? "Remove from" : "Add to"}
           <svg height="18" width="18">
             <use
-              className={css.heartIcon}
+              className={isFavorite ? css.heartIconActive : css.heartIcon}
               href="/images/icons.svg#icon-heart"
             ></use>
           </svg>
         </button>
-        <button type="button" className={css.btnContact}>
+        <button
+          onClick={() => {
+            toast.info(
+              "Contact information will be added soon. Thank you for your interest!"
+            );
+          }}
+          type="button"
+          className={css.btnContact}
+          aria-label="Contact button"
+        >
           Contact
         </button>
       </div>

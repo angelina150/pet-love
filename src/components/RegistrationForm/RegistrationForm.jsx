@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import css from "./RegistrationForm.module.css";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
@@ -11,6 +11,7 @@ import {
 } from "../../redux/users/operations.js";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import ValidatedInput from "../ValidatedInput/ValidatedInput.jsx";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -18,7 +19,7 @@ const schema = yup.object().shape({
     .string()
     .matches(
       /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-      "Invalid email format"
+      "Enter a valid Email"
     )
     .required("Email is required"),
   password: yup
@@ -34,15 +35,28 @@ const schema = yup.object().shape({
 const RegistrationForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
+    control,
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onChange",
   });
+
+  const watchedFields = useWatch({
+    control,
+    name: ["name", "email", "password", "confirmPassword"],
+  });
+
+  const [showPassword, setShowPassword] = useState({
+    password: false,
+    confirmPassword: false,
+  });
+
   const onSubmit = async (values) => {
     const data = {
       name: values.name,
@@ -52,101 +66,66 @@ const RegistrationForm = () => {
 
     try {
       await dispatch(registerUser(data)).unwrap();
-      dispatch(fetchUserFullInfo());
+      await dispatch(fetchUserFullInfo()).unwrap();
       reset();
       navigate("/profile");
     } catch (error) {
-      toast.error(error.message || "Registration failed");
+      toast.error(error?.message || "Registration failed");
     }
   };
-  const [showPassword, setShowPassword] = useState({
-    password: false,
-    confirmPassword: false,
-  });
+
   return (
-    <form className={css.formRegisrt} onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        {errors.name && (
-          <span className={css.error}>{errors.name.message}</span>
-        )}
-        <input
-          className={`${css.input} ${
-            errors.name ? css.inputError : watch("name") ? css.inputSuccess : ""
-          }`}
-          {...register("name")}
+    <form className={css.formRegister} onSubmit={handleSubmit(onSubmit)}>
+      <div className={css.inputsWrapper}>
+        <ValidatedInput
+          name="name"
+          register={register}
+          errors={errors}
+          watchValue={watchedFields[0]}
           placeholder="Name"
         />
-      </label>
-      <label>
-        {errors.email && (
-          <span className={css.error}>{errors.email.message}</span>
-        )}
-        <input
-          {...register("email")}
-          className={`${css.input} ${
-            errors.email
-              ? css.inputError
-              : watch("email")
-              ? css.inputSuccess
-              : ""
-          }`}
+
+        <ValidatedInput
+          name="email"
+          register={register}
+          errors={errors}
+          watchValue={watchedFields[1]}
           placeholder="Email"
         />
-      </label>
-      <label className={css.labelPassword}>
-        {errors.password && (
-          <span className={css.error}>{errors.password.message}</span>
-        )}
-        <input
-          placeholder="Password"
-          className={`${css.input} ${
-            errors.password
-              ? css.inputError
-              : watch("password")
-              ? css.inputSuccess
-              : ""
-          }`}
-          type={showPassword.password ? "text" : "password"}
-          {...register("password")}
-        />
 
-        <PasswordToggleButton
-          isVisible={showPassword.password}
-          onClick={() =>
-            setShowPassword((prev) => ({
-              ...prev,
-              password: !prev.password,
-            }))
+        <ValidatedInput
+          name="password"
+          register={register}
+          errors={errors}
+          watchValue={watchedFields[2]}
+          placeholder="Password"
+          type={showPassword.password ? "text" : "password"}
+          showPasswordToggle={true}
+          isPasswordField={true}
+          passwordVisible={showPassword.password}
+          togglePasswordVisibility={() =>
+            setShowPassword((prev) => ({ ...prev, password: !prev.password }))
           }
         />
-      </label>
-      <label className={css.labelConfirmPassword}>
-        {errors.confirmPassword && (
-          <span className={css.error}>{errors.confirmPassword.message}</span>
-        )}
-        <input
-          placeholder="Confirm password"
-          className={`${css.input} ${
-            errors.confirmPassword
-              ? css.inputError
-              : watch("confirmPassword")
-              ? css.inputSuccess
-              : ""
-          }`}
-          type={showPassword.confirmPassword ? "text" : "password"}
-          {...register("confirmPassword")}
-        />
 
-        <PasswordToggleButton
-          isVisible={showPassword.confirmPassword}
-          onClick={() =>
+        <ValidatedInput
+          name="confirmPassword"
+          register={register}
+          errors={errors}
+          watchValue={watchedFields[3]}
+          placeholder="Confirm password"
+          type={showPassword.confirmPassword ? "text" : "password"}
+          showPasswordToggle={true}
+          isPasswordField={true}
+          passwordVisible={showPassword.confirmPassword}
+          togglePasswordVisibility={() =>
             setShowPassword((prev) => ({
               ...prev,
               confirmPassword: !prev.confirmPassword,
             }))
           }
         />
-      </label>
+      </div>
 
       <button className={css.btnSubmit} type="submit">
         Registration

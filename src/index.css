@@ -46,11 +46,16 @@ a {
   color: currentColor;
   text-decoration: none;
   font-family: Manrope, sans-serif;
+  cursor: pointer;
 }
 img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+input,
+textarea {
+  font-family: Manrope, sans-serif;
 }
 input:hover,
 textarea:hover,

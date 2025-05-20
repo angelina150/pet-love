@@ -1,3 +1,6 @@
+.wrapperUserBlock {
+  width: 520px;
+}
 .img {
   width: 110;
   height: 110;
@@ -39,6 +42,8 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  fill: #f6b83d;
+  stroke: #f6b83d;
 }
 .btnUpload {
   border: none;
@@ -50,4 +55,30 @@
   text-decoration-style: solid;
   text-decoration-thickness: 0;
   margin-bottom: 20px;
+  text-align: center;
+}
+.userBlock {
+  width: 80px;
+  height: 38px;
+  padding: 10px 14px;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  background-color: #f6b83d;
+  border: 1px transparent;
+  stroke: #fff;
+  fill: #fff;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+}
+.iconUserBlock {
+  stroke: #fff;
+  fill: #fff;
 }

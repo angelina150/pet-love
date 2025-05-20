@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectViewedNotices } from "../../redux/users/selectors.js";
 import NoticesItem from "../NoticesItem/NoticesItem.jsx";
 import { selectFavoritesNotices } from "../../redux/users/selectors.js";
-import { removeFavoritesNoticesById } from "../../redux/notices/operations.js";
 import css from "./MyNotices.module.css";
 import { fetchUserFullInfo } from "../../redux/users/operations.js";
 const MyNotices = () => {
   const favorites = useSelector(selectFavoritesNotices);
   const viewedNotices = useSelector(selectViewedNotices);
-  console.log(viewedNotices);
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("favorites");
 

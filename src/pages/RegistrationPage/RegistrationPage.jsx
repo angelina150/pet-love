@@ -18,7 +18,7 @@ const RegistrationPage = () => {
         </p>
         <RegistrationForm />
         <p className={css.desc}>
-          Already have an account?{" "}
+          Already have an account?
           <Link to="/login" className={css.descPath}>
             Login
           </Link>

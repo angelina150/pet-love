@@ -113,7 +113,7 @@ const NoticesItem = ({ notice }) => {
           <button
             type="button"
             className={css.btnTrash}
-            onClick={() => dispatch(removeFavoritesNoticesById(notice._id))}
+            onClick={() => toggleFavorite()}
           >
             <svg className={css.trash} height="18" width="18">
               <use href="/images/icons.svg#icon-trash"></use>
@@ -140,6 +140,8 @@ const NoticesItem = ({ notice }) => {
             notice={notice}
             onClose={closeModalNotice}
             isOpen={isOpenModalNotice}
+            handleHeartClick={handleHeartClick}
+            isFavorite={isFavorite}
           />
         )}
         {showModalAttention && (

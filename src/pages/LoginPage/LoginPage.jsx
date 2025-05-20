@@ -16,7 +16,7 @@ function LoginPage() {
         </p>
         <LoginForm />
         <p className={css.desc}>
-          Don't have an account?{" "}
+          Don't have an account?
           <Link to="/register" className={css.descPath}>
             Register
           </Link>

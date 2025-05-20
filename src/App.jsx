@@ -4,6 +4,7 @@ import Loader from "./components/Loader/Loader.jsx";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 import { setToken } from "./redux/users/operations.js";
+import { ToastContainer } from "react-toastify";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
 const MainPage = lazy(() => import("./pages/MainPage/MainPage.jsx"));
@@ -25,23 +26,26 @@ function App() {
     setToken(token);
   }
   return (
-    <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route element={<MainLayout />}>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/notices" element={<NoticesPage />} />
-          <Route path="/friends" element={<OurFriendsPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/add-pet" element={<AddPetPage />} />
+    <>
+      <ToastContainer />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route element={<MainLayout />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/notices" element={<NoticesPage />} />
+            <Route path="/friends" element={<OurFriendsPage />} />
+            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/add-pet" element={<AddPetPage />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </Suspense>
+        </Routes>
+      </Suspense>
+    </>
   );
 }
 

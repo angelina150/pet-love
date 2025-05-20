@@ -113,7 +113,6 @@ const ModalEditUser = ({ onClose, isOpen }) => {
         }
       );
       const data = await response.json();
-      console.log("Uploaded URL:", data.secure_url);
       setValue("avatar", data.secure_url);
       toast.success("Photo uploaded successfully!");
     } catch (error) {

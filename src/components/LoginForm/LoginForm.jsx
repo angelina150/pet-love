@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import * as yup from "yup";
 import css from "./LoginForm.module.css";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
 import { fetchUserFullInfo, loginUser } from "../../redux/users/operations.js";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import ValidatedInput from "../ValidatedInput/ValidatedInput.jsx";
 
 const schema = yup.object().shape({
   email: yup
@@ -26,16 +27,21 @@ const schema = yup.object().shape({
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
+    control,
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onChange",
   });
-
+  const watchedFields = useWatch({
+    control,
+    name: ["email", "password"],
+  });
   const onSubmit = async (values) => {
     const data = {
       email: values.email,
@@ -44,56 +50,40 @@ const LoginForm = () => {
 
     try {
       await dispatch(loginUser(data)).unwrap();
-      dispatch(fetchUserFullInfo());
+      await dispatch(fetchUserFullInfo()).unwrap();
       reset();
       navigate("/profile");
     } catch (error) {
-      toast.error(error.message || "Login failed");
+      toast.error(error?.message || "Login failed");
     }
   };
 
-  const [showPassword, setShowPassword] = useState(false);
-
   return (
-    <form className={css.formRegisrt} onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        {errors.email && (
-          <span className={css.error}>{errors.email.message}</span>
-        )}
-        <input
-          {...register("email")}
+    <form className={css.formRegister} onSubmit={handleSubmit(onSubmit)}>
+      <div className={css.inputsWrapper}>
+        <ValidatedInput
+          name="email"
+          register={register}
+          errors={errors}
+          watchValue={watchedFields[0]}
           placeholder="Email"
-          className={`${css.input} ${
-            errors.email
-              ? css.inputError
-              : watch("email")
-              ? css.inputSuccess
-              : ""
-          }`}
         />
-      </label>
 
-      <label className={css.labelPassword}>
-        {errors.password && (
-          <span className={css.error}>{errors.password.message}</span>
-        )}
-        <input
-          {...register("password")}
+        <ValidatedInput
+          name="password"
+          register={register}
+          errors={errors}
+          watchValue={watchedFields[1]}
           placeholder="Password"
-          type={showPassword ? "text" : "password"}
-          className={`${css.input} ${
-            errors.password
-              ? css.inputError
-              : watch("password")
-              ? css.inputSuccess
-              : ""
-          }`}
+          type={showPassword.password ? "text" : "password"}
+          showPasswordToggle={true}
+          isPasswordField={true}
+          passwordVisible={showPassword.password}
+          togglePasswordVisibility={() =>
+            setShowPassword((prev) => ({ ...prev, password: !prev.password }))
+          }
         />
-        <PasswordToggleButton
-          isVisible={showPassword}
-          onClick={() => setShowPassword((prev) => !prev)}
-        />
-      </label>
+      </div>
 
       <button className={css.btnSubmit} type="submit">
         Log In

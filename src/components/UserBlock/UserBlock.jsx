@@ -7,7 +7,13 @@ const UserBlock = () => {
   const userFullInfo = useSelector(selectUserFullInfo);
 
   return (
-    <div>
+    <div className={css.wrapperUserBlock}>
+      <div className={css.userBlock}>
+        User
+        <svg className={css.iconUserBlock} width="18" height="18">
+          <use href="/public/images/icons.svg#icon-user"></use>
+        </svg>
+      </div>
       {userFullInfo?.avatar ? (
         <img className={css.img} src={userFullInfo.avatar} alt="User avatar" />
       ) : (

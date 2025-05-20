@@ -159,7 +159,6 @@
   border: none;
   padding: 14px;
   text-align: center;
-  stroke: #ffffff;
 }
 .btnContact {
   border: none;
@@ -175,4 +174,12 @@
   font-size: 16px;
   line-height: 20px;
   letter-spacing: -0.03em;
+}
+.heartIconActive {
+  stroke: #fff;
+  fill: #fff;
+}
+.heartIcon {
+  stroke: #fff;
+  fill: none;
 }

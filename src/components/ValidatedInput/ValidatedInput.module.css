@@ -1,0 +1,69 @@
+.label {
+  position: relative;
+}
+.iconError,
+.iconSuccess {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+.iconErrorPassword,
+.iconSuccessPassword {
+  position: absolute;
+  top: 16px;
+  right: 43px;
+}
+.iconError,
+.iconErrorPassword {
+  stroke: #ef2447;
+}
+.iconSuccess,
+.iconSuccessPassword {
+  stroke: #08aa83;
+}
+.error {
+  margin-left: 16px;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -0.03em;
+  color: #ef2447;
+}
+.secure {
+  margin-left: 16px;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -0.03em;
+  color: #08aa83;
+}
+.input {
+  width: 100%;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  color: #262626;
+  padding: 16px;
+  padding-right: 45px;
+  border-radius: 30px;
+  border: 1px solid #26262626;
+}
+.input::placeholder {
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  color: #26262680;
+}
+.input:focus,
+.input:hover {
+  border-color: #f6b83d;
+}
+
+.inputSuccess,
+.inputSuccess:focus,
+.inputSuccess:hover {
+  border: 1px solid #08aa83;
+}
+.inputError,
+.inputError:hover,
+.inputError:focus {
+  border: 1px solid #ef2447;
+}
