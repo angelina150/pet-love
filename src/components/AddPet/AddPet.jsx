@@ -7,7 +7,10 @@ const AddPet = () => {
 
   return (
     <button className={css.btn} onClick={() => navigate("/add-pet")}>
-      Add pet +
+      Add pet
+      <svg className={css.icon}>
+        <use href="/images/icons.svg#icon-close"></use>
+      </svg>
     </button>
   );
 };

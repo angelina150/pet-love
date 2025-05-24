@@ -4,7 +4,7 @@ import css from "./EditUserBtn.module.css";
 const EditUserBtn = () => {
   const [isModalEditUser, setIsModalEditUser] = useState(false);
   return (
-    <>
+    <div className={css.wrap}>
       <button
         className={css.btn}
         onClick={() => setIsModalEditUser(true)}
@@ -20,7 +20,7 @@ const EditUserBtn = () => {
           onClose={() => setIsModalEditUser(false)}
         />
       )}
-    </>
+    </div>
   );
 };
 

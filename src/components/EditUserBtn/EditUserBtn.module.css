@@ -1,3 +1,7 @@
+.wrap {
+  display: flex;
+  justify-content: flex-end;
+}
 .btn {
   background-color: #fff4df;
   border-radius: 30px;
@@ -7,4 +11,8 @@
   align-items: center;
   justify-content: center;
   border: none;
+  transition: background-color 0.3s ease;
+}
+.btn:hover {
+  background-color: #fbe7c1;
 }

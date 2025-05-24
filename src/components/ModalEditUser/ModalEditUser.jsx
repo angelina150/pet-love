@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { fetchUserFullInfo, updateUser } from "../../redux/users/operations.js";
 import { selectUserFullInfo } from "../../redux/users/selectors.js";
-
+import { IMaskInput } from "react-imask";
 Modal.setAppElement("#root");
 
 const schema = yup.object().shape({
@@ -120,7 +120,6 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       toast.error("Failed to upload image.");
     }
   };
-
   return (
     <Modal
       isOpen={isOpen}
@@ -143,47 +142,55 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       <h2 className={css.title}>Edit information</h2>
 
       <form className={css.formEdit} onSubmit={handleSubmit(onSubmit)}>
-        {userFullInfo?.avatar ? (
-          <img
-            className={css.img}
-            src={userFullInfo.avatar}
-            alt="User avatar"
-          />
+        {userFullInfo?.avatar.length > 0 ? (
+          <>
+            <img
+              className={css.img}
+              src={userFullInfo.avatar}
+              alt="User avatar"
+            />
+            <label className={css.labelAvatar}>
+              <Controller
+                name="avatar"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    placeholder="Avatar URL"
+                    className={css.inputAvatar}
+                  />
+                )}
+              />
+              {errors.avatar && (
+                <span className={css.error}>{errors.avatar.message}</span>
+              )}
+              <button
+                className={css.btnUpload}
+                type="button"
+                onClick={() => fileInputRef.current.click()}
+              >
+                Upload photo
+                <svg width="18" height="18" className={css.iconUpload}>
+                  <use href="/images/icons.svg#icon-upload-cloud"></use>
+                </svg>
+              </button>
+            </label>
+          </>
         ) : (
           <>
-            <div className={css.iconUserWrap}>
-              <svg width="50" height="50">
-                <use href="/images/icons.svg#icon-user"></use>
-              </svg>
+            <div>
+              <div className={css.iconUserWrap}>
+                <svg width="40" height="40">
+                  <use href="/images/icons.svg#icon-user"></use>
+                </svg>
+              </div>
+              <button className={css.btnUploadNoPhoto} type="button">
+                Upload photo
+              </button>
             </div>
           </>
         )}
-        <label className={css.labelAvatar}>
-          <Controller
-            name="avatar"
-            control={control}
-            render={({ field }) => (
-              <input
-                {...field}
-                placeholder="Avatar URL"
-                className={css.input}
-              />
-            )}
-          />
-          {errors.avatar && (
-            <span className={css.error}>{errors.avatar.message}</span>
-          )}
-          <button
-            className={css.btnUpload}
-            type="button"
-            onClick={() => fileInputRef.current.click()}
-          >
-            Upload photo
-            <svg width="18" height="18" className={css.iconUpload}>
-              <use href="/images/icons.svg#icon-upload-cloud"></use>
-            </svg>
-          </button>
-        </label>
+        {}
 
         <input
           type="file"
@@ -198,7 +205,11 @@ const ModalEditUser = ({ onClose, isOpen }) => {
             name="name"
             control={control}
             render={({ field }) => (
-              <input {...field} placeholder="Name" className={css.input} />
+              <input
+                {...field}
+                placeholder="Name"
+                className={field?.value ? css.input : css.inputEmpty}
+              />
             )}
           />
           {errors.name && (
@@ -213,7 +224,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
             render={({ field }) => (
               <input
                 {...field}
-                placeholder="name@gmail.com|"
+                placeholder="name@gmail.com"
                 className={css.input}
               />
             )}
@@ -228,13 +239,23 @@ const ModalEditUser = ({ onClose, isOpen }) => {
             name="phone"
             control={control}
             render={({ field }) => (
-              <input {...field} placeholder="Phone" className={css.input} />
+              <IMaskInput
+                {...field}
+                inputRef={field.ref}
+                mask="+000 00 000 00 00"
+                lazy={true}
+                unmask={true}
+                placeholder="+380"
+                onAccept={(value) => field.onChange(value)}
+                className={field.value ? css.input : css.inputEmpty}
+              />
             )}
           />
           {errors.phone && (
             <span className={css.error}>{errors.phone.message}</span>
           )}
         </label>
+
         <button type="submit" className={css.btnYes}>
           Save
         </button>

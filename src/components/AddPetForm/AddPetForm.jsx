@@ -35,12 +35,9 @@ const AddPetForm = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedType, setSelectedType] = useState("");
   const fileInputRef = useRef(null);
+  const [imgURL, setImgURL] = useState("");
 
-  const handleSelectType = (type) => {
-    setSelectedType(type);
-    setValue("species", type);
-    setIsDropdownOpen(false);
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (types.length === 0) {
@@ -50,16 +47,28 @@ const AddPetForm = () => {
 
   const options = ["female", "male", "multiple"];
   const [gender, setGender] = useState("");
-  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const titleValue = watch("title");
+  const nameValue = watch("name");
+  const imgURLValue = watch("imgURL");
+  const speciesValue = watch("species");
+  const birthdayValue = watch("birthday");
+
+  const handleSelectType = (type) => {
+    setSelectedType(type);
+    setValue("species", type);
+    setIsDropdownOpen(false);
+  };
 
   const handleGenderChange = (option) => {
     setGender(option);
@@ -96,6 +105,7 @@ const AddPetForm = () => {
         }
       );
       const data = await response.json();
+      setImgURL(data.secure_url);
       setValue("imgURL", data.secure_url);
       toast.success("Photo uploaded successfully!");
     } catch (error) {
@@ -123,95 +133,110 @@ const AddPetForm = () => {
               value={option}
               checked={gender === option}
               onChange={() => handleGenderChange(option)}
-              className={css.input}
+              className={css.inputGender}
             />
-            <svg className={css.icon} width="24" height="24">
+            <svg className={css.icon}>
               <use href={`/images/icons.svg#icon-${option}`}></use>
             </svg>
+            {errors.sex && <p className={css.error}>{errors.sex.message}</p>}
           </label>
         ))}
       </div>
-      {errors.sex && <p className={css.error}>{errors.sex.message}</p>}
 
-      <input
-        {...register("title")}
-        placeholder="Title"
-        className={css.inputText}
-      />
-      {errors.title && <p className={css.error}>{errors.title.message}</p>}
+      {imgURLValue ? (
+        <img src={imgURLValue} alt="Animal's foot" className={css.imgAnimal} />
+      ) : (
+        <div className={css.svgAnimal}>
+          <svg className={css.iconAnimal}>
+            <use href="/images/icons.svg#icon-footprint"></use>
+          </svg>
+        </div>
+      )}
 
-      <input
-        {...register("name")}
-        placeholder="Pet's Name"
-        className={css.inputText}
-      />
-      {errors.name && <p className={css.error}>{errors.name.message}</p>}
-
-      <input
-        {...register("imgURL")}
-        placeholder="Enter image URL"
-        className={css.inputText}
-      />
-      {errors.imgURL && <p className={css.error}>{errors.imgURL.message}</p>}
-
-      <button
-        className={css.btnUpload}
-        type="button"
-        onClick={() => fileInputRef.current.click()}
-      >
-        Upload photo
-        <svg width="18" height="18" className={css.iconUpload}>
-          <use href="/images/icons.svg#icon-upload-cloud"></use>
-        </svg>
-      </button>
-
-      <input
-        type="file"
-        accept="image/*"
-        ref={fileInputRef}
-        style={{ display: "none" }}
-        onChange={handleUpload}
-      />
-
-      <div className={css.inputDownWrapper}>
-        <input
-          {...register("birthday")}
-          type="date"
-          className={css.inputText}
-        />
-        {errors.birthday && (
-          <p className={css.error}>{errors.birthday.message}</p>
-        )}
-
-        <div className={css.dropdownWrapper}>
+      <div className={css.inputWrapper}>
+        <div className={css.inputImgWrapper}>
           <input
-            {...register("species")}
-            placeholder="Type of pet"
-            className={css.inputText}
-            value={selectedType}
-            onFocus={() => setIsDropdownOpen(true)}
-            onChange={(e) => {
-              setSelectedType(e.target.value);
-              setValue("species", e.target.value);
-            }}
+            {...register("imgURL")}
+            placeholder="Enter URL"
+            className={`${css.inputTextImg} ${imgURLValue ? css.filled : ""}`}
           />
-          {isDropdownOpen && (
-            <ul className={css.dropdownMenu}>
-              {types?.map((type, index) => (
-                <li
-                  key={index}
-                  className={css.dropdownItem}
-                  onClick={() => handleSelectType(type)}
-                >
-                  {type}
-                </li>
-              ))}
-            </ul>
+          {errors.imgURL && (
+            <p className={css.error}>{errors.imgURL.message}</p>
+          )}
+          <button
+            className={css.btnUpload}
+            type="button"
+            onClick={() => fileInputRef.current.click()}
+          >
+            Upload photo
+            <svg className={css.iconUpload}>
+              <use href="/images/icons.svg#icon-upload-cloud"></use>
+            </svg>
+          </button>
+
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleUpload}
+          />
+        </div>
+
+        <input
+          {...register("title")}
+          placeholder="Title"
+          className={`${css.inputText} ${titleValue ? css.filled : ""}`}
+        />
+        {errors.title && <p className={css.error}>{errors.title.message}</p>}
+
+        <input
+          {...register("name")}
+          placeholder="Pet’s Name"
+          className={`${css.inputText} ${nameValue ? css.filled : ""}`}
+        />
+        {errors.name && <p className={css.error}>{errors.name.message}</p>}
+
+        <div className={css.inputDownWrapper}>
+          <input
+            {...register("birthday")}
+            type="date"
+            className={`${css.inputText} ${birthdayValue ? css.filled : ""}`}
+          />
+          {errors.birthday && (
+            <p className={css.error}>{errors.birthday.message}</p>
+          )}
+
+          <div className={css.dropdownWrapper}>
+            <input
+              {...register("species")}
+              placeholder="Type of pet"
+              className={`${css.inputText} ${speciesValue ? css.filled : ""}`}
+              value={selectedType}
+              onFocus={() => setIsDropdownOpen(true)}
+              onChange={(e) => {
+                setSelectedType(e.target.value);
+                setValue("species", e.target.value);
+              }}
+            />
+            {isDropdownOpen && (
+              <ul className={css.dropdownMenu}>
+                {types?.map((type, index) => (
+                  <li
+                    key={index}
+                    className={css.dropdownItem}
+                    onClick={() => handleSelectType(type)}
+                  >
+                    {type}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          {errors.species && (
+            <p className={css.error}>{errors.species.message}</p>
           )}
         </div>
-        {errors.species && (
-          <p className={css.error}>{errors.species.message}</p>
-        )}
       </div>
 
       <div className={css.buttons}>

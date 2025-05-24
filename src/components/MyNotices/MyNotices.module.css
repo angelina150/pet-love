@@ -1,3 +1,10 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 32px;
+  margin-top: 40px;
+}
 .tab,
 .active {
   font-family: Manrope;

@@ -1,5 +1,6 @@
 .wrapper {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 520px auto;
   gap: 32px;
+  grid-template-rows: auto;
 }

@@ -25,7 +25,7 @@ const MyNotices = () => {
 
   return (
     <div>
-      <div className="tabs">
+      <div className={css.tabs}>
         <button
           className={`${css.tab} ${
             activeTab === "favorites" ? css.active : ""

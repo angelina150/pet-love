@@ -1,5 +1,17 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 592px 1fr;
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 704px));
+  gap: 10px;
+}
+@media (min-width: 768px) {
+  .wrapper {
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .wrapper {
+    grid-template-columns: 592px 592px;
+    gap: 32px;
+  }
 }

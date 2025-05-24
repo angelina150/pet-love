@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import PasswordToggleButton from "../PasswordToggleButton/PasswordToggleButton.jsx";
 import css from "./ValidatedInput.module.css";
 
@@ -17,21 +17,13 @@ const ValidatedInput = ({
   const inputRef = useRef();
 
   const ErrorIcon = ({ isPassword }) => (
-    <svg
-      width="22"
-      height="22"
-      className={isPassword ? css.iconErrorPassword : css.iconError}
-    >
+    <svg className={isPassword ? css.iconErrorPassword : css.iconError}>
       <use href="/images/icons.svg#icon-close" />
     </svg>
   );
 
   const SuccessIcon = ({ isPassword }) => (
-    <svg
-      width="22"
-      height="22"
-      className={isPassword ? css.iconSuccessPassword : css.iconSuccess}
-    >
+    <svg className={isPassword ? css.iconSuccessPassword : css.iconSuccess}>
       <use href="/images/icons.svg#icon-check" />
     </svg>
   );
@@ -43,20 +35,14 @@ const ValidatedInput = ({
     return css.input;
   };
 
-  const maskValue = (value) => "*".repeat(value.length);
-
   return (
     <label htmlFor={name} className={css.label}>
       <input
         id={name}
         ref={inputRef}
-        type={isPasswordField && !passwordVisible ? "text" : type}
+        type={isPasswordField ? (passwordVisible ? "text" : "password") : type}
         className={getInputClass()}
-        value={
-          isPasswordField && !passwordVisible
-            ? maskValue(watchValue || "")
-            : watchValue || ""
-        }
+        value={watchValue || ""}
         placeholder={placeholder}
         {...register(name)}
         autoComplete="off"

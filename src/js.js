@@ -12,3 +12,11 @@ export const formatDatePetsList = (isoDate) => {
   const year = date.getFullYear();
   return `${day}.${month}.${year}`;
 };
+export const formatPhoneNumber = (phone) => {
+  const cleaned = phone.replace(/[^\d+]/g, "");
+
+  return cleaned.replace(
+    /^(\+380)(\d{2})(\d{3})(\d{2})(\d{2})$/,
+    "$1 $2 $3 $4 $5"
+  );
+};

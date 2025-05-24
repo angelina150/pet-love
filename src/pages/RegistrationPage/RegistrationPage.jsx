@@ -8,8 +8,25 @@ const RegistrationPage = () => {
   return (
     <div className={css.wrapper}>
       <PetBlock
-        imageUrl={"/images/registration/register.jpg"}
-        altText={"Cat"}
+        sources={[
+          {
+            media: "(min-width: 1280px)",
+            srcSet:
+              "/images/registration/desc-register-1x.jpg 1x, /images/registration/desc-register-2x.jpg 2x",
+          },
+          {
+            media: "(min-width: 768px)",
+            srcSet:
+              "/images/registration/tab-register-1x.jpg 1x, /images/registration/tab-register-2x.jpg 2x",
+          },
+          {
+            media: "(min-width: 320px)",
+            srcSet:
+              "/images/registration/mob-register-1x.jpg 1x, /images/registration/mob-register-2x.jpg 2x",
+          },
+        ]}
+        defaultImage="/images/registration/mob-register-1x.jpg"
+        altText="Cat"
       />
       <div className={css.formWrapper}>
         <Title>Registration</Title>

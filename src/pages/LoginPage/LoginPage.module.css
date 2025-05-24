@@ -1,7 +1,7 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 592px 1fr;
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 704px));
+  gap: 10px;
 }
 .descTitle {
   font-size: 18px;
@@ -26,7 +26,22 @@
 }
 .formWrapper {
   border: none;
-  border-radius: 60px;
+  border-radius: 30px;
   background-color: #fff;
-  padding: 118px 84px;
+  padding: 60px 20px;
+}
+@media (min-width: 768px) {
+  .wrapper {
+    gap: 16px;
+  }
+  .formWrapper {
+    padding: 118px 84px;
+    border-radius: 60px;
+  }
+}
+@media (min-width: 1280px) {
+  .wrapper {
+    grid-template-columns: 592px 592px;
+    gap: 32px;
+  }
 }

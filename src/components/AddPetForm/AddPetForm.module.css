@@ -1,8 +1,59 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 20px 20px;
+  background-color: #ffffff;
+  border-radius: 30px;
+}
+.title {
+  text-align: start;
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 28px;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: last baseline;
+  gap: 8px;
+}
+.titlePath {
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0;
+  vertical-align: middle;
+  color: #2b2b2a66;
+}
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 31px;
+}
+.inputImgWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  height: 36px;
+}
 .genderWrapper {
   display: flex;
   gap: 8px;
+  margin-bottom: 8px;
 }
-
+.inputGender {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
 .label-male,
 .label-female,
 .label-multiple {
@@ -12,7 +63,9 @@
   justify-content: center;
   position: relative;
   border-radius: 100%;
-  padding: 8px;
+  width: 32px;
+  height: 32px;
+  transition: stroke 0.3s ease, background-color 0.3s ease;
 }
 .label-male {
   background-color: #54adff1a;
@@ -44,64 +97,103 @@
   stroke: #fff;
   fill: #fff;
 }
-.title {
-  text-align: start;
-  font-family: Manrope;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 32px;
-  letter-spacing: -0.03em;
-  margin-bottom: 40px;
+.imgAnimal {
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
 }
-.titlePath {
-  font-family: Manrope;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: 0;
-  vertical-align: middle;
-  color: #2b2b2a66;
+.svgAnimal {
+  width: 68px;
+  height: 68px;
+  border-radius: 100px;
+  background-color: #fff4df;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
 }
-.input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+.iconAnimal {
+  width: 34px;
+  height: 34px;
+  fill: #f6b83d;
 }
-.inputText {
-  padding: 16px;
+.btnUpload {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: #fff4df;
+  border: 1px transparent;
+  border-radius: 30px;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+.btnUpload:hover {
+  background-color: #fbe7c1;
+}
+.iconUpload {
+  width: 16px;
+  height: 16px;
+}
+.inputText,
+.inputTextImg {
+  padding: 12px;
   font-family: Manrope;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
   border-radius: 30px;
   border: 1px solid #26262626;
   background-color: transparent;
+  transition: border 0.3s ease;
+  width: 100%;
 }
 .inputText:hover,
 .inputText:focus,
-.inputText:active {
+.inputText:active,
+.inputTextImg:hover,
+.inputTextImg:focus,
+.inputTextImg:active {
   border: 1px solid #f6b83d;
 }
-.inputText::placeholder {
+.inputText::placeholder,
+.inputTextImg::placeholder {
   font-family: Manrope;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
   color: #26262680;
 }
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: 60px 80px;
-  background-color: #ffffff;
-  border-radius: 60px;
+.inputTextImg::placeholder {
+  letter-spacing: -0.02em;
+}
+.inputTextImg {
+  padding: 9px 20px 9px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
 }
 .inputDownWrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 .buttons {
   display: flex;
@@ -110,27 +202,129 @@
   justify-content: flex-end;
 }
 .btn {
-  padding: 14px;
-  width: 170px;
+  padding: 12px;
+  width: 100px;
   font-family: Manrope;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
   border-radius: 30px;
+  transition: background-color 0.3s ease;
+  border-width: 1px;
 }
 .backButton {
   color: #262626;
-  border: 1px #2626260d;
+  border: 1px solid #2626260d;
   background-color: #2626260d;
+}
+.backButton:hover {
+  border: 1px solid #262626;
 }
 .submitButton {
   color: #ffffff;
   border: 1px #f6b83d;
   background-color: #f6b83d;
+  transition: background-color 0.3s ease;
+}
+.submitButton:hover {
+  background-color: #f9b020;
 }
 .dropdownItem::first-letter {
   text-transform: uppercase;
 }
+.filled {
+  border: 1px solid #f6b83d;
+}
+
+@media (min-width: 768px) {
+  .form {
+    padding: 40px 136px;
+    border-radius: 60px;
+  }
+  .inputWrapper {
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  .title {
+    font-size: 32px;
+    line-height: 32px;
+    margin-bottom: 40px;
+  }
+  .titlePath {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .iconAnimal {
+    width: 44px;
+    height: 44px;
+  }
+  .svgAnimal {
+    width: 86px;
+    height: 86px;
+  }
+  .imgAnimal {
+    width: 86px;
+    height: 86px;
+    margin-bottom: 12px;
+  }
+  .inputImgWrapper {
+    gap: 8px;
+    height: 42px;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  .label-male,
+  .label-female,
+  .label-multiple {
+    width: 40px;
+    height: 40px;
+  }
+  .inputText {
+    padding: 16px;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+  }
+  .inputTextImg {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+    padding: 12px;
+  }
+  .inputText::placeholder {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+  }
+  .btnUpload {
+    gap: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 18px;
+    width: 146px;
+  }
+  .iconUpload {
+    width: 18px;
+    height: 18px;
+  }
+  .inputDownWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .btn {
+    padding: 14px;
+    width: 170px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
 @media (min-width: 1280px) {
+  .form {
+    padding: 60px 80px;
+  }
 }

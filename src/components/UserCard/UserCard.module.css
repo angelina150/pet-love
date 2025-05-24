@@ -1,7 +1,10 @@
 .wrapper {
-  padding: 40px;
-  border-radius: 60px;
+  padding: 18px 20px 40px 20px;
+  border-radius: 30px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 .btn {
   text-transform: uppercase;
@@ -11,15 +14,19 @@
   border-radius: 30px;
   border: none;
   padding: 15px 35px;
-  text-align: center;
+  text-align: start;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   letter-spacing: -0.03em;
-  justify-self: start;
+  width: 136px;
 }
 
 @media screen and (min-width: 768px) {
+  .wrapper {
+    border-radius: 60px;
+    padding: 40px;
+  }
   .btn {
     padding: 15px 35px;
     font-size: 16px;

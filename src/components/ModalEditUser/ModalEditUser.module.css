@@ -6,8 +6,9 @@
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  padding: 50px;
   border-radius: 30px;
+  padding: 40px 20px;
+  max-width: 335px;
 }
 
 .overlay {
@@ -34,9 +35,8 @@
 }
 
 .iconUserWrap {
-  width: 110px;
-  height: 110px;
-  padding: 30px;
+  width: 80px;
+  height: 80px;
   border-radius: 100%;
   background-color: #fff4df;
   display: flex;
@@ -44,11 +44,13 @@
   align-items: center;
   margin: 0 auto;
   margin-bottom: 12px;
+  fill: #f6b83d;
+  stroke: #f6b83d;
 }
 .title {
   font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 20px;
+  line-height: 20px;
   letter-spacing: 0;
   vertical-align: middle;
   color: #2b2b2a;
@@ -58,13 +60,18 @@
 .img {
   margin-bottom: 12px;
   border-radius: 100px;
-  width: 110px;
-  height: 110px;
+  width: 80px;
+  height: 80px;
+  background-color: #eeeeee;
+  margin-right: auto;
+  margin-left: auto;
 }
 .labelAvatar {
   display: grid;
   column-gap: 8px;
-  grid-template-columns: auto 146px;
+  grid-template-columns: auto 126px;
+  height: 42px;
+  margin-bottom: 10px;
 }
 .input {
   width: 100%;
@@ -72,9 +79,9 @@
   border-radius: 30px;
   padding: 16px;
   color: #262626;
-  margin-bottom: 14px;
-  font-size: 16px;
-  line-height: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
 }
 .input::placeholder {
@@ -84,17 +91,150 @@
   line-height: 20px;
   letter-spacing: -0.03em;
 }
+
+.inputEmpty {
+  width: 100%;
+  border: 1px solid #26262626;
+  border-radius: 30px;
+  padding: 16px;
+  color: #262626;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+}
+.inputEmpty:focus,
+.inputEmpty:hover,
 .input:focus,
 .input:hover {
   border: 1px solid #f6b83d;
 }
+.inputEmpty::placeholder {
+  color: #262626;
+  margin-bottom: 14px;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+}
 .btnUpload {
   border-radius: 30px;
   background-color: #fff4df;
-  border: none;
+  border: 1px transparent;
   font-family: Manrope;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.02em;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 11px 16px;
+  text-align: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+.btnUpload:hover {
+  background-color: #fbe7c1;
+}
+.inputAvatar {
+  width: 100%;
+  border: 1px solid #f6b83d;
+  border-radius: 30px;
+  padding: 12px 20px 12px 12px;
+  color: #262626;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.btnYes {
+  color: #ffffff;
+  background-color: #f6b83d;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  border-radius: 30px;
+  border: 1px transparent;
+  margin-top: 21px;
+  transition: background-color 0.3s ease;
+}
+.btnYes:hover {
+  background-color: #f9b020;
+}
+.inputAvatar::placeholder {
+  color: #262626;
+  margin-bottom: 14px;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+}
+.inputAvatar:focus,
+.inputAvatar:hover {
+  border: 1px solid #f6b83d;
+}
+.btnUploadNoPhoto {
+  display: block;
+  border: none;
+  background-color: transparent;
+  font-family: Manrope;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  margin-bottom: 28px;
+  color: #262626;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btnUploadNoPhoto:hover {
+  color: #f9b020;
+}
+@media (min-width: 768px) {
+  .modal {
+    padding: 50px;
+    max-width: 480px;
+  }
+  .title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .labelAvatar {
+    grid-template-columns: auto 146px;
+    height: 42px;
+    margin-bottom: 20px;
+  }
+  .img {
+    width: 86px;
+    height: 86px;
+  }
+  .iconUserWrap {
+    width: 86px;
+    height: 86px;
+  }
+  .btnYes {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 40px;
+  }
+  .input {
+    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .inputAvatar {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .btnUploadNoPhoto {
+    margin-bottom: 20px;
+  }
 }

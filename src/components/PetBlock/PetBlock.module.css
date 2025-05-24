@@ -1,5 +1,36 @@
+.picture {
+  display: block;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
 .img {
-  border-radius: 60px;
-  width: 592px;
-  height: 654px;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+@media (min-width: 375px) {
+  .picture {
+    width: 335px;
+    height: 280px;
+  }
+}
+@media (min-width: 768px) {
+  .picture {
+    border-radius: 60px;
+    width: 704px;
+    height: 302px;
+  }
+  .img {
+    border-radius: 60px;
+  }
+}
+@media (min-width: 1280px) {
+  .picture {
+    width: 592px;
+    height: 654px;
+  }
 }
