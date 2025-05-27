@@ -5,6 +5,7 @@ import NoticesItem from "../NoticesItem/NoticesItem.jsx";
 import { selectFavoritesNotices } from "../../redux/users/selectors.js";
 import css from "./MyNotices.module.css";
 import { fetchUserFullInfo } from "../../redux/users/operations.js";
+import NoticesList from "../NoticesList/NoticesList.jsx";
 const MyNotices = () => {
   const favorites = useSelector(selectFavoritesNotices);
   const viewedNotices = useSelector(selectViewedNotices);
@@ -32,7 +33,7 @@ const MyNotices = () => {
           }`}
           onClick={() => handleTabClick("favorites")}
         >
-          My favorites pets
+          My favorite pets
         </button>
         <button
           className={`${css.tab} ${activeTab === "viewed" ? css.active : ""}`}
@@ -45,16 +46,14 @@ const MyNotices = () => {
       <div className="content">
         {activeTab === "favorites" &&
           (favorites?.length > 0 ? (
-            favorites.map((notice) => (
-              <NoticesItem key={notice._id} notice={notice} />
-            ))
+            <NoticesList notices={favorites} />
           ) : (
             <p className={css.desc}>
               Oops,
               <span className={css.descPart}>
                 {" "}
-                looks like there aren't any furries
-              </span>{" "}
+                looks like there aren't any furries{" "}
+              </span>
               on our adorable page yet. Do not worry! View your pets on the
               "find your favorite pet" page and add them to your favorites.
             </p>

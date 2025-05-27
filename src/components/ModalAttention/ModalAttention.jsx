@@ -42,7 +42,7 @@ const ModalAttention = ({ isOpen, onClose }) => {
             navigate("/login");
           }}
         >
-          Log in
+          Log In
         </button>
         <button
           className={css.btnRegister}

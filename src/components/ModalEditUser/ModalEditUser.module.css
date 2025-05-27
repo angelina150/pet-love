@@ -10,7 +10,6 @@
   padding: 40px 20px;
   max-width: 335px;
 }
-
 .overlay {
   position: fixed;
   top: 0;
@@ -31,21 +30,28 @@
   right: 20px;
 }
 .iconClose {
-  stroke: #262626;
+  stroke: var(--text-color);
+  transition: all 0.3s ease;
 }
-
+.iconClose:hover {
+  stroke: var(--background-color-btn-hover);
+}
+.iconUpload {
+  width: 18px;
+  height: 18px;
+}
 .iconUserWrap {
-  width: 80px;
-  height: 80px;
+  width: 94px;
+  height: 94px;
   border-radius: 100%;
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   margin-bottom: 12px;
-  fill: #f6b83d;
-  stroke: #f6b83d;
+  fill: var(--background-color-btn);
+  stroke: var(--background-color-btn);
 }
 .title {
   font-weight: 700;
@@ -75,17 +81,17 @@
 }
 .input {
   width: 100%;
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
   border-radius: 30px;
-  padding: 16px;
-  color: #262626;
+  padding: 12px;
+  color: var(--text-color);
   margin-bottom: 10px;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.03em;
 }
 .input::placeholder {
-  color: #262626;
+  color: var(--text-color);
   margin-bottom: 14px;
   font-size: 16px;
   line-height: 20px;
@@ -97,7 +103,7 @@
   border: 1px solid #26262626;
   border-radius: 30px;
   padding: 16px;
-  color: #262626;
+  color: var(--text-color);
   margin-bottom: 10px;
   font-size: 14px;
   line-height: 18px;
@@ -107,10 +113,10 @@
 .inputEmpty:hover,
 .input:focus,
 .input:hover {
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
 }
 .inputEmpty::placeholder {
-  color: #262626;
+  color: var(--text-color);
   margin-bottom: 14px;
   font-size: 16px;
   line-height: 20px;
@@ -118,40 +124,42 @@
 }
 .btnUpload {
   border-radius: 30px;
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
   border: 1px transparent;
   font-family: Manrope;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 12px;
+  line-height: 16px;
   letter-spacing: -0.02em;
   display: flex;
   flex-direction: row;
   gap: 8px;
-  padding: 11px 16px;
-  text-align: center;
+  padding: 12px;
+  justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 .btnUpload:hover {
-  background-color: #fbe7c1;
+  background-color: var(--background-color-btn-light-hover);
 }
 .inputAvatar {
   width: 100%;
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
   border-radius: 30px;
-  padding: 12px 20px 12px 12px;
-  color: #262626;
+  padding: 13px 39px 13px 12px;
+  color: var(--text-color);
   font-size: 12px;
   line-height: 16px;
   letter-spacing: -0.02em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 161px;
 }
 .btnYes {
   color: #ffffff;
-  background-color: #f6b83d;
+  background-color: var(--background-color-btn);
   width: 100%;
   padding: 12px;
   text-align: center;
@@ -162,14 +170,14 @@
   letter-spacing: -0.03em;
   border-radius: 30px;
   border: 1px transparent;
-  margin-top: 21px;
+  margin-top: 11px;
   transition: background-color 0.3s ease;
 }
 .btnYes:hover {
-  background-color: #f9b020;
+  background-color: var(--background-color-btn-hover);
 }
 .inputAvatar::placeholder {
-  color: #262626;
+  color: var(--text-color);
   margin-bottom: 14px;
   font-size: 16px;
   line-height: 20px;
@@ -177,7 +185,7 @@
 }
 .inputAvatar:focus,
 .inputAvatar:hover {
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
 }
 .btnUploadNoPhoto {
   display: block;
@@ -191,14 +199,31 @@
   text-decoration: underline;
   text-decoration-style: solid;
   margin-bottom: 28px;
-  color: #262626;
+  color: var(--text-color);
   margin-left: auto;
   margin-right: auto;
+  transition: all 0.3s ease;
 }
 .btnUploadNoPhoto:hover {
-  color: #f9b020;
+  color: var(--background-color-btn-hover);
+}
+.error {
+  font-size: 10px;
+  line-height: 8px;
+  letter-spacing: -0.03em;
+  color: #ef2447;
+  text-align: start;
+  margin-bottom: 10px;
 }
 @media (min-width: 768px) {
+  .error {
+    font-size: 12px;
+    line-height: 10px;
+    letter-spacing: -0.03em;
+    color: #ef2447;
+    text-align: start;
+    margin-bottom: 12px;
+  }
   .modal {
     padding: 50px;
     max-width: 480px;
@@ -223,18 +248,32 @@
   .btnYes {
     font-size: 16px;
     line-height: 20px;
-    margin-top: 40px;
+    margin-top: 26px;
   }
   .input {
     margin-bottom: 14px;
     font-size: 16px;
     line-height: 20px;
+    padding: 16px;
   }
   .inputAvatar {
     font-size: 14px;
     line-height: 18px;
+    padding: 12px 20px 12px 12px;
+    max-width: 226px;
+  }
+  .inputAvatar::placeholder {
+    color: var(--text-color);
+    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
   }
   .btnUploadNoPhoto {
     margin-bottom: 20px;
+  }
+  .btnUpload {
+    font-size: 12px;
+    line-height: 16px;
   }
 }

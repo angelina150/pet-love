@@ -4,9 +4,9 @@
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.03em;
-  color: #fff;
+  color: var(--color-white);
   padding: 10px 10px 10px 16px;
-  background-color: #f6b83d;
+  background-color: var(--background-color-btn);
   border-radius: 30px;
   border: 1px transparent;
   transition: background-color 0.3s ease;
@@ -18,11 +18,11 @@
 .icon {
   width: 18px;
   height: 18px;
-  stroke: #fff;
+  stroke: var(--color-white);
   transform: rotate(45deg);
 }
 .btn:hover {
-  background-color: #f9b020;
+  background-color: var(--background-color-btn-hover);
 }
 @media (min-width: 768px) {
   .btn {

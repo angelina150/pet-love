@@ -52,13 +52,18 @@
 .btnReadMore {
   border: none;
   background-color: transparent;
-  color: #f6b83d;
+  color: var(--background-color-btn);
   text-decoration: underline;
   font-size: 14px;
   line-height: 18px;
   align-items: end;
+  transition: all 0.3s ease;
+  opacity: 0.8;
 }
-
+.btnReadMore:hover {
+  color: var(--background-color-btn-hover);
+  opacity: 1;
+}
 .downPartWrap {
   width: 100%;
   display: flex;

@@ -10,12 +10,12 @@
   padding: 40px 20px;
   position: relative;
   border-radius: 15px;
-  background-color: #fff;
+  background-color: var(--color-white);
   text-align: start;
 }
 .worksDay {
   border: none;
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
   position: absolute;
   top: 12px;
   right: 12px;
@@ -23,7 +23,7 @@
   font-size: 12px;
   line-height: 16px;
   letter-spacing: -0.02em;
-  color: #f6b83d;
+  color: var(--background-color-btn);
   padding: 8px;
 }
 
@@ -53,13 +53,13 @@
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.02em;
-  color: #262626;
+  color: var(--text-color);
 }
 .link {
   cursor: pointer;
 }
 .link:hover {
-  color: #f6b83d;
+  color: var(--background-color-btn);
 }
 @media screen and (min-width: 375px) {
   .address {

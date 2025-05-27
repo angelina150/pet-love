@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: 28px 20px 20px;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border-radius: 30px;
 }
 .title {
@@ -74,8 +74,8 @@
 .active.label-male,
 .label-male:hover {
   background-color: #54adff;
-  stroke: #fff;
-  fill: #fff;
+  stroke: var(--color-white);
+  fill: var(--color-white);
 }
 .label-female {
   background-color: #f43f5e1a;
@@ -84,18 +84,18 @@
 .active.label-female,
 .label-female:hover {
   background-color: #f43f5e;
-  stroke: #fff;
-  fill: #fff;
+  stroke: var(--color-white);
+  fill: var(--color-white);
 }
 .label-multiple {
-  background-color: #fff4df;
-  fill: #f6b83d;
+  background-color: var(--background-color-btn-light);
+  fill: var(--background-color-btn);
 }
 .active.label-multiple,
 .label-multiple:hover {
-  background-color: #f6b83d;
-  stroke: #fff;
-  fill: #fff;
+  background-color: var(--background-color-btn);
+  stroke: var(--color-white);
+  fill: var(--color-white);
 }
 .imgAnimal {
   width: 68px;
@@ -110,7 +110,7 @@
   width: 68px;
   height: 68px;
   border-radius: 100px;
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
   border: none;
   display: flex;
   align-items: center;
@@ -122,7 +122,7 @@
 .iconAnimal {
   width: 34px;
   height: 34px;
-  fill: #f6b83d;
+  fill: var(--background-color-btn);
 }
 .btnUpload {
   display: flex;
@@ -132,7 +132,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
   border: 1px transparent;
   border-radius: 30px;
   font-size: 12px;
@@ -142,7 +142,7 @@
   transition: background-color 0.3s ease;
 }
 .btnUpload:hover {
-  background-color: #fbe7c1;
+  background-color: var(--background-color-btn-light-hover);
 }
 .iconUpload {
   width: 16px;
@@ -167,7 +167,7 @@
 .inputTextImg:hover,
 .inputTextImg:focus,
 .inputTextImg:active {
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
 }
 .inputText::placeholder,
 .inputTextImg::placeholder {
@@ -214,27 +214,27 @@
   border-width: 1px;
 }
 .backButton {
-  color: #262626;
+  color: var(--text-color);
   border: 1px solid #2626260d;
   background-color: #2626260d;
 }
 .backButton:hover {
-  border: 1px solid #262626;
+  border: 1px solid var(--text-color);
 }
 .submitButton {
-  color: #ffffff;
-  border: 1px #f6b83d;
-  background-color: #f6b83d;
+  color: var(--color-white);
+  border: 1px var(--background-color-btn);
+  background-color: var(--background-color-btn);
   transition: background-color 0.3s ease;
 }
 .submitButton:hover {
-  background-color: #f9b020;
+  background-color: var(--background-color-btn-hover);
 }
 .dropdownItem::first-letter {
   text-transform: uppercase;
 }
 .filled {
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
 }
 
 @media (min-width: 768px) {

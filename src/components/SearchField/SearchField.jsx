@@ -13,7 +13,10 @@ const SearchField = ({ onSearch, searchQuery, setSearchQuery, pageType }) => {
   };
 
   return (
-    <form onSubmit={handleSearch} className={css.form}>
+    <form
+      onSubmit={handleSearch}
+      className={`${css.form} ${pageType === "notices" ? css.formNotices : ""}`}
+    >
       <input
         type="text"
         placeholder="Search"
@@ -38,7 +41,7 @@ const SearchField = ({ onSearch, searchQuery, setSearchQuery, pageType }) => {
       )}
 
       <button className={css.btnSearch} type="submit" title="Search">
-        <svg className={css.iconSearch} width="20" height="20">
+        <svg className={css.iconSearch}>
           <use href="/images/icons.svg#icon-search"></use>
         </svg>
       </button>

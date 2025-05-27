@@ -1,5 +1,5 @@
 .container {
-  background-color: #f6b83d;
+  background-color: var(--background-color-btn);
   border-bottom-left-radius: 60px;
   border-bottom-right-radius: 60px;
   padding-top: 42px;
@@ -28,14 +28,14 @@
   font-size: 50px;
   line-height: 48px;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  color: var(--color-white);
   text-align: start;
 }
 .desc {
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: var(--color-white);
   text-align: start;
   justify-self: end;
 }

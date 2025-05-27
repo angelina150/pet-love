@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import css from "./ModalEditUser.module.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { fetchUserFullInfo, updateUser } from "../../redux/users/operations.js";
@@ -15,28 +15,21 @@ const schema = yup.object().shape({
   name: yup.string(),
   email: yup
     .string()
-    .test(
-      "email",
-      "Invalid email format",
-      (value) =>
-        !value || /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)
+    .matches(
+      /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+      "Email must be in a valid format (example@example.com)"
     ),
   avatar: yup
     .string()
-    .test(
-      "avatar",
-      "Invalid avatar format",
-      (value) =>
-        !value ||
-        /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/.test(value) ||
-        value.startsWith("blob:")
+    .matches(
+      /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
+      "Avatar must be a valid image URL (png, jpg, jpeg, gif, bmp, webp)"
     ),
   phone: yup
     .string()
-    .test(
-      "phone",
-      "Invalid phone format",
-      (value) => !value || /^\+38\d{10}$/.test(value)
+    .matches(
+      /^\+38\d{10}$/,
+      "Phone number must be in the format +380XXXXXXXXX"
     ),
 });
 
@@ -44,6 +37,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
   const userFullInfo = useSelector(selectUserFullInfo);
+
   const {
     control,
     handleSubmit,
@@ -59,7 +53,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       phone: "",
     },
   });
-
+  const avatarValue = useWatch({ control, name: "avatar" });
   useEffect(() => {
     if (userFullInfo) {
       reset({
@@ -83,7 +77,6 @@ const ModalEditUser = ({ onClose, isOpen }) => {
 
   const onSubmit = async (values) => {
     const changedFields = getChangedFields(userFullInfo, values);
-
     if (Object.keys(changedFields).length === 0) {
       toast.info("No changes detected!");
       return;
@@ -91,7 +84,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
 
     try {
       await dispatch(updateUser(changedFields)).unwrap();
-      dispatch(fetchUserFullInfo());
+      await dispatch(fetchUserFullInfo());
       toast.success("Data updated successfully!");
       onClose();
     } catch (error) {
@@ -113,8 +106,8 @@ const ModalEditUser = ({ onClose, isOpen }) => {
         }
       );
       const data = await response.json();
+      await dispatch(fetchUserFullInfo());
       setValue("avatar", data.secure_url);
-      toast.success("Photo uploaded successfully!");
     } catch (error) {
       console.error("Upload error:", error);
       toast.error("Failed to upload image.");
@@ -142,13 +135,9 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       <h2 className={css.title}>Edit information</h2>
 
       <form className={css.formEdit} onSubmit={handleSubmit(onSubmit)}>
-        {userFullInfo?.avatar.length > 0 ? (
+        {avatarValue ? (
           <>
-            <img
-              className={css.img}
-              src={userFullInfo.avatar}
-              alt="User avatar"
-            />
+            <img className={css.img} src={avatarValue} alt="User avatar" />
             <label className={css.labelAvatar}>
               <Controller
                 name="avatar"
@@ -157,6 +146,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
                   <input
                     {...field}
                     placeholder="Avatar URL"
+                    value={field.value || ""}
                     className={css.inputAvatar}
                   />
                 )}
@@ -170,7 +160,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
                 onClick={() => fileInputRef.current.click()}
               >
                 Upload photo
-                <svg width="18" height="18" className={css.iconUpload}>
+                <svg className={css.iconUpload}>
                   <use href="/images/icons.svg#icon-upload-cloud"></use>
                 </svg>
               </button>
@@ -184,13 +174,16 @@ const ModalEditUser = ({ onClose, isOpen }) => {
                   <use href="/images/icons.svg#icon-user"></use>
                 </svg>
               </div>
-              <button className={css.btnUploadNoPhoto} type="button">
+              <button
+                onClick={() => fileInputRef.current.click()}
+                className={css.btnUploadNoPhoto}
+                type="button"
+              >
                 Upload photo
               </button>
             </div>
           </>
         )}
-        {}
 
         <input
           type="file"
@@ -200,7 +193,10 @@ const ModalEditUser = ({ onClose, isOpen }) => {
           onChange={handleUpload}
         />
 
-        <label>
+        <label className={css.label}>
+          {errors.name && (
+            <span className={css.error}>{errors.name.message}</span>
+          )}
           <Controller
             name="name"
             control={control}
@@ -212,12 +208,12 @@ const ModalEditUser = ({ onClose, isOpen }) => {
               />
             )}
           />
-          {errors.name && (
-            <span className={css.error}>{errors.name.message}</span>
-          )}
         </label>
 
-        <label>
+        <label className={css.label}>
+          {errors.email && (
+            <span className={css.error}>{errors.email.message}</span>
+          )}
           <Controller
             name="email"
             control={control}
@@ -229,31 +225,19 @@ const ModalEditUser = ({ onClose, isOpen }) => {
               />
             )}
           />
-          {errors.email && (
-            <span className={css.error}>{errors.email.message}</span>
-          )}
         </label>
 
         <label className={css.label}>
+          {errors.phone && (
+            <span className={css.error}>{errors.phone.message}</span>
+          )}
           <Controller
             name="phone"
             control={control}
             render={({ field }) => (
-              <IMaskInput
-                {...field}
-                inputRef={field.ref}
-                mask="+000 00 000 00 00"
-                lazy={true}
-                unmask={true}
-                placeholder="+380"
-                onAccept={(value) => field.onChange(value)}
-                className={field.value ? css.input : css.inputEmpty}
-              />
+              <input {...field} placeholder="+380" className={css.input} />
             )}
           />
-          {errors.phone && (
-            <span className={css.error}>{errors.phone.message}</span>
-          )}
         </label>
 
         <button type="submit" className={css.btnYes}>

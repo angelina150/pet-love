@@ -3,7 +3,7 @@
   font-size: 28px;
   line-height: 28px;
   letter-spacing: -0.03em;
-  color: #262626;
+  color: var(--text-color);
   text-align: start;
 }
 @media screen and (min-width: 375px) {

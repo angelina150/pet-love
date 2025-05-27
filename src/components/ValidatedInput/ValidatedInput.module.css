@@ -48,7 +48,7 @@
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.03em;
-  color: #262626;
+  color: var(--text-color);
   padding: 12px;
   padding-right: 45px;
   border-radius: 30px;
@@ -62,7 +62,7 @@
 }
 .input:focus,
 .input:hover {
-  border-color: #f6b83d;
+  border-color: var(--background-color-btn);
 }
 
 .inputSuccess,

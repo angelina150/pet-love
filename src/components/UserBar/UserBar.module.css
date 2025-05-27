@@ -9,25 +9,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  fill: #f6b83d;
-  stroke: #f6b83d;
+  fill: var(--background-color-btn);
+  stroke: var(--background-color-btn);
   object-fit: cover;
 }
 .userAvatar {
   background-color: #eeeeee;
 }
 .userAvatarSvg {
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
 }
 .name {
   font-weight: 700;
   font-size: 20px;
   line-height: 20px;
   letter-spacing: -0.03em;
-  color: #262626;
+  color: var(--text-color);
 }
 .nameHome {
-  color: #ffffff;
+  color: var(--color-white);
   font-weight: 700;
   font-size: 20px;
   line-height: 20px;

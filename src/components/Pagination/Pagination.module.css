@@ -22,10 +22,10 @@
   width: 40px;
   height: 40px;
   background-color: transparent;
-  fill: #262626;
+  fill: var(--text-color);
 }
 .btn:hover {
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
 }
 .btn.noActive {
   border: 1px solid #2626260d;
@@ -78,16 +78,16 @@
   width: 40px;
   height: 40px;
   background-color: transparent;
-  color: #262626;
+  color: var(--text-color);
   cursor: pointer;
 }
 .pageItem:hover {
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
 }
 .pageItem.active {
-  color: #ffffff;
-  background-color: #f6b83d;
-  border: 1px solid #f6b83d;
+  color: var(--color-white);
+  background-color: var(--background-color-btn);
+  border: 1px solid var(--background-color-btn);
 }
 .dots {
   pointer-events: none;
@@ -107,7 +107,7 @@
     width: 44px;
     height: 44px;
     background-color: transparent;
-    fill: #262626;
+    fill: var(--text-color);
   }
   .btnWrap {
     display: flex;
@@ -128,7 +128,7 @@
     width: 44px;
     height: 44px;
     background-color: transparent;
-    color: #262626;
+    color: var(--text-color);
     cursor: pointer;
   }
   .wrapper {

@@ -1,8 +1,8 @@
 .card {
-  width: 363px;
-  height: 472px;
+  width: 335px;
+  height: 454px;
   border-radius: 16px;
-  background-color: #fff;
+  background-color: var(--color-white);
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
 }
 .img {
   object-fit: cover;
-  width: 315px;
+  width: 287px;
   height: 178px;
   border-radius: 16px;
   margin-bottom: 24px;
@@ -25,8 +25,8 @@
 }
 .title {
   font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 20px;
   letter-spacing: 0;
   vertical-align: middle;
   color: #2b2b2a;
@@ -34,7 +34,7 @@
 .infoWrap {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
-  gap: 15px;
+  gap: 14px;
   margin-bottom: 16px;
 }
 .nameInfo {
@@ -58,9 +58,9 @@
   font-size: 12px;
   line-height: 14px;
   letter-spacing: -0.02em;
-  color: #262626;
+  color: var(--text-color);
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -68,14 +68,14 @@
   text-transform: uppercase;
 }
 .wrapperDesc {
-  display: grid;
-  grid-template-rows: auto auto;
-  row-gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .desc {
   letter-spacing: -0.02em;
-  color: #262626;
+  color: var(--text-color);
   font-size: 14px;
   line-height: 18px;
   vertical-align: middle;
@@ -84,8 +84,8 @@
 }
 .price {
   font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 20px;
   letter-spacing: 0;
   vertical-align: middle;
   color: #2b2b2a;
@@ -98,14 +98,15 @@
   position: absolute;
   bottom: 24px;
   left: 24px;
+  right: 24px;
 }
 .btnLearnMore {
-  width: 257px;
-  color: #fff;
-  font-size: 16px;
-  line-height: 20px;
+  flex-grow: 1;
+  color: var(--color-white);
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03;
-  background-color: #f6b83d;
+  background-color: var(--background-color-btn);
   border-radius: 30px;
   border: none;
   padding: 14px;
@@ -114,27 +115,71 @@
 .btnHeart,
 .btnTrash {
   border: none;
-  background-color: #fff4df;
-  border-radius: 100%;
+  background-color: var(--background-color-btn-light);
+  border-radius: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .btnHeart {
-  padding: 15px;
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
 }
 .btnTrash {
-  padding: 13px;
   width: 44px;
   height: 44px;
 }
 .heart {
-  stroke: #f6b83d;
+  stroke: var(--background-color-btn);
   fill: none;
 }
 .heartActive {
-  fill: #f6b83d;
-  stroke: #f6b83d;
+  fill: var(--background-color-btn);
+  stroke: var(--background-color-btn);
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: 363px;
+    height: 472px;
+    border-radius: 16px;
+    background-color: var(--color-white);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+  .img {
+    width: 315px;
+  }
+  .title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .infoWrap {
+    gap: 15px;
+    margin-bottom: 16px;
+  }
+  .wrapperDesc {
+    row-gap: 24px;
+  }
+  .price {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .btnLearnMore {
+    width: 100%;
+    color: var(--color-white);
+    font-size: 16px;
+    line-height: 20px;
+    background-color: var(--background-color-btn);
+  }
+  .btnHeart {
+    padding: 15px;
+    width: 48px;
+    height: 48px;
+  }
+}
+@media (min-width: 1280px) {
 }

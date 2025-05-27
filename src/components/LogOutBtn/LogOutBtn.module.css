@@ -1,7 +1,7 @@
 .btn {
   text-transform: uppercase;
-  color: #ffffff;
-  background-color: #f6b83d;
+  color: var(--color-white);
+  background-color: var(--background-color-btn);
   border-radius: 30px;
   border: none;
   padding: 12px 60px;

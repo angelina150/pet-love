@@ -40,7 +40,7 @@
   color: #26262680;
 }
 .info {
-  color: #262626;
+  color: var(--text-color);
   font-size: 12px;
 }
 .info::first-letter {
@@ -51,7 +51,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
   border: none;
   position: absolute;
   top: 20px;

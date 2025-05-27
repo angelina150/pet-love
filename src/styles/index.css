@@ -4,9 +4,16 @@
 :root {
   font-family: Manrope, sans-serif;
   font-weight: 500;
-  color: #262626;
+  color: var(--text-color);
   background-color: #f9f9f9;
   padding: 0;
+
+  --text-color: #262626;
+  --color-white: #ffffff;
+  --background-color-btn: #f6b83d;
+  --background-color-btn-hover: #f9b020;
+  --background-color-btn-light: #fff4df;
+  --background-color-btn-light-hover: #fbe7c1;
 }
 
 html,
@@ -15,8 +22,9 @@ body {
   padding: 0;
   min-width: 320px;
   font-size: 16px;
+  font-weight: 500;
   font-family: Manrope, sans-serif;
-  color: #262626;
+  color: var(--text-color);
   background-color: #f9f9f9;
 }
 

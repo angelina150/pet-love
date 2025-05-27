@@ -25,6 +25,9 @@ const NoticesItem = ({ notice }) => {
   const favorites = useSelector(selectFavoritesNotices);
   const favoriteId = (fav) => fav._id === notice._id;
   const isFavorite = favorites?.some(favoriteId);
+  function removeExtraSpaces(str) {
+    return str.trim();
+  }
   const closeModalNotice = () => {
     setIsOpenModalNotice(false);
   };
@@ -93,7 +96,7 @@ const NoticesItem = ({ notice }) => {
         </p>
       </div>
       <div className={css.wrapperDesc}>
-        <p className={css.desc}>{notice.comment}</p>
+        <p className={css.desc}>{removeExtraSpaces(notice.comment)}</p>
         {notice.price && <p className={css.price}>${notice.price}</p>}
       </div>
 

@@ -11,11 +11,11 @@
 }
 .btnSubmit {
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--color-white);
   padding: 16px;
   text-align: center;
   vertical-align: middle;
-  background-color: #f6b83d;
+  background-color: var(--background-color-btn);
   border-radius: 30px;
   border: none;
   font-family: Manrope;
@@ -24,6 +24,10 @@
   line-height: 18px;
   letter-spacing: -0.03em;
   text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+.btnSubmit:hover {
+  background-color: var(--background-color-btn-hover);
 }
 @media (min-width: 768px) {
   .inputsWrapper {

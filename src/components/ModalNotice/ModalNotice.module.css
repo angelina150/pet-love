@@ -3,11 +3,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
+  background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 71px;
+  padding: 40px 28px;
   border-radius: 30px;
 }
 
@@ -32,33 +32,38 @@
   right: 20px;
 }
 .iconClose {
-  stroke: #262626;
+  stroke: var(--text-color);
+  transition: all 0.3s ease;
+}
+.iconClose:hover {
+  stroke: var(--background-color-btn-hover);
 }
 .imgWrapper {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .img {
   object-fit: cover;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 100px;
 }
 .category {
   display: inline-block;
   padding: 8px 14px;
-  color: #f6b83d;
-  background-color: #fff4df;
+  color: var(--background-color-btn);
+  background-color: var(--background-color-btn-light);
   border-radius: 30px;
   border-color: transparent;
-  font-size: 14px;
-  line-height: 18px;
+
+  font-size: 12px;
+  line-height: 16px;
   letter-spacing: -0.02em;
   position: absolute;
   top: 0;
-  left: 4px;
+  left: 2px;
 }
 .category::first-letter {
   text-transform: uppercase;
@@ -67,12 +72,12 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 .title {
   font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 20px;
   letter-spacing: 0;
   vertical-align: middle;
   color: #2b2b2a;
@@ -107,7 +112,7 @@
   font-size: 12px;
   line-height: 14px;
   letter-spacing: -0.02em;
-  color: #262626;
+  color: var(--text-color);
 }
 .nameInfoPart::first-letter {
   text-transform: uppercase;
@@ -124,7 +129,7 @@
 
 .desc {
   letter-spacing: -0.02em;
-  color: #262626;
+  color: var(--text-color);
   font-size: 14px;
   line-height: 18px;
   vertical-align: middle;
@@ -150,36 +155,80 @@
   justify-content: center;
   align-items: center;
   gap: 9px;
-  color: #fff;
+  color: var(--color-white);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: -0.03;
-  background-color: #f6b83d;
+  background-color: var(--background-color-btn);
   border-radius: 30px;
   border: none;
-  padding: 14px;
+  padding: 12px;
   text-align: center;
+  transition: all 0.3s ease;
+}
+.btnAdd:hover {
+  background-color: var(--background-color-btn-hover);
 }
 .btnContact {
   border: none;
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
   border-radius: 30px;
-  padding: 14px 50px;
+  padding: 12px 37px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #f6b83d;
+  color: var(--background-color-btn);
   font-family: Manrope;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   letter-spacing: -0.03em;
 }
+.btnContact:hover {
+  background-color: var(--background-color-btn-light-hover);
+}
 .heartIconActive {
-  stroke: #fff;
-  fill: #fff;
+  stroke: var(--color-white);
+  fill: var(--color-white);
 }
 .heartIcon {
-  stroke: #fff;
+  stroke: var(--color-white);
   fill: none;
+}
+@media (min-width: 768px) {
+  .modal {
+    padding: 40px 71px;
+  }
+  .imgWrapper {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .img {
+    width: 150px;
+    height: 150px;
+  }
+  .category {
+    font-size: 14px;
+    line-height: 18px;
+    left: 4px;
+  }
+  .titleWrap {
+    margin-bottom: 20px;
+  }
+  .title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .price {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .btnAdd {
+    padding: 14px;
+  }
+  .btnContact {
+    padding: 14px 50px;
+  }
 }

@@ -1,13 +1,13 @@
 .input {
   border: 1px solid #26262626;
   padding: 14px 30px 14px 14px;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border-radius: 30px;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.03em;
   height: 48px;
-  color: #262626;
+  color: var(--text-color);
   font-family: Manrope;
 }
 .radioInput {
@@ -18,21 +18,21 @@
 .radioLabel {
   cursor: pointer;
   padding: 14px;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border-radius: 30px;
 }
 .input::placeholder {
-  color: #262626;
+  color: var(--text-color);
 }
 .input:focus,
 .input:hover {
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
 }
 @media (min-width: 1280px) {
   .wrapper {
     margin-top: 40px;
     padding: 40px;
-    background-color: #fff4df;
+    background-color: var(--background-color-btn-light);
     border-radius: 30px;
     display: grid;
     grid-template-rows: 68px 68px;

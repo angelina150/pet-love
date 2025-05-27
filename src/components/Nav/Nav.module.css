@@ -12,7 +12,7 @@
 .link:hover,
 .link:focus,
 .active {
-  border: 1px solid #f6b83d;
+  border: 1px solid var(--background-color-btn);
 }
 .linkHome {
   vertical-align: middle;
@@ -22,13 +22,13 @@
   line-height: 20px;
   letter-spacing: -0.03em;
   border: 1px solid #ffffff66;
-  color: #ffffff;
+  color: var(--color-white);
   font-size: 16px;
 }
 .linkHome:hover {
-  background-color: #fff4df;
-  color: #f6b83d;
-  border: 1px solid #f6b83d;
+  background-color:var(--background-color-btn-light);
+  color: var(--background-color-btn);
+  border: 1px solid var(--background-color-btn);
 }
 
 .navWrapper {

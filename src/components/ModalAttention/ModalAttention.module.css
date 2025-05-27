@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
+  background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,12 +33,16 @@
   right: 20px;
 }
 .iconClose {
-  stroke: #262626;
+  stroke: var(--text-color);
 }
 .imgWrapper {
-  padding: 18px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 100px;
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
   border-color: transparent;
   margin-bottom: 20px;
 }
@@ -52,7 +56,7 @@
   font-size: 20px;
   line-height: 20px;
   letter-spacing: -0.03em;
-  color: #f6b83d;
+  color: var(--background-color-btn);
   margin-bottom: 20px;
   text-align: center;
 }
@@ -81,24 +85,28 @@
 }
 
 .btnLogin {
-  color: #ffffff;
+  color: var(--color-white);
   padding: 12px 48px;
-  background-color: #f6b83d;
+  background-color: var(--background-color-btn);
+  transition: all 0.3s ease;
 }
 .btnRegister {
-  color: #f6b83d;
+  color: var(--background-color-btn);
   padding: 12px 24px;
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
+  transition: all 0.3s ease;
+}
+.btnLogin:hover {
+  background-color: var(--background-color-btn-hover);
+}
+.btnRegister:hover {
+  background-color: var(--background-color-btn-light-hover);
 }
 @media (min-width: 768px) {
   .modal {
     max-width: 466px;
     max-height: 434px;
     padding: 60px;
-  }
-  .img {
-    width: 80px;
-    height: 80px;
   }
   .title {
     font-size: 24px;
@@ -110,5 +118,7 @@
   .btnLogin,
   .btnRegister {
     padding-block: 14px;
+    font-size: 16px;
+    line-height: 20px;
   }
 }

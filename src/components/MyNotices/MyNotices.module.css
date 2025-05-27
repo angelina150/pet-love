@@ -1,51 +1,71 @@
 .tabs {
   display: flex;
   flex-direction: row;
-  gap: 8px;
-  margin-bottom: 32px;
-  margin-top: 40px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 .tab,
 .active {
-  font-family: Manrope;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
-  padding: 14px;
-  width: 155px;
-  height: 48px;
+  padding: 12px;
+  width: 123px;
+  height: 42px;
   text-align: center;
   border-radius: 30px;
   border: 1px transparent;
 }
 .tab {
-  color: #262626;
-  background-color: #fff;
+  color: var(--text-color);
+  background-color: var(--color-white);
 }
 .active {
-  background-color: #f6b83d;
-  color: #fff;
+  background-color: var(--background-color-btn);
+  color: var(--color-white);
 }
 .desc {
-  font-family: Manrope;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.02em;
-  color: #262626;
-  display: inline-block;
+  color: var(--text-color);
   text-align: center;
-  vertical-align: middle;
-  margin-top: 180px;
-  max-width: 458px;
+  width: 100%;
+  margin-top: 80px;
+  margin-bottom: 140px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .descPart {
-  font-family: Manrope;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: -0.02em;
-  text-align: center;
-  color: #f6b83d;
+  color: var(--background-color-btn);
+}
+@media (min-width: 768px) {
+  .tabs {
+    gap: 8px;
+  }
+  .tab,
+  .active {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 14px;
+    width: 142px;
+    height: 48px;
+  }
+  .desc {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 180px;
+    max-width: 458px;
+    margin-bottom: 180px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .tabs {
+    margin-bottom: 32px;
+    margin-top: 40px;
+  }
 }

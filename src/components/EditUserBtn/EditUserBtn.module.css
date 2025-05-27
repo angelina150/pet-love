@@ -3,7 +3,7 @@
   justify-content: flex-end;
 }
 .btn {
-  background-color: #fff4df;
+  background-color: var(--background-color-btn-light);
   border-radius: 30px;
   width: 38px;
   height: 38px;
@@ -14,5 +14,5 @@
   transition: background-color 0.3s ease;
 }
 .btn:hover {
-  background-color: #fbe7c1;
+  background-color: var(--background-color-btn-light-hover);
 }

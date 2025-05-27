@@ -1,16 +1,16 @@
 .wrapper {
   padding: 18px 20px 40px 20px;
   border-radius: 30px;
-  background-color: #fff;
+  background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   position: relative;
 }
 .btn {
   text-transform: uppercase;
-  color: #f6b83d;
-  background-color: #fff4df;
-  border: 1px #fff4df;
+  color: var(--background-color-btn);
+  background-color: var(--background-color-btn-light);
+  border: 1px var(--background-color-btn-light);
   border-radius: 30px;
   border: none;
   padding: 15px 35px;

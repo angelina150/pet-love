@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
+  background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,10 +28,10 @@
 .title {
   margin-bottom: 28px;
   font-weight: 700;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 20px;
+  line-height: 20px;
   letter-spacing: -0.03em;
-  color: #262626;
+  color: var(--text-color);
 }
 .btnClose {
   border: none;
@@ -41,33 +41,39 @@
   right: 20px;
 }
 .iconClose {
-  stroke: #262626;
+  stroke: var(--text-color);
 }
+.iconClose:hover {
+  animation: rotateButton 0.4s ease forwards;
+}
+
 .btnYes {
   border-color: transparent;
-  background-color: #f6b83d;
+  background-color: var(--background-color-btn);
   border-radius: 30px;
   padding: 12px 57px;
-  color: #ffffff;
+  color: var(--color-white);
   font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
+  max-width: 137px;
 }
 .btnYes:hover,
 .btnYes:focus {
-  background-color: #f9b020;
+  background-color: var(--background-color-btn-hover);
 }
 .btnCancel {
   border-color: transparent;
   background-color: #2626260d;
   border-radius: 30px;
   padding: 12px 44px;
-  color: #262626;
+  color: var(--text-color);
   font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
+  max-width: 134px;
 }
 .actions {
   display: flex;
@@ -77,16 +83,28 @@
 .imgWrapper {
   margin-bottom: 20px;
   border-color: transparent;
-  background-color: #fff4df;
-  padding: 18px;
+  background-color: var(--background-color-btn-light);
   border-radius: 100px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media (min-width: 768px) {
   .modal {
     padding: 80px;
+    max-width: 448px;
+    max-height: 364px;
   }
   .btnCancel,
   .btnYes {
     padding-block: 14px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 28px;
   }
 }

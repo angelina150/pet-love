@@ -20,7 +20,7 @@ const UserBlock = () => {
       ) : (
         <>
           <div className={css.iconUserWrap}>
-            <svg width="50" height="50">
+            <svg className={css.iconUser}>
               <use href="/images/icons.svg#icon-user"></use>
             </svg>
           </div>
@@ -30,11 +30,13 @@ const UserBlock = () => {
         </>
       )}
       <h3 className={css.title}>My information</h3>
-      <p className={css.info}>{userFullInfo?.name}</p>
-      <p className={css.info}>{userFullInfo?.email}</p>
-      <p className={css.info}>
-        {userFullInfo?.phone ? formatPhoneNumber(userFullInfo.phone) : "+380"}
-      </p>
+      <div className={css.infoWrapper}>
+        <p className={css.info}>{userFullInfo?.name}</p>
+        <p className={css.info}>{userFullInfo?.email}</p>
+        <p className={css.info}>
+          {userFullInfo?.phone ? formatPhoneNumber(userFullInfo.phone) : "+380"}
+        </p>
+      </div>
     </div>
   );
 };
