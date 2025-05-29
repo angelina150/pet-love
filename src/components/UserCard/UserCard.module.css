@@ -13,15 +13,21 @@
   border: 1px var(--background-color-btn-light);
   border-radius: 30px;
   border: none;
-  padding: 15px 35px;
+  padding: 12px 28px;
   text-align: start;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
-  width: 136px;
+  width: 114px;
 }
-
+.btn:hover {
+  background-color: var(--background-color-btn-light-hover);
+  border: 1px var(--background-color-btn-light-hover);
+}
+.btnIsPetsBlock {
+  margin-top: 20px;
+}
 @media screen and (min-width: 768px) {
   .wrapper {
     border-radius: 60px;
@@ -31,5 +37,9 @@
     padding: 15px 35px;
     font-size: 16px;
     line-height: 20px;
+    width: 136px;
+  }
+  .btnIsPetsBlock {
+    margin-top: 60px;
   }
 }

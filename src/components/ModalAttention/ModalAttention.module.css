@@ -88,13 +88,11 @@
   color: var(--color-white);
   padding: 12px 48px;
   background-color: var(--background-color-btn);
-  transition: all 0.3s ease;
 }
 .btnRegister {
   color: var(--background-color-btn);
   padding: 12px 24px;
   background-color: var(--background-color-btn-light);
-  transition: all 0.3s ease;
 }
 .btnLogin:hover {
   background-color: var(--background-color-btn-hover);

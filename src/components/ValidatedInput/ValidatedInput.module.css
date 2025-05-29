@@ -1,5 +1,6 @@
 .label {
   position: relative;
+  width: 100%;
 }
 .iconError,
 .iconSuccess {

@@ -53,7 +53,9 @@
   width: 100%;
   max-width: 440px;
 }
-
+.infoEmpty {
+  border: 1px solid #26262626;
+}
 .btnUpload {
   display: block;
   border: none;

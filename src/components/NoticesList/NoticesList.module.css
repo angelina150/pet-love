@@ -7,20 +7,20 @@
 @media (min-width: 768px) {
   .list {
     margin-top: 32px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 342px 342px;
     margin-bottom: 60px;
   }
 }
 @media (min-width: 1280px) {
   .list {
     margin-top: 40px;
-    grid-template-columns: repeat(auto-fit, minmax(363px, 1fr));
+    grid-template-columns: 363px 363px 363px;
     column-gap: 32px;
     row-gap: 40px;
     margin-bottom: 60px;
   }
   .listProfile {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: 320px 320px;
     gap: 24px;
   }
 }

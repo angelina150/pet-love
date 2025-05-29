@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ModalEditUser from "../ModalEditUser/ModalEditUser.jsx";
 import css from "./EditUserBtn.module.css";
-const EditUserBtn = () => {
-  const [isModalEditUser, setIsModalEditUser] = useState(false);
+const EditUserBtn = ({ setIsModalEditUser }) => {
   return (
     <div className={css.wrap}>
       <button
@@ -14,12 +13,6 @@ const EditUserBtn = () => {
           <use href="/images/icons.svg#icon-edit"></use>
         </svg>
       </button>
-      {isModalEditUser && (
-        <ModalEditUser
-          isOpen={isModalEditUser}
-          onClose={() => setIsModalEditUser(false)}
-        />
-      )}
     </div>
   );
 };

@@ -4,6 +4,8 @@
   padding: 28px 20px 20px;
   background-color: var(--color-white);
   border-radius: 30px;
+  max-width: 335px;
+  width: 100%;
 }
 .title {
   text-align: start;
@@ -65,7 +67,6 @@
   border-radius: 100%;
   width: 32px;
   height: 32px;
-  transition: stroke 0.3s ease, background-color 0.3s ease;
 }
 .label-male {
   background-color: #54adff1a;
@@ -139,7 +140,6 @@
   line-height: 16px;
   letter-spacing: -0.02em;
   padding: 10px;
-  transition: background-color 0.3s ease;
 }
 .btnUpload:hover {
   background-color: var(--background-color-btn-light-hover);
@@ -158,7 +158,6 @@
   border-radius: 30px;
   border: 1px solid #26262626;
   background-color: transparent;
-  transition: border 0.3s ease;
   width: 100%;
 }
 .inputText:hover,
@@ -210,7 +209,6 @@
   line-height: 18px;
   letter-spacing: -0.03em;
   border-radius: 30px;
-  transition: background-color 0.3s ease;
   border-width: 1px;
 }
 .backButton {
@@ -225,7 +223,6 @@
   color: var(--color-white);
   border: 1px var(--background-color-btn);
   background-color: var(--background-color-btn);
-  transition: background-color 0.3s ease;
 }
 .submitButton:hover {
   background-color: var(--background-color-btn-hover);
@@ -241,6 +238,7 @@
   .form {
     padding: 40px 136px;
     border-radius: 60px;
+    max-width: 1280px;
   }
   .inputWrapper {
     gap: 18px;

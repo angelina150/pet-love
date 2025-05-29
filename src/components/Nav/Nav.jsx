@@ -1,18 +1,10 @@
 import React from "react";
 import css from "./Nav.module.css";
 import { NavLink } from "react-router-dom";
-import UserNav from "../UserNav/UserNav.jsx";
-import AuthNav from "../AuthNav/AuthNav.jsx";
-const Nav = ({ isLoggedIn, isHome, isMenuOpen, closeModal }) => {
+const Nav = ({ isHome, isMenuOpen }) => {
   return (
     <>
       <nav className={isMenuOpen ? css.navWrapperOpen : css.navWrapper}>
-        <button className={css.btnClose} onClick={closeModal}>
-          <svg className={css.iconClose} width="28" height="28">
-            <use href="/images/icons.svg#icon-close"></use>
-          </svg>
-        </button>
-
         <NavLink
           to="/news"
           className={({ isActive }) =>
@@ -43,9 +35,6 @@ const Nav = ({ isLoggedIn, isHome, isMenuOpen, closeModal }) => {
         >
           Our friends
         </NavLink>
-        <div className={css.authMobile}>
-          {isLoggedIn ? <UserNav /> : <AuthNav />}
-        </div>
       </nav>
     </>
   );

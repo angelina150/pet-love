@@ -5,8 +5,8 @@ import css from "./PetsBlock.module.css";
 
 const PetsBlock = () => {
   return (
-    <div>
-      <div className={css.wrapper}>
+    <div className={css.wrapper}>
+      <div className={css.titleWrapper}>
         <h3 className={css.title}>My pets</h3>
         <AddPet />
       </div>

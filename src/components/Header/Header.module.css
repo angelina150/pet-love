@@ -25,24 +25,46 @@
   align-self: center;
   border-bottom: none;
   outline: none;
+  padding: 0;
+}
+.iconLogo {
+  width: 76px;
+  height: 20px;
 }
 .burger {
   display: block;
-  width: 30px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
   background: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
+  fill: #262626;
 }
-
+.burgerHome {
+  fill: #fff;
+}
+.iconBurger {
+  width: 100%;
+  height: 100%;
+  fill: #262626;
+}
 @media screen and (min-width: 375px) {
 }
 @media screen and (min-width: 768px) {
   .headerHome {
-    padding: 16px 64px;
+    padding: 16px 32px;
   }
   .headerDefault {
     padding: 16px 32px;
+  }
+  .iconLogo {
+    width: 106px;
+    height: 28px;
+  }
+  .burger {
+    width: 36px;
+    height: 36px;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -66,7 +88,7 @@
     border-top-left-radius: 60px;
     border-top-right-radius: 60px;
     background-color: var(--background-color-btn);
-    padding: 18px 20px;
+    padding: 18px 64px;
     grid-template-columns: 1fr 1fr 1fr;
   }
 }

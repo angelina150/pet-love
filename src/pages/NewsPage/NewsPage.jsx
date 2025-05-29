@@ -11,6 +11,7 @@ import {
 } from "../../redux/news/selectors.js";
 import css from "./NewsPage.module.css";
 import { fetchNews } from "../../redux/news/operations.js";
+import NotFound from "../NotFound/NotFound.jsx";
 
 const NewsPage = () => {
   const dispatch = useDispatch();
@@ -21,14 +22,22 @@ const NewsPage = () => {
   const limit = 6;
   useEffect(() => {
     const loadNews = async () => {
-      await dispatch(fetchNews({ keyword: "", page: 1, limit }));
+      try {
+        await dispatch(fetchNews({ keyword: "", page: 1, limit }));
+      } catch (error) {
+        console.error(error);
+      }
     };
     loadNews();
   }, [dispatch]);
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    dispatch(fetchNews({ keyword: query, page: 1, limit }));
+    try {
+      dispatch(fetchNews({ keyword: query, page: 1, limit }));
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className={css.wrapper}>
@@ -42,13 +51,17 @@ const NewsPage = () => {
         />
       </div>
 
-      {news.length > 0 ? <NewsList news={news} /> : <div>Not found</div>}
+      {news.length > 0 ? <NewsList news={news} /> : <NotFound />}
       {totalPages > 1 && (
         <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
           setCurrentPage={(page) => {
-            dispatch(fetchNews({ keyword: searchQuery, page, limit }));
+            try {
+              dispatch(fetchNews({ keyword: searchQuery, page, limit }));
+            } catch (error) {
+              console.error(error);
+            }
           }}
         />
       )}

@@ -15,12 +15,15 @@ const PetsList = () => {
   const pets = userFullInfo?.pets;
 
   return (
-    <ul className={css.list}>
-      {pets &&
-        pets.map((pet) => {
-          return <PetsItem key={pet._id} pet={pet} />;
-        })}
-    </ul>
+    <>
+      {pets && pets.length > 0 && (
+        <ul className={css.list}>
+          {pets.map((pet) => (
+            <PetsItem key={pet._id} pet={pet} />
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 

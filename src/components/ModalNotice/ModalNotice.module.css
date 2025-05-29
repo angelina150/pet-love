@@ -33,7 +33,7 @@
 }
 .iconClose {
   stroke: var(--text-color);
-  transition: all 0.3s ease;
+ 
 }
 .iconClose:hover {
   stroke: var(--background-color-btn-hover);
@@ -164,7 +164,6 @@
   border: none;
   padding: 12px;
   text-align: center;
-  transition: all 0.3s ease;
 }
 .btnAdd:hover {
   background-color: var(--background-color-btn-hover);

@@ -112,6 +112,9 @@
   padding: 14px;
   text-align: center;
 }
+.btnLearnMore:hover {
+  background-color: var(--background-color-btn-hover);
+}
 .btnHeart,
 .btnTrash {
   border: none;
@@ -126,8 +129,13 @@
   height: 46px;
 }
 .btnTrash {
+  padding: 13px;
   width: 44px;
   height: 44px;
+}
+.btnTrash:hover,
+.btnHeart:hover {
+  background-color: var(--background-color-btn-light-hover);
 }
 .heart {
   stroke: var(--background-color-btn);

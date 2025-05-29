@@ -1,6 +1,16 @@
 .list {
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 20px;
+  display: grid;
   gap: 14px;
+}
+@media (min-width: 768px) {
+  .list {
+    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
+  }
+}
+@media (min-width: 1280px) {
+  .list {
+    flex-direction: column;
+  }
 }

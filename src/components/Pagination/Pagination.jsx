@@ -2,46 +2,80 @@ import React from "react";
 import css from "./Pagination.module.css";
 
 const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
-  if (totalPages <= 1 || isNaN(totalPages)) {
+  if (totalPages === null || totalPages <= 1 || isNaN(totalPages)) {
     return null;
   }
   const generatePages = () => {
+    const isMobile = window.innerWidth <= 768;
     const pages = [];
-    if (totalPages <= 3) {
+
+    const visiblePages = isMobile ? 2 : 3;
+
+    if (totalPages <= visiblePages) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
-      if (currentPage <= 3) {
-        pages.push(1, 2, 3, "...");
-      } else if (currentPage >= totalPages - 2) {
-        pages.push("...", totalPages - 2, totalPages - 1, totalPages);
+      if (currentPage <= visiblePages) {
+        for (let i = 1; i <= visiblePages; i++) {
+          pages.push(i);
+        }
+        pages.push("...");
+      } else if (currentPage >= totalPages - visiblePages + 1) {
+        pages.push("...");
+        for (let i = totalPages - visiblePages + 1; i <= totalPages; i++) {
+          pages.push(i);
+        }
       } else {
-        pages.push("...", currentPage - 1, currentPage, currentPage + 1, "...");
+        pages.push("...");
+        if (!isMobile) pages.push(currentPage - 1);
+        pages.push(currentPage);
+        if (!isMobile) pages.push(currentPage + 1);
+        pages.push("...");
       }
     }
-
     return pages;
   };
+
   const handlePageChange = (page) => {
-    if (page !== currentPage && page !== "...") {
-      setCurrentPage(page);
+    try {
+      if (page !== currentPage && page !== "...") {
+        setCurrentPage(page);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
   const handleFirst = () => {
-    if (currentPage !== 1) setCurrentPage(1);
+    try {
+      if (currentPage !== 1) setCurrentPage(1);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handlePrev = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
+    try {
+      if (currentPage > 1) setCurrentPage(currentPage - 1);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleNext = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    try {
+      if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleLast = () => {
-    if (currentPage !== totalPages) setCurrentPage(totalPages);
+    try {
+      if (currentPage !== totalPages) setCurrentPage(totalPages);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const pages = generatePages();
@@ -54,7 +88,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           className={`${css.btn} ${currentPage === 1 ? css.noActive : ""}`}
           disabled={currentPage === 1}
         >
-          <svg width="24" height="24" className={css.icon}>
+          <svg className={css.icon}>
             <use href="/images/icons.svg#icon-angle"></use>
           </svg>
           <svg
@@ -70,7 +104,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           className={`${css.btn} ${currentPage === 1 ? css.noActive : ""}`}
           disabled={currentPage === 1}
         >
-          <svg width="24" height="24" className={css.icon}>
+          <svg className={css.iconSolo}>
             <use href="/images/icons.svg#icon-angle"></use>
           </svg>
         </button>
@@ -98,7 +132,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           }`}
           disabled={currentPage === totalPages}
         >
-          <svg width="24" height="24" className={css.iconRight}>
+          <svg className={css.iconSoloRight}>
             <use href="/images/icons.svg#icon-angle"></use>
           </svg>
         </button>
@@ -109,14 +143,10 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           }`}
           disabled={currentPage === totalPages}
         >
-          <svg width="24" height="24" className={css.iconRight}>
+          <svg className={css.iconRight}>
             <use href="/images/icons.svg#icon-angle"></use>
           </svg>
-          <svg
-            width="24"
-            height="24"
-            className={`${css.iconRight} ${css.iconRightSecond}`}
-          >
+          <svg className={`${css.iconRight} ${css.iconRightSecond}`}>
             <use href="/images/icons.svg#icon-angle"></use>
           </svg>
         </button>

@@ -2,10 +2,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 704px));
   gap: 10px;
+  justify-content: center;
 }
 @media (min-width: 768px) {
   .wrapper {
     gap: 16px;
+    justify-content: center;
   }
 }
 

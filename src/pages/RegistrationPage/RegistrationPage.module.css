@@ -3,6 +3,8 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 704px));
   gap: 10px;
   max-width: 1280px;
+  justify-content: center;
+  text-align: start;
 }
 .petBlockWrapper {
   position: relative;
@@ -23,11 +25,12 @@
   color: #26262680;
   margin-top: 16px;
   text-align: center;
+  place-self: center;
 }
 .descPath {
   color: var(--background-color-btn);
   text-decoration: underline;
-  transition: all 0.3s ease;
+
   opacity: 0.8;
 }
 .descPath:hover,
@@ -36,11 +39,16 @@
   opacity: 1;
 }
 .formWrapper {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
   border: none;
-  border-radius: 60px;
+  border-radius: 30px;
   background-color: var(--color-white);
-  padding: 70px 84px;
-  max-height: 654px;
+  padding-inline: 20px;
+  padding-block: clamp(0.5rem, 5vh, 2rem);
+  width: 100%;
 }
 .petBlock {
   display: none;
@@ -84,6 +92,7 @@
   line-height: 14px;
   letter-spacing: -0.02em;
   color: #262626cc;
+  text-align: start;
 }
 .petBlockBirth {
   color: #26262680;
@@ -98,6 +107,7 @@
   .formWrapper {
     padding: 118px 84px;
     border-radius: 60px;
+    height: 560px;
   }
   .petBlock {
     display: grid;
@@ -134,6 +144,9 @@
   .wrapper {
     grid-template-columns: 592px 592px;
     gap: 32px;
+  }
+  .formWrapper {
+    height: 654px;
   }
   .petBlock {
     bottom: 97px;

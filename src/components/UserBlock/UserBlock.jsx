@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
 import { selectUserFullInfo } from "../../redux/users/selectors.js";
-import EditUserBtn from "../EditUserBtn/EditUserBtn.jsx";
 import css from "./UserBlock.module.css";
 import { formatPhoneNumber } from "../../js.js";
 
-const UserBlock = () => {
+const UserBlock = ({ openModalEditUser }) => {
   const userFullInfo = useSelector(selectUserFullInfo);
-
+  console.log(userFullInfo?.name?.length > 0);
   return (
     <div className={css.wrapperUserBlock}>
       <div className={css.userBlock}>
@@ -24,16 +23,36 @@ const UserBlock = () => {
               <use href="/images/icons.svg#icon-user"></use>
             </svg>
           </div>
-          <button className={css.btnUpload} type="button">
+          <button
+            onClick={openModalEditUser}
+            className={css.btnUpload}
+            type="button"
+          >
             Upload photo
           </button>
         </>
       )}
       <h3 className={css.title}>My information</h3>
       <div className={css.infoWrapper}>
-        <p className={css.info}>{userFullInfo?.name}</p>
-        <p className={css.info}>{userFullInfo?.email}</p>
-        <p className={css.info}>
+        <p
+          className={`${css.info} ${
+            userFullInfo?.name?.length > 0 ? "" : css.infoEmpty
+          }`}
+        >
+          {userFullInfo?.name}
+        </p>
+        <p
+          className={` ${css.info} ${
+            userFullInfo?.email?.length > 0 ? "" : css.infoEmpty
+          }`}
+        >
+          {userFullInfo?.email}
+        </p>
+        <p
+          className={`${css.info} ${
+            userFullInfo?.phone?.length > 0 ? "" : css.infoEmpty
+          }`}
+        >
           {userFullInfo?.phone ? formatPhoneNumber(userFullInfo.phone) : "+380"}
         </p>
       </div>

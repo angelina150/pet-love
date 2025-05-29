@@ -1,4 +1,6 @@
-.wrapper {
-  padding-left: 32px;
-  padding-right: 32px;
+@media (min-width: 1280px) {
+  .wrapper {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }

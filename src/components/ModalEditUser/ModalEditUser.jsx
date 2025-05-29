@@ -57,10 +57,10 @@ const ModalEditUser = ({ onClose, isOpen }) => {
   useEffect(() => {
     if (userFullInfo) {
       reset({
-        name: userFullInfo.name || "",
-        email: userFullInfo.email || "",
-        avatar: userFullInfo.avatar || "",
-        phone: userFullInfo.phone || "",
+        name: userFullInfo.name ?? "",
+        email: userFullInfo.email ?? "",
+        avatar: userFullInfo.avatar ?? "",
+        phone: userFullInfo.phone ?? "",
       });
     }
   }, [userFullInfo, reset]);
@@ -81,7 +81,6 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       toast.info("No changes detected!");
       return;
     }
-
     try {
       await dispatch(updateUser(changedFields)).unwrap();
       await dispatch(fetchUserFullInfo());
@@ -204,7 +203,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
               <input
                 {...field}
                 placeholder="Name"
-                className={field?.value ? css.input : css.inputEmpty}
+                className={`${css.input} ${field?.value ? "" : css.inputEmpty}`}
               />
             )}
           />

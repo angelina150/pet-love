@@ -1,8 +1,9 @@
 .modal {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 20px;
+  right: 20px;
+  transform: translateY(-50%);
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -31,7 +32,6 @@
 }
 .iconClose {
   stroke: var(--text-color);
-  transition: all 0.3s ease;
 }
 .iconClose:hover {
   stroke: var(--background-color-btn-hover);
@@ -93,21 +93,13 @@
 .input::placeholder {
   color: var(--text-color);
   margin-bottom: 14px;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
 }
 
 .inputEmpty {
-  width: 100%;
   border: 1px solid #26262626;
-  border-radius: 30px;
-  padding: 16px;
-  color: var(--text-color);
-  margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: -0.03em;
 }
 .inputEmpty:focus,
 .inputEmpty:hover,
@@ -137,7 +129,6 @@
   padding: 12px;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease;
   white-space: nowrap;
 }
 .btnUpload:hover {
@@ -171,7 +162,6 @@
   border-radius: 30px;
   border: 1px transparent;
   margin-top: 11px;
-  transition: background-color 0.3s ease;
 }
 .btnYes:hover {
   background-color: var(--background-color-btn-hover);
@@ -179,8 +169,8 @@
 .inputAvatar::placeholder {
   color: var(--text-color);
   margin-bottom: 14px;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.03em;
 }
 .inputAvatar:focus,
@@ -202,7 +192,6 @@
   color: var(--text-color);
   margin-left: auto;
   margin-right: auto;
-  transition: all 0.3s ease;
 }
 .btnUploadNoPhoto:hover {
   color: var(--background-color-btn-hover);
@@ -224,7 +213,16 @@
     text-align: start;
     margin-bottom: 12px;
   }
+
   .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
     padding: 50px;
     max-width: 480px;
   }
@@ -256,6 +254,11 @@
     line-height: 20px;
     padding: 16px;
   }
+  .input::placeholder {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
   .inputAvatar {
     font-size: 14px;
     line-height: 18px;

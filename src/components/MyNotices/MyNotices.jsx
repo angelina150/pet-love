@@ -61,7 +61,7 @@ const MyNotices = () => {
 
         {activeTab === "viewed" &&
           viewedNotices?.map((notice) => (
-            <NoticesItem key={notice._id} notice={notice} />
+            <NoticesItem key={notice?._id} notice={notice} />
           ))}
       </div>
     </div>

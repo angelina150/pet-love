@@ -9,7 +9,7 @@ import { selectNewsLoading } from "../../redux/news/selectors.js";
 import { selectLoadingFriends } from "../../redux/friends/selectors.js";
 import { selectLoadingNotices } from "../../redux/notices/selectors.js";
 
-const MainLayout = () => {
+const MainLayout = ({ children, noPadding = false }) => {
   const isLoadingUser = useSelector(selectLoading);
   const isLoadingNews = useSelector(selectNewsLoading);
   const isLoadingFriends = useSelector(selectLoadingFriends);
@@ -19,7 +19,7 @@ const MainLayout = () => {
     isLoadingUser || isLoadingNews || isLoadingFriends || isLoadingNotices;
 
   return (
-    <div>
+    <div className={css.wrapper}>
       <Header />
       <main>
         {loading && (
