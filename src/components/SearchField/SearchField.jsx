@@ -1,12 +1,16 @@
 import React from "react";
 import css from "./SearchField.module.css";
-
+import { toast } from "react-toastify";
 const SearchField = ({ onSearch, searchQuery, setSearchQuery, pageType }) => {
   const handleSearch = (e) => {
     e.preventDefault();
-    onSearch(searchQuery.trim());
+    const trimmedQuery = searchQuery.trim();
+    if (trimmedQuery === "") {
+      toast.warn("Please enter a search query!");
+      return;
+    }
+    onSearch(trimmedQuery);
   };
-
   const clearSearch = () => {
     setSearchQuery("");
     onSearch("");

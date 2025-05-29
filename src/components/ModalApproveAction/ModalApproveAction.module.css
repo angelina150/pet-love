@@ -44,7 +44,7 @@
   stroke: var(--text-color);
 }
 .iconClose:hover {
-  animation: rotateButton 0.4s ease forwards;
+  stroke: var(--background-color-btn);
 }
 
 .btnYes {

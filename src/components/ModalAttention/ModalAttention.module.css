@@ -35,6 +35,9 @@
 .iconClose {
   stroke: var(--text-color);
 }
+.iconClose:hover {
+  stroke: var(--background-color-btn);
+}
 .imgWrapper {
   width: 80px;
   height: 80px;

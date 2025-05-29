@@ -22,20 +22,31 @@
   border: 1px solid var(--background-color-btn);
 }
 .btnClear {
+  height: 20px;
   width: 20px;
   position: absolute;
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 36px;
   padding: 0;
   border: none;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .iconClear {
   stroke: var(--text-color);
   stroke-width: 2px;
+  height: 20px;
+  width: 20px;
+}
+.iconClear:hover {
+  stroke: var(--background-color-btn);
 }
 .btnSearch {
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 12px;
   position: absolute;
   padding: 0;
@@ -52,6 +63,9 @@
   width: 18px;
   height: 18px;
 }
+.iconSearch:hover {
+  stroke: var(--background-color-btn);
+}
 @media screen and (min-width: 768px) {
   .form {
     margin-bottom: 60px;
@@ -63,7 +77,6 @@
     line-height: 20px;
   }
   .btnSearch {
-    top: 14px;
     right: 14px;
   }
 }

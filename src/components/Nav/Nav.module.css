@@ -56,6 +56,9 @@
 .iconClose {
   stroke: #191a15;
 }
+.iconClose:hover {
+  stroke: var(--background-color-btn);
+}
 .backdrop {
   position: fixed;
   top: 0;

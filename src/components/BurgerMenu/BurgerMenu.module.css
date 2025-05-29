@@ -23,6 +23,9 @@
   height: 32px;
   stroke: #262626;
 }
+.iconClose:hover {
+  stroke: var(--background-color-btn);
+}
 @media (min-width: 768px) {
   .btnClose {
     width: 36px;
