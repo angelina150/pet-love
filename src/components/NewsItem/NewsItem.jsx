@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import css from "./NewsItem.module.css";
-import { formatDate } from "../../js.js";
+import { formatDate } from "../../utils.js";
 
 function NewsItem({ newsItem }) {
   const cardRef = useRef(null);

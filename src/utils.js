@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 export const formatDate = (isoDate) => {
   const date = new Date(isoDate);
   const day = String(date.getDate()).padStart(2, "0");
@@ -20,3 +22,18 @@ export const formatPhoneNumber = (phone) => {
     "$1 $2 $3 $4 $5"
   );
 };
+
+const useWindowWidth = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return width;
+};
+
+export default useWindowWidth;

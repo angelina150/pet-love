@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import css from "./ModalNotice.module.css";
-import { formatDatePetsList } from "../../js.js";
+import { formatDatePetsList } from "../../utils.js";
 import { toast } from "react-toastify";
 Modal.setAppElement("#root");
 

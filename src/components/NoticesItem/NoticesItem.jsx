@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import css from "./NoticesItem.module.css";
-import { formatDatePetsList } from "../../js.js";
+import { formatDatePetsList } from "../../utils.js";
 import ModalNotice from "../ModalNotice/ModalNotice.jsx";
 import {
   addFavoritesNotices,

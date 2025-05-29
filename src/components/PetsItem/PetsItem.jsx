@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./PetsItem.module.css";
-import { formatDatePetsList } from "../../js.js";
+import { formatDatePetsList } from "../../utils.js";
 import { useDispatch } from "react-redux";
 import { fetchUserFullInfo, removePet } from "../../redux/users/operations.js";
 import { toast } from "react-toastify";

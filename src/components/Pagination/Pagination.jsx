@@ -1,84 +1,67 @@
 import React from "react";
 import css from "./Pagination.module.css";
+import useWindowWidth from "../../utils.js";
 
 const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
-  if (totalPages === null || totalPages <= 1 || isNaN(totalPages)) {
+  const width = useWindowWidth();
+
+  if (!totalPages || totalPages <= 1 || isNaN(totalPages)) {
     return null;
   }
-  const generatePages = () => {
-    const isMobile = window.innerWidth <= 768;
-    const pages = [];
 
-    const visiblePages = isMobile ? 2 : 3;
+  const visiblePages = width <= 375 ? 1 : width <= 768 ? 2 : 3;
+
+  const generatePages = () => {
+    const pages = [];
 
     if (totalPages <= visiblePages) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
-    } else {
-      if (currentPage <= visiblePages) {
-        for (let i = 1; i <= visiblePages; i++) {
-          pages.push(i);
-        }
-        pages.push("...");
-      } else if (currentPage >= totalPages - visiblePages + 1) {
-        pages.push("...");
-        for (let i = totalPages - visiblePages + 1; i <= totalPages; i++) {
-          pages.push(i);
-        }
-      } else {
-        pages.push("...");
-        if (!isMobile) pages.push(currentPage - 1);
-        pages.push(currentPage);
-        if (!isMobile) pages.push(currentPage + 1);
-        pages.push("...");
+    } else if (currentPage <= visiblePages) {
+      for (let i = 1; i <= visiblePages; i++) {
+        pages.push(i);
       }
+
+      pages.push("...");
+    } else if (currentPage >= totalPages - visiblePages + 1) {
+      pages.push("...");
+      for (let i = totalPages - visiblePages + 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (visiblePages > 1) pages.push("...");
+      pages.push(currentPage);
+      if (visiblePages > 2) pages.push(currentPage + 1);
+      pages.push("...");
     }
+
     return pages;
   };
 
+  const pages = generatePages();
+
   const handlePageChange = (page) => {
-    try {
-      if (page !== currentPage && page !== "...") {
-        setCurrentPage(page);
-      }
-    } catch (error) {
-      console.error(error);
+    if (page !== currentPage && page !== "...") {
+      setCurrentPage(page);
     }
   };
+
   const handleFirst = () => {
-    try {
-      if (currentPage !== 1) setCurrentPage(1);
-    } catch (error) {
-      console.error(error);
-    }
+    if (currentPage !== 1) setCurrentPage(1);
   };
 
   const handlePrev = () => {
-    try {
-      if (currentPage > 1) setCurrentPage(currentPage - 1);
-    } catch (error) {
-      console.error(error);
-    }
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
   const handleNext = () => {
-    try {
-      if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-    } catch (error) {
-      console.error(error);
-    }
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
   const handleLast = () => {
-    try {
-      if (currentPage !== totalPages) setCurrentPage(totalPages);
-    } catch (error) {
-      console.error(error);
-    }
+    if (currentPage !== totalPages) setCurrentPage(totalPages);
   };
-
-  const pages = generatePages();
 
   return (
     <div className={css.wrapper}>
@@ -91,11 +74,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           <svg className={css.icon}>
             <use href="/images/icons.svg#icon-angle"></use>
           </svg>
-          <svg
-            width="24"
-            height="24"
-            className={`${css.icon} ${css.iconSecond}`}
-          >
+          <svg className={css.iconSecond}>
             <use href="/images/icons.svg#icon-angle"></use>
           </svg>
         </button>
@@ -146,7 +125,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           <svg className={css.iconRight}>
             <use href="/images/icons.svg#icon-angle"></use>
           </svg>
-          <svg className={`${css.iconRight} ${css.iconRightSecond}`}>
+          <svg className={css.iconRightSecond}>
             <use href="/images/icons.svg#icon-angle"></use>
           </svg>
         </button>

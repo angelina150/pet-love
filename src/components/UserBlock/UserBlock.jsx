@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectUserFullInfo } from "../../redux/users/selectors.js";
 import css from "./UserBlock.module.css";
-import { formatPhoneNumber } from "../../js.js";
+import { formatPhoneNumber } from "../../utils.js";
 
 const UserBlock = ({ openModalEditUser }) => {
   const userFullInfo = useSelector(selectUserFullInfo);
