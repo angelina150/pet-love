@@ -12,7 +12,6 @@
   line-height: 18px;
   letter-spacing: -0.03em;
   width: 100%;
-  font-family: Manrope;
 }
 .input::placeholder {
   color: #26262680;
@@ -93,7 +92,6 @@
   letter-spacing: -0.03em;
   height: 48px;
   color: var(--text-color);
-  font-family: Manrope;
   width: 100%;
 }
 .inputNotices::placeholder {

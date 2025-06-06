@@ -12,7 +12,6 @@
   display: grid;
   max-width: 1216px;
   gap: 24px;
-
   text-align: start;
 }
 .titlePath {
@@ -23,7 +22,6 @@
   color: #ffffff66;
 }
 .title {
-  font-family: Manrope;
   font-weight: 700;
   font-size: 50px;
   line-height: 48px;
@@ -43,7 +41,6 @@
   border-radius: 60px;
   object-fit: cover;
   width: 100%;
-  max-width: 335px;
   max-height: 402px;
 }
 

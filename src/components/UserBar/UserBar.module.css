@@ -1,11 +1,12 @@
 .wrapper {
-  display: none;
+  cursor: pointer;
+  margin-left: auto;
 }
 .userAvatar,
 .userAvatarSvg {
   width: 40px;
   height: 40px;
-  border-radius: 50px;
+  border-radius: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,13 +14,19 @@
   stroke: var(--background-color-btn);
   object-fit: cover;
 }
+
 .userAvatar {
   background-color: #eeeeee;
 }
 .userAvatarSvg {
   background-color: var(--background-color-btn-light);
 }
+.iconUser {
+  width: 20px;
+  height: 20px;
+}
 .name {
+  display: none;
   font-weight: 700;
   font-size: 20px;
   line-height: 20px;
@@ -28,17 +35,13 @@
 }
 .nameHome {
   color: var(--color-white);
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 20px;
-  letter-spacing: -0.03em;
 }
-@media screen and (min-width: 375px) {
-}
+
 @media screen and (min-width: 768px) {
   .wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     gap: 8px;
     align-items: center;
   }
@@ -47,8 +50,13 @@
     width: 50px;
     height: 50px;
   }
-}
-@media screen and (min-width: 1280px) {
+  .iconUser {
+    width: 24px;
+    height: 24px;
+  }
+  .name {
+    display: inline-block;
+  }
   .wrapper {
     display: flex;
     flex-direction: row;

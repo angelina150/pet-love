@@ -1,34 +1,64 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  align-self: self-end;
+}
+.wrapperHeader {
   display: none;
 }
-@media (min-width: 768px) {
+.btnLogin,
+.btnRegister {
+  text-transform: uppercase;
+  border-radius: 30px;
+  font-weight: 700;
+  line-height: 18px;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+  border: 1px solid #ffffff66;
 }
-@media (min-width: 1280px) {
-  .wrapper {
+
+.btnLogin {
+  color: var(--color-white);
+  padding: 12px 35px;
+  background-color: var(--background-color-btn);
+}
+
+.btnRegister {
+  color: var(--background-color-btn);
+  padding: 12px 20px;
+  background-color: var(--background-color-btn-light);
+}
+.btnLogin:hover {
+  background-color: var(--background-color-btn-light-hover);
+  color: var(--background-color-btn);
+}
+
+.btnRegister:hover {
+  background-color: var(--background-color-btn-light-hover);
+}
+
+.btnLoginHeader:hover,
+.btnLoginHome:hover {
+  background-color: var(--background-color-btn-hover);
+  color: var(--color-white);
+  border-color: var(--background-color-btn-hover);
+}
+.btnLoginHeaderHome:hover {
+  background-color: var(--background-color-btn-light-hover);
+  color: var(--background-color-btn);
+}
+@media (min-width: 768px) {
+  .wrapperHeader {
     display: flex;
     flex-direction: row;
     gap: 8px;
   }
-
   .btnLogin,
   .btnRegister {
-    text-transform: uppercase;
-    border-radius: 30px;
-    font-weight: 700;
     line-height: 20px;
     font-size: 16px;
-    letter-spacing: -0.03em;
-    border: 1px solid #ffffff66;
-  }
-
-  .btnLogin {
-    color: var(--color-white);
-    padding: 15px 35px;
-    background-color: var(--background-color-btn);
-  }
-  .btnRegister {
-    color: var(--background-color-btn);
-    padding: 15px 20px;
-    background-color: var(--background-color-btn-light);
+    padding-block: 15px;
   }
 }

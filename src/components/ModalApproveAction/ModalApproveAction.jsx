@@ -11,7 +11,6 @@ Modal.setAppElement("#root");
 const ModalApproveAction = ({ onClose, isOpen }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleLogout = async () => {
     try {
       await dispatch(logout()).unwrap();

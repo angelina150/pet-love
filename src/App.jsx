@@ -20,6 +20,7 @@ const RegistrationPage = lazy(() =>
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage.jsx"));
 const AddPetPage = lazy(() => import("./pages/AddPetPage/AddPetPage.jsx"));
+const NotFound = lazy(() => import("./pages/NotFound/NotFound.jsx"));
 function App() {
   const token = localStorage.getItem("token");
   if (token) {
@@ -42,6 +43,7 @@ function App() {
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/add-pet" element={<AddPetPage />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </Suspense>

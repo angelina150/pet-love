@@ -25,6 +25,50 @@
   color: var(--color-white);
   font-size: 16px;
 }
+.linkBurger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 30px;
+  padding: 15px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  border: 1px solid #ffffff80;
+  font-size: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  width: 119px;
+  color: #ffffff;
+}
+.linkBurger:hover {
+  background-color: var(--background-color-btn-light-hover);
+  color: var(--background-color-btn);
+}
+.linkHomeBurger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 30px;
+  padding: 15px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  border: 1px solid #26262626;
+  font-size: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03em;
+  width: 119px;
+}
+.linkHomeBurger:hover {
+  border: 1px solid var(--background-color-btn);
+}
 .linkHome:hover {
   background-color: var(--background-color-btn-light);
   color: var(--background-color-btn);
@@ -34,16 +78,19 @@
 .navWrapperOpen {
   display: flex;
   flex-direction: column;
-  /* position: absolute; */
-  /* top: 0;
-  left: 0; */
-  width: 250px;
-  height: 100vh;
-  background-color: white;
-  z-index: 10;
-  padding: 60px 40px;
   gap: 18px;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  place-self: center;
+}
+.navWrapperOpenHome {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  gap: 18px;
+  color: #262626;
+  place-self: center;
+}
+.navWrapper {
+  display: none;
 }
 .btnClose {
   position: absolute;
@@ -59,15 +106,7 @@
 .iconClose:hover {
   stroke: var(--background-color-btn);
 }
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9;
-}
+
 .authMobile {
   display: block;
 }
@@ -82,6 +121,7 @@
   .navWrapper {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 10px;
   }
 
@@ -89,9 +129,6 @@
     display: flex;
   }
 
-  .backdrop {
-    display: none;
-  }
   .btnClose {
     display: none;
   }

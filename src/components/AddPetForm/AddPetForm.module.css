@@ -9,7 +9,6 @@
 }
 .title {
   text-align: start;
-  font-family: Manrope;
   font-weight: 700;
   font-size: 28px;
   line-height: 28px;
@@ -22,7 +21,6 @@
   gap: 8px;
 }
 .titlePath {
-  font-family: Manrope;
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
@@ -151,7 +149,6 @@
 .inputText,
 .inputTextImg {
   padding: 12px;
-  font-family: Manrope;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.03em;
@@ -170,7 +167,6 @@
 }
 .inputText::placeholder,
 .inputTextImg::placeholder {
-  font-family: Manrope;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
@@ -203,7 +199,6 @@
 .btn {
   padding: 12px;
   width: 100px;
-  font-family: Manrope;
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;

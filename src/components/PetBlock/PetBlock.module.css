@@ -2,12 +2,12 @@
   display: block;
   border-radius: 30px;
   overflow: hidden;
-  width: 335px;
   width: 100%;
 }
 
 .img {
-  width: 335px;
+  width: 100%;
+  min-width: 335px;
   height: auto;
   display: block;
   object-fit: cover;
@@ -16,33 +16,27 @@
 
 @media (min-width: 375px) {
   .picture {
-    width: 335px;
     height: 280px;
   }
   .img {
-    width: 335px;
     height: 280px;
   }
 }
 @media (min-width: 768px) {
   .picture {
     border-radius: 60px;
-    width: 704px;
     height: 302px;
   }
   .img {
     border-radius: 60px;
-    width: 704px;
     height: 302px;
   }
 }
 @media (min-width: 1280px) {
   .picture {
-    width: 592px;
     height: 654px;
   }
   .img {
-    width: 592px;
     height: 654px;
   }
 }

@@ -54,7 +54,6 @@
   height: 44px;
 }
 .title {
-  font-family: Manrope;
   font-weight: 700;
   font-size: 20px;
   line-height: 20px;
@@ -78,7 +77,6 @@
 }
 .btnLogin,
 .btnRegister {
-  font-family: Manrope;
   border-radius: 30px;
   font-weight: 700;
   line-height: 18px;

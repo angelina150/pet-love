@@ -1,21 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import css from "./LogOutBtn.module.css";
 import ModalApproveAction from "../ModalApproveAction/ModalApproveAction.jsx";
 
-const LogOutBtn = () => {
-  const [isModalApproveAction, setIsModalApproveAction] = useState(false);
-
+const LogOutBtn = ({ className, onClick }) => {
   return (
     <>
-      <button onClick={() => setIsModalApproveAction(true)} className={css.btn}>
+      <button
+        onClick={onClick}
+        className={`${css.btn} ${className === "burger" ? css.burger : ""}`}
+      >
         Log out
       </button>
-      {isModalApproveAction && (
-        <ModalApproveAction
-          isOpen={isModalApproveAction}
-          onClose={() => setIsModalApproveAction(false)}
-        />
-      )}
     </>
   );
 };

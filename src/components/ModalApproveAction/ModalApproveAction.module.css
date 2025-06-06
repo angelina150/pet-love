@@ -9,6 +9,7 @@
   align-items: center;
   padding: 40px 28px;
   border-radius: 30px;
+  width: 100%;
   max-width: 335px;
   max-height: 270px;
 }
@@ -42,9 +43,10 @@
 }
 .iconClose {
   stroke: var(--text-color);
+  transition: all 0.3s ease-in-out;
 }
 .iconClose:hover {
-  stroke: var(--background-color-btn);
+  transform: rotate(90deg);
 }
 
 .btnYes {
@@ -74,6 +76,12 @@
   line-height: 18px;
   letter-spacing: -0.03em;
   max-width: 134px;
+  border-width: 1px;
+  text-align: center;
+}
+.btnCancel:hover,
+.btnCancel:focus {
+  border: 1px solid #262626;
 }
 .actions {
   display: flex;

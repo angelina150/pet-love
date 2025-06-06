@@ -65,6 +65,10 @@ input,
 textarea {
   font-family: Manrope, sans-serif;
 }
+input::placeholder,
+textarea::placeholder {
+  font-family: Manrope, sans-serif;
+}
 input:hover,
 textarea:hover,
 input:focus,

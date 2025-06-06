@@ -5,13 +5,12 @@ import { formatPhoneNumber } from "../../utils.js";
 
 const UserBlock = ({ openModalEditUser }) => {
   const userFullInfo = useSelector(selectUserFullInfo);
-  console.log(userFullInfo?.name?.length > 0);
   return (
     <div className={css.wrapperUserBlock}>
       <div className={css.userBlock}>
         User
         <svg className={css.iconUserBlock} width="18" height="18">
-          <use href="/public/images/icons.svg#icon-user"></use>
+          <use href="/images/icons.svg#icon-user"></use>
         </svg>
       </div>
       {userFullInfo?.avatar ? (

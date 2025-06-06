@@ -1,6 +1,8 @@
 import React from "react";
 import css from "./NotFound.module.css";
+import { useNavigate } from "react-router-dom";
 const NotFound = () => {
+  const navigate = useNavigate();
   return (
     <div className={css.wrapper}>
       <div className={css.imgBlockWrapper}>
@@ -12,7 +14,11 @@ const NotFound = () => {
       </div>
 
       <p className={css.desc}>Ooops! This page not found :(</p>
-      <button className={css.btn} type="button">
+      <button
+        className={css.btn}
+        type="button"
+        onClick={() => navigate("/home")}
+      >
         To home page
       </button>
     </div>

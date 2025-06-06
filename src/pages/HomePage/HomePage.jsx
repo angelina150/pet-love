@@ -33,7 +33,7 @@ const HomePage = () => {
         />
         <img
           className={css.img}
-          src="/images/home/home-desktop.jpg"
+          src="/images/home/home-mob.jpg"
           alt="Girl and dog"
         />
       </picture>

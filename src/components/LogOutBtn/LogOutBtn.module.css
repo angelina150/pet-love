@@ -4,18 +4,30 @@
   background-color: var(--background-color-btn);
   border-radius: 30px;
   border: none;
-  padding: 12px 60px;
+  padding: 15px 35px;
   text-align: center;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 18px;
   letter-spacing: -0.03em;
+  font-size: 16px;
+  line-height: 20px;
+  display: none;
+  margin-left: auto;
 }
-
+.btn:hover {
+  background-color: var(--background-color-btn-hover);
+}
+.burger {
+  display: inline-block;
+  background-color: var(--background-color-btn-light);
+  color: var(--background-color-btn);
+  width: 100%;
+  align-self: self-end;
+}
+.burger:hover {
+  background-color: var(--background-color-btn-light-hover);
+}
 @media screen and (min-width: 768px) {
   .btn {
-    padding: 15px 35px;
-    font-size: 16px;
-    line-height: 20px;
+    display: block;
   }
 }

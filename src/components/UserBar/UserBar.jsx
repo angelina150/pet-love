@@ -20,12 +20,12 @@ const UserBar = ({ isHome }) => {
         <img className={css.userAvatar} src={userAvatar} alt="Avatar" />
       ) : (
         <div className={css.userAvatarSvg}>
-          <svg className={css.iconUser} width="24" height="24">
+          <svg className={css.iconUser}>
             <use href="/images/icons.svg#icon-user"></use>
           </svg>
         </div>
       )}
-      <p className={isHome ? css.nameHome : css.name}>{userName}</p>
+      <p className={`${css.name} ${isHome && css.nameHome}`}>{userName}</p>
     </div>
   );
 };
