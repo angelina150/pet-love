@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -8,18 +8,18 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { usersReducer } from "./users/slice.js";
-import { friendsReducer } from "./friends/slice.js";
-import { newsReducer } from "./news/slice.js";
-import { citiesReducer } from "./cities/slice.js";
-import { noticesReducer } from "./notices/slice.js";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { usersReducer } from './users/slice.js';
+import { friendsReducer } from './friends/slice.js';
+import { newsReducer } from './news/slice.js';
+import { citiesReducer } from './cities/slice.js';
+import { noticesReducer } from './notices/slice.js';
 
 const usersConfig = {
-  key: "users",
+  key: 'users',
   storage,
-  whitelist: ["token"],
+  whitelist: ['token', 'isLoggedIn'],
 };
 
 const rootReducer = combineReducers({
@@ -32,7 +32,7 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

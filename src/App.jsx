@@ -1,31 +1,40 @@
-import { Suspense, lazy } from "react";
-import "./App.css";
-import Loader from "./components/Loader/Loader.jsx";
-import { Route, Routes } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
-import { setToken } from "./redux/users/operations.js";
-import { ToastContainer } from "react-toastify";
+import { Suspense, lazy, useEffect } from 'react';
+import './App.css';
+import Loader from './components/Loader/Loader.jsx';
+import { Route, Routes } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
+import { fetchUserFullInfo, setToken } from './redux/users/operations.js';
+import { ToastContainer } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectToken } from './redux/users/selectors.js';
 
-const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
-const MainPage = lazy(() => import("./pages/MainPage/MainPage.jsx"));
-const MainLayout = lazy(() => import("./components/MainLayout/MainLayout.jsx"));
-const NewsPage = lazy(() => import("./pages/NewsPage/NewsPage.jsx"));
-const NoticesPage = lazy(() => import("./pages/NoticesPage/NoticesPage.jsx"));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
+const MainPage = lazy(() => import('./pages/MainPage/MainPage.jsx'));
+const MainLayout = lazy(() => import('./components/MainLayout/MainLayout.jsx'));
+const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage.jsx'));
+const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage.jsx'));
 const OurFriendsPage = lazy(() =>
-  import("./pages/OurFriendsPage/OurFriendsPage.jsx")
+  import('./pages/OurFriendsPage/OurFriendsPage.jsx')
 );
 const RegistrationPage = lazy(() =>
-  import("./pages/RegistrationPage/RegistrationPage.jsx")
+  import('./pages/RegistrationPage/RegistrationPage.jsx')
 );
-const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
-const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage.jsx"));
-const AddPetPage = lazy(() => import("./pages/AddPetPage/AddPetPage.jsx"));
-const NotFound = lazy(() => import("./pages/NotFound/NotFound.jsx"));
+const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage/ProfilePage.jsx'));
+const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage.jsx'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound.jsx'));
+
 function App() {
-  const token = localStorage.getItem("token");
-  if (token) {
-    setToken(token);
-  }
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    if (token) {
+      setToken(token);
+      dispatch(fetchUserFullInfo());
+    }
+  }, [dispatch, token]);
+
   return (
     <>
       <ToastContainer />

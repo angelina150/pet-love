@@ -1,23 +1,22 @@
-import axios from "axios";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const authInstance = axios.create({
-  baseURL: "https://petlove.b.goit.study/api",
+  baseURL: 'https://petlove.b.goit.study/api',
 });
-export const setToken = (token) => {
+export const setToken = token => {
   authInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 export const clearToken = () => {
-  authInstance.defaults.headers.common.Authorization = "";
+  authInstance.defaults.headers.common.Authorization = '';
 };
 export const registerUser = createAsyncThunk(
-  "users/registerUser",
+  'users/registerUser',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await authInstance.post("/users/signup", formData);
+      const { data } = await authInstance.post('/users/signup', formData);
       const token = data.token;
-      localStorage.setItem("token", token);
       setToken(token);
       return data;
     } catch (error) {
@@ -27,12 +26,11 @@ export const registerUser = createAsyncThunk(
 );
 
 export const loginUser = createAsyncThunk(
-  "users/loginUser",
+  'users/loginUser',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await authInstance.post("/users/signin", formData);
+      const { data } = await authInstance.post('/users/signin', formData);
       const token = data.token;
-      localStorage.setItem("token", token);
       setToken(token);
       return data;
     } catch (error) {
@@ -41,9 +39,9 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
+export const logout = createAsyncThunk('users/logout', async (_, thunkAPI) => {
   try {
-    const { data } = await authInstance.post("/users/signout");
+    const { data } = await authInstance.post('/users/signout');
     clearToken();
     return data;
   } catch (error) {
@@ -52,11 +50,11 @@ export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
 });
 
 export const updateUser = createAsyncThunk(
-  "users/updateUser",
+  'users/updateUser',
   async (formData, thunkAPI) => {
     try {
       const { data } = await authInstance.patch(
-        "/users/current/edit",
+        '/users/current/edit',
         formData
       );
       return data;
@@ -67,10 +65,10 @@ export const updateUser = createAsyncThunk(
 );
 
 export const fetchUserInfo = createAsyncThunk(
-  "users/fetchUserInfo",
+  'users/fetchUserInfo',
   async (_, thunkAPI) => {
     try {
-      const { data } = await authInstance.get("/users/current");
+      const { data } = await authInstance.get('/users/current');
 
       return data;
     } catch (error) {
@@ -80,10 +78,10 @@ export const fetchUserInfo = createAsyncThunk(
 );
 
 export const fetchUserFullInfo = createAsyncThunk(
-  "users/fetchUserFullInfo",
+  'users/fetchUserFullInfo',
   async (_, thunkAPI) => {
     try {
-      const { data } = await authInstance.get("/users/current/full");
+      const { data } = await authInstance.get('/users/current/full');
 
       return data;
     } catch (error) {
@@ -91,13 +89,12 @@ export const fetchUserFullInfo = createAsyncThunk(
     }
   }
 );
-
 export const addPets = createAsyncThunk(
-  "users/addPets",
+  'users/addPets',
   async (formData, thunkAPI) => {
     try {
       const { data } = await authInstance.post(
-        "/users/current/pets/add",
+        '/users/current/pets/add',
         formData
       );
       return data;
@@ -107,7 +104,7 @@ export const addPets = createAsyncThunk(
   }
 );
 export const removePet = createAsyncThunk(
-  "users/removePet",
+  'users/removePet',
   async (id, thunkAPI) => {
     try {
       const { data } = await authInstance.delete(

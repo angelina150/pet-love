@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+
 import {
   addPets,
   fetchUserFullInfo,
@@ -8,7 +9,7 @@ import {
   registerUser,
   removePet,
   updateUser,
-} from "../users/operations";
+} from '../users/operations';
 
 const initialState = {
   data: {},
@@ -21,11 +22,11 @@ const initialState = {
 };
 
 const usersSlice = createSlice({
-  name: "users",
+  name: 'users',
   initialState,
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(registerUser.pending, (state) => {
+      .addCase(registerUser.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -40,7 +41,7 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(loginUser.pending, (state) => {
+      .addCase(loginUser.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -55,7 +56,7 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(logout.pending, (state) => {
+      .addCase(logout.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -66,11 +67,12 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(fetchUserFullInfo.pending, (state) => {
+      .addCase(fetchUserFullInfo.pending, state => {
         state.loading = true;
         state.error = null;
       })
       .addCase(fetchUserFullInfo.fulfilled, (state, action) => {
+        state.user = action.payload;
         state.loading = false;
         state.error = null;
         state.userFullInfo = action.payload;
@@ -79,7 +81,7 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(updateUser.pending, (state) => {
+      .addCase(updateUser.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -92,7 +94,7 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(fetchUserInfo.pending, (state) => {
+      .addCase(fetchUserInfo.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -105,11 +107,11 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(addPets.pending, (state) => {
+      .addCase(addPets.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(addPets.fulfilled, (state) => {
+      .addCase(addPets.fulfilled, state => {
         state.loading = false;
         state.error = null;
       })
@@ -117,11 +119,11 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(removePet.pending, (state) => {
+      .addCase(removePet.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(removePet.fulfilled, (state) => {
+      .addCase(removePet.fulfilled, state => {
         state.loading = false;
         state.error = null;
       })

@@ -1,12 +1,12 @@
-import React from "react";
-import css from "./ModalApproveAction.module.css";
-import Modal from "react-modal";
-import { useDispatch } from "react-redux";
-import { logout } from "../../redux/users/operations.js";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import css from './ModalApproveAction.module.css';
+import Modal from 'react-modal';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/users/operations.js';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const ModalApproveAction = ({ onClose, isOpen }) => {
   const navigate = useNavigate();
@@ -15,11 +15,10 @@ const ModalApproveAction = ({ onClose, isOpen }) => {
     try {
       await dispatch(logout()).unwrap();
     } catch (error) {
-      toast.error(error || "Logout failed");
+      toast.error(error || 'Logout failed');
     } finally {
-      localStorage.removeItem("persist:root");
       onClose();
-      navigate("/");
+      navigate('/');
     }
   };
   return (
@@ -29,10 +28,10 @@ const ModalApproveAction = ({ onClose, isOpen }) => {
       className={css.modal}
       overlayClassName={css.overlay}
       onAfterOpen={() => {
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden';
       }}
       onAfterClose={() => {
-        document.body.style.overflow = "auto";
+        document.body.style.overflow = 'auto';
       }}
     >
       <button type="button" className={css.btnClose} onClick={onClose}>
