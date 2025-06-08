@@ -1,9 +1,9 @@
-import React from "react";
-import Modal from "react-modal";
-import css from "./ModalAttention.module.css";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import Modal from 'react-modal';
+import css from './ModalAttention.module.css';
+import { useNavigate } from 'react-router-dom';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const ModalAttention = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -14,10 +14,10 @@ const ModalAttention = ({ isOpen, onClose }) => {
       className={css.modal}
       overlayClassName={css.overlay}
       onAfterOpen={() => {
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden';
       }}
       onAfterClose={() => {
-        document.body.style.overflow = "auto";
+        document.body.style.overflow = 'auto';
       }}
     >
       <button type="button" className={css.btnClose} onClick={onClose}>
@@ -26,7 +26,12 @@ const ModalAttention = ({ isOpen, onClose }) => {
         </svg>
       </button>
       <div className={css.imgWrapper}>
-        <img className={css.img} src="/images/dog.png" alt="Dog" />
+        <img
+          className={css.img}
+          src="/images/dog.png"
+          alt="Dog"
+          loading="lazy"
+        />
       </div>
       <h2 className={css.title}>Attention</h2>
       <p className={css.desc}>
@@ -39,7 +44,7 @@ const ModalAttention = ({ isOpen, onClose }) => {
         <button
           className={css.btnLogin}
           onClick={() => {
-            navigate("/login");
+            navigate('/login');
           }}
         >
           Log In
@@ -47,7 +52,7 @@ const ModalAttention = ({ isOpen, onClose }) => {
         <button
           className={css.btnRegister}
           onClick={() => {
-            navigate("/register");
+            navigate('/register');
           }}
         >
           Registration

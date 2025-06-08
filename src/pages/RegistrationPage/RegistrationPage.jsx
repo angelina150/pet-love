@@ -11,19 +11,19 @@ const RegistrationPage = () => {
         <PetBlock
           sources={[
             {
-              media: "(min-width: 1280px)",
+              media: '(min-width: 1280px)',
               srcSet:
-                "/images/registration/desc-register-1x.jpg 1x, /images/registration/desc-register-2x.jpg 2x",
+                '/images/registration/desc-register-1x.jpg 1x, /images/registration/desc-register-2x.jpg 2x',
             },
             {
-              media: "(min-width: 768px)",
+              media: '(min-width: 768px)',
               srcSet:
-                "/images/registration/tab-register-1x.jpg 1x, /images/registration/tab-register-2x.jpg 2x",
+                '/images/registration/tab-register-1x.jpg 1x, /images/registration/tab-register-2x.jpg 2x',
             },
             {
-              media: "(min-width: 320px)",
+              media: '(min-width: 320px)',
               srcSet:
-                "/images/registration/mob-register-1x.jpg 1x, /images/registration/mob-register-2x.jpg 2x",
+                '/images/registration/mob-register-1x.jpg 1x, /images/registration/mob-register-2x.jpg 2x',
             },
           ]}
           defaultImage="/images/registration/mob-register-1x.jpg"
@@ -31,7 +31,12 @@ const RegistrationPage = () => {
         />
         <div className={css.petBlock}>
           <div className={css.petBlockImgWrapper}>
-            <img className={css.petBlockImg} src="/images/cat.png" alt="Cat" />
+            <img
+              className={css.petBlockImg}
+              loading="lazy"
+              src="/images/cat.png"
+              alt="Cat"
+            />
           </div>
           <h2 className={css.petBlockTitle}>Jack</h2>
           <p className={css.petBlockBirth}>
@@ -51,7 +56,7 @@ const RegistrationPage = () => {
         </p>
         <RegistrationForm />
         <p className={css.desc}>
-          Already have an account?{" "}
+          Already have an account?{' '}
           <Link to="/login" className={css.descPath}>
             Login
           </Link>

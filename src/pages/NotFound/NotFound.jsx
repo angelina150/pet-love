@@ -1,6 +1,6 @@
-import React from "react";
-import css from "./NotFound.module.css";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import css from './NotFound.module.css';
+import { useNavigate } from 'react-router-dom';
 const NotFound = () => {
   const navigate = useNavigate();
   return (
@@ -8,7 +8,12 @@ const NotFound = () => {
       <div className={css.imgBlockWrapper}>
         <span className={css.number}>4</span>
         <div className={css.imgWrapper}>
-          <img className={css.img} src="/images/not-found-img.png" alt="Cat" />
+          <img
+            className={css.img}
+            loading="lazy"
+            src="/images/not-found-img.png"
+            alt="Cat"
+          />
         </div>
         <span className={css.number}>4</span>
       </div>
@@ -17,7 +22,7 @@ const NotFound = () => {
       <button
         className={css.btn}
         type="button"
-        onClick={() => navigate("/home")}
+        onClick={() => navigate('/home')}
       >
         To home page
       </button>

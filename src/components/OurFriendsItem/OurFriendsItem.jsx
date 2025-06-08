@@ -27,7 +27,12 @@ const OurFriendsItem = ({ friend }) => {
   )}`;
   return (
     <li className={css.list}>
-      <img className={css.img} src={friend.imageUrl} alt={friend.title} />
+      <img
+        className={css.img}
+        src={friend.imageUrl}
+        alt={friend.title}
+        loading="lazy"
+      />
       {openDays.length > 0 ? (
         openDays.map((day, index) => (
           <p className={css.worksDay} key={day._id || index}>
@@ -40,7 +45,7 @@ const OurFriendsItem = ({ friend }) => {
       <div>
         <h2 className={css.title}>{friend.title}</h2>
         <p className={css.name}>
-          Email:{" "}
+          Email:{' '}
           {friend.email ? (
             <a
               className={`${css.info} ${css.link}`}
@@ -53,7 +58,7 @@ const OurFriendsItem = ({ friend }) => {
           )}
         </p>
         <p className={css.name}>
-          Address:{" "}
+          Address:{' '}
           {friend.address ? (
             <a
               className={`${css.info} ${css.link}`}
@@ -68,7 +73,7 @@ const OurFriendsItem = ({ friend }) => {
           )}
         </p>
         <p className={css.name}>
-          Phone:{" "}
+          Phone:{' '}
           {friend.phone ? (
             <a
               className={`${css.info} ${css.link}`}

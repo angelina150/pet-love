@@ -19,10 +19,10 @@ const ModalNotice = ({
       isOpen={isOpen}
       onRequestClose={onClose}
       onAfterOpen={() => {
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden';
       }}
       onAfterClose={() => {
-        document.body.style.overflow = "auto";
+        document.body.style.overflow = 'auto';
       }}
     >
       <button type="button" className={css.btnClose} onClick={onClose}>
@@ -33,9 +33,10 @@ const ModalNotice = ({
       <div className={css.imgWrapper}>
         <p className={css.category}>{notice.category}</p>
         <img
+          loading="lazy"
           className={css.img}
           src={notice.imgURL}
-          alt={notice.title ? notice.title : "Pet image"}
+          alt={notice.title ? notice.title : 'Pet image'}
         />
       </div>
 
@@ -71,7 +72,7 @@ const ModalNotice = ({
       </div>
       <div className={css.wrapperBtns}>
         <button onClick={handleHeartClick} className={css.btnAdd} type="button">
-          {isFavorite ? "Remove from" : "Add to"}
+          {isFavorite ? 'Remove from' : 'Add to'}
           <svg height="18" width="18">
             <use
               className={isFavorite ? css.heartIconActive : css.heartIcon}
@@ -82,7 +83,7 @@ const ModalNotice = ({
         <button
           onClick={() => {
             toast.info(
-              "Contact information will be added soon. Thank you for your interest!"
+              'Contact information will be added soon. Thank you for your interest!'
             );
           }}
           type="button"

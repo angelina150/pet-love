@@ -1,5 +1,5 @@
-import React from "react";
-import css from "./PetBlock.module.css";
+import React from 'react';
+import css from './PetBlock.module.css';
 
 const PetBlock = ({ sources, defaultImage, altText, children }) => {
   return (
@@ -8,7 +8,12 @@ const PetBlock = ({ sources, defaultImage, altText, children }) => {
         {sources?.map(({ media, srcSet }, idx) => (
           <source key={idx} media={media} srcSet={srcSet} />
         ))}
-        <img src={defaultImage} alt={altText} className={css.img} />
+        <img
+          src={defaultImage}
+          alt={altText}
+          className={css.img}
+          loading="lazy"
+        />
       </picture>
       <div className={css.petContent}>{children}</div>
     </div>

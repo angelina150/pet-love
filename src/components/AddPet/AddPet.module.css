@@ -2,7 +2,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.03rem;
   color: var(--color-white);
   padding: 10px 10px 10px 16px;
   background-color: var(--background-color-btn);

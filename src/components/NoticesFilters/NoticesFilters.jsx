@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import Select from "react-select";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   selectCategories,
   selectNoticesSex,
   selectNoticesSpecies,
-} from "../../redux/notices/selectors.js";
-import { selectLocations } from "../../redux/cities/selectors.js";
-import SearchField from "../SearchField/SearchField.jsx";
+} from '../../redux/notices/selectors.js';
+import { selectLocations } from '../../redux/cities/selectors.js';
+import SearchField from '../SearchField/SearchField.jsx';
 import {
   fetchNoticesCategories,
   fetchNoticesSex,
   fetchNoticesSpecies,
-} from "../../redux/notices/operations.js";
-import { fetchCitiesLocations } from "../../redux/cities/operations.js";
-import css from "./NoticesFilters.module.css";
+} from '../../redux/notices/operations.js';
+import { fetchCitiesLocations } from '../../redux/cities/operations.js';
+import css from './NoticesFilters.module.css';
 
 const NoticesFilters = ({
   keyword,
@@ -55,18 +55,18 @@ const NoticesFilters = ({
     species,
     locationId,
     sex,
-    sortBy: "date",
+    sortBy: 'date',
   });
 
   const handleSelectChange = (name, selectedOption) => {
-    const value = selectedOption ? selectedOption.value : "";
-    setFilters((prev) => ({ ...prev, [name]: value }));
+    const value = selectedOption ? selectedOption.value : '';
+    setFilters(prev => ({ ...prev, [name]: value }));
     handleFilterChange(name, value);
   };
 
-  const handleSortChange = (e) => {
-    setFilters((prev) => ({ ...prev, sortBy: e.target.value }));
-    handleFilterChange("sortBy", e.target.value);
+  const handleSortChange = e => {
+    setFilters(prev => ({ ...prev, sortBy: e.target.value }));
+    handleFilterChange('sortBy', e.target.value);
   };
 
   return (
@@ -75,24 +75,24 @@ const NoticesFilters = ({
         <SearchField
           pageType="notices"
           searchQuery={filters.keyword}
-          onSearch={(query) => handleSelectChange("keyword", { value: query })}
-          setSearchQuery={(query) =>
-            setFilters((prev) => ({ ...prev, keyword: query }))
+          onSearch={query => handleSelectChange('keyword', { value: query })}
+          setSearchQuery={query =>
+            setFilters(prev => ({ ...prev, keyword: query }))
           }
         />
 
         <input
           className={css.input}
           list="category-options"
-          value={filters.category || ""}
-          onChange={(e) =>
-            handleSelectChange("category", { value: e.target.value })
+          value={filters.category || ''}
+          onChange={e =>
+            handleSelectChange('category', { value: e.target.value })
           }
           placeholder="Select Category"
         />
 
         <datalist id="category-options">
-          {categories.map((cat) => (
+          {categories.map(cat => (
             <option key={cat} value={cat} />
           ))}
         </datalist>
@@ -100,13 +100,13 @@ const NoticesFilters = ({
         <input
           className={css.input}
           list="sex-options"
-          value={filters.sex || ""}
-          onChange={(e) => handleSelectChange("sex", { value: e.target.value })}
+          value={filters.sex || ''}
+          onChange={e => handleSelectChange('sex', { value: e.target.value })}
           placeholder="Select Sex"
         />
 
         <datalist id="sex-options">
-          {sexOptions.map((sex) => (
+          {sexOptions.map(sex => (
             <option key={sex} value={sex} />
           ))}
         </datalist>
@@ -114,15 +114,15 @@ const NoticesFilters = ({
         <input
           className={css.input}
           list="species-options"
-          value={filters.species || ""}
-          onChange={(e) =>
-            handleSelectChange("species", { value: e.target.value })
+          value={filters.species || ''}
+          onChange={e =>
+            handleSelectChange('species', { value: e.target.value })
           }
           placeholder="Select Species"
         />
 
         <datalist id="species-options">
-          {speciesOptions.map((species) => (
+          {speciesOptions.map(species => (
             <option key={species} value={species} />
           ))}
         </datalist>
@@ -130,20 +130,19 @@ const NoticesFilters = ({
         <Select
           className={css.selectInput}
           value={
-            locations.find((loc) => loc.id === filters.locationId)
+            locations.find(loc => loc.id === filters.locationId)
               ? {
                   value: filters.locationId,
                   label: `${
-                    locations.find((loc) => loc.id === filters.locationId)?.city
+                    locations.find(loc => loc.id === filters.locationId)?.city
                   }, ${
-                    locations.find((loc) => loc.id === filters.locationId)
-                      ?.state
+                    locations.find(loc => loc.id === filters.locationId)?.state
                   }`,
                 }
               : null
           }
-          onChange={(option) => handleSelectChange("locationId", option)}
-          options={locations.map((loc) => ({
+          onChange={option => handleSelectChange('locationId', option)}
+          options={locations.map(loc => ({
             value: loc.id,
             label: `${loc.city}, ${loc.state}`,
           }))}
@@ -159,7 +158,7 @@ const NoticesFilters = ({
             type="radio"
             name="sortBy"
             value="popularity"
-            checked={filters.sortBy === "popularity"}
+            checked={filters.sortBy === 'popularity'}
             onChange={handleSortChange}
           />
           Popular
@@ -170,7 +169,7 @@ const NoticesFilters = ({
             type="radio"
             name="sortBy"
             value="popularity"
-            checked={filters.sortBy === "popularity"}
+            checked={filters.sortBy === 'popularity'}
             onChange={handleSortChange}
           />
           Unpopular
@@ -181,7 +180,7 @@ const NoticesFilters = ({
             type="radio"
             name="sortBy"
             value="price"
-            checked={filters.sortBy === "price"}
+            checked={filters.sortBy === 'price'}
             onChange={handleSortChange}
           />
           Cheap
@@ -192,7 +191,7 @@ const NoticesFilters = ({
             type="radio"
             name="sortBy"
             value="price"
-            checked={filters.sortBy === "price"}
+            checked={filters.sortBy === 'price'}
             onChange={handleSortChange}
           />
           Expensive

@@ -41,6 +41,7 @@ const ModalApproveAction = ({ onClose, isOpen }) => {
       </button>
       <div className={css.imgWrapper}>
         <img
+          loading="lazy"
           className={css.img}
           src="/images/cat.png"
           alt="Log out illustration"

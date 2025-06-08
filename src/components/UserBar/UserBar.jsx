@@ -1,8 +1,8 @@
-import React from "react";
-import css from "./UserBar.module.css";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectUserFullInfo } from "../../redux/users/selectors.js";
+import React from 'react';
+import css from './UserBar.module.css';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUserFullInfo } from '../../redux/users/selectors.js';
 const UserBar = ({ isHome }) => {
   const navigate = useNavigate();
 
@@ -13,11 +13,16 @@ const UserBar = ({ isHome }) => {
     <div
       className={css.wrapper}
       onClick={() => {
-        navigate("/profile");
+        navigate('/profile');
       }}
     >
       {userAvatar ? (
-        <img className={css.userAvatar} src={userAvatar} alt="Avatar" />
+        <img
+          loading="lazy"
+          className={css.userAvatar}
+          src={userAvatar}
+          alt="Avatar"
+        />
       ) : (
         <div className={css.userAvatarSvg}>
           <svg className={css.iconUser}>

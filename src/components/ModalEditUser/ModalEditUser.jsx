@@ -119,10 +119,10 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       className={css.modal}
       overlayClassName={css.overlay}
       onAfterOpen={() => {
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden';
       }}
       onAfterClose={() => {
-        document.body.style.overflow = "auto";
+        document.body.style.overflow = 'auto';
       }}
     >
       <button type="button" className={css.btnClose} onClick={onClose}>
@@ -136,7 +136,12 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       <form className={css.formEdit} onSubmit={handleSubmit(onSubmit)}>
         {avatarValue ? (
           <>
-            <img className={css.img} src={avatarValue} alt="User avatar" />
+            <img
+              className={css.img}
+              src={avatarValue}
+              alt="User avatar"
+              loading="lazy"
+            />
             <label className={css.labelAvatar}>
               <Controller
                 name="avatar"
@@ -145,7 +150,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
                   <input
                     {...field}
                     placeholder="Avatar URL"
-                    value={field.value || ""}
+                    value={field.value || ''}
                     className={css.inputAvatar}
                   />
                 )}
@@ -188,7 +193,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
           type="file"
           accept="image/*"
           ref={fileInputRef}
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
           onChange={handleUpload}
         />
 
@@ -203,7 +208,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
               <input
                 {...field}
                 placeholder="Name"
-                className={`${css.input} ${field?.value ? "" : css.inputEmpty}`}
+                className={`${css.input} ${field?.value ? '' : css.inputEmpty}`}
               />
             )}
           />

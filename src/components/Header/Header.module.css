@@ -90,6 +90,8 @@
   .headerDefault {
     padding-top: 18px;
     padding-bottom: 20px;
+    padding-left: 32px;
+    padding-right: 32px;
     display: grid;
     border: none;
     outline: none;

@@ -1,5 +1,5 @@
-import React from "react";
-import css from "./HomePage.module.css";
+import React from 'react';
+import css from './HomePage.module.css';
 const HomePage = () => {
   return (
     <div className={css.wrapper}>
@@ -32,6 +32,7 @@ const HomePage = () => {
           srcSet="/images/home/home-mob.jpg 1x, /images/home/home-mob@2x.png 2x"
         />
         <img
+          loading="lazy"
           className={css.img}
           src="/images/home/home-mob.jpg"
           alt="Girl and dog"

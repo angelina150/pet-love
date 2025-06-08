@@ -19,7 +19,12 @@ const PetsItem = ({ pet }) => {
 
   return (
     <li key={pet._id} className={css.item}>
-      <img src={pet?.imgURL} alt={pet?.title} className={css.img} />
+      <img
+        src={pet?.imgURL}
+        alt={pet?.title}
+        className={css.img}
+        loading="lazy"
+      />
       <h3 className={css.title}>{pet?.title}</h3>
       <div className={css.infoWrapper}>
         <p className={css.name}>

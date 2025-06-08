@@ -44,7 +44,7 @@
 @media (min-width: 768px) {
   .wrapper {
     width: 50%;
-    max-width: 400px;
+    max-width: 500px;
     padding: 40px 49px;
   }
   .btnClose {

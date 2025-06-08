@@ -3,10 +3,10 @@ import './App.css';
 import Loader from './components/Loader/Loader.jsx';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
-import { fetchUserFullInfo, setToken } from './redux/users/operations.js';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectToken } from './redux/users/selectors.js';
+import { selectIsLoggedIn, selectToken } from './redux/users/selectors.js';
+import { fetchUserFullInfo, setToken } from './redux/users/operations.js';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const MainPage = lazy(() => import('./pages/MainPage/MainPage.jsx'));
@@ -27,14 +27,14 @@ const NotFound = lazy(() => import('./pages/NotFound/NotFound.jsx'));
 function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    if (token) {
+    if (token && isLoggedIn) {
       setToken(token);
       dispatch(fetchUserFullInfo());
     }
-  }, [dispatch, token]);
-
+  }, [dispatch, token, isLoggedIn]);
   return (
     <>
       <ToastContainer />

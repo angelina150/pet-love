@@ -14,7 +14,12 @@ const UserBlock = ({ openModalEditUser }) => {
         </svg>
       </div>
       {userFullInfo?.avatar ? (
-        <img className={css.img} src={userFullInfo.avatar} alt="User avatar" />
+        <img
+          loading="lazy"
+          className={css.img}
+          src={userFullInfo.avatar}
+          alt="User avatar"
+        />
       ) : (
         <>
           <div className={css.iconUserWrap}>
@@ -35,24 +40,24 @@ const UserBlock = ({ openModalEditUser }) => {
       <div className={css.infoWrapper}>
         <p
           className={`${css.info} ${
-            userFullInfo?.name?.length > 0 ? "" : css.infoEmpty
+            userFullInfo?.name?.length > 0 ? '' : css.infoEmpty
           }`}
         >
           {userFullInfo?.name}
         </p>
         <p
           className={` ${css.info} ${
-            userFullInfo?.email?.length > 0 ? "" : css.infoEmpty
+            userFullInfo?.email?.length > 0 ? '' : css.infoEmpty
           }`}
         >
           {userFullInfo?.email}
         </p>
         <p
           className={`${css.info} ${
-            userFullInfo?.phone?.length > 0 ? "" : css.infoEmpty
+            userFullInfo?.phone?.length > 0 ? '' : css.infoEmpty
           }`}
         >
-          {userFullInfo?.phone ? formatPhoneNumber(userFullInfo.phone) : "+380"}
+          {userFullInfo?.phone ? formatPhoneNumber(userFullInfo.phone) : '+380'}
         </p>
       </div>
     </div>

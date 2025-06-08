@@ -62,9 +62,10 @@ const NoticesItem = ({ notice }) => {
   return (
     <li className={css.card}>
       <img
+        loading="lazy"
         className={css.img}
         src={notice.imgURL}
-        alt={notice.title ? notice.title : "Pet image"}
+        alt={notice.title ? notice.title : 'Pet image'}
       />
       <div className={css.titleWrap}>
         <h3 className={css.title}>{notice.title}</h3>

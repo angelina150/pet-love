@@ -1,37 +1,37 @@
-import React, { useEffect, useRef } from "react";
-import css from "./BurgerMenu.module.css";
-import Nav from "../Nav/Nav.jsx";
-import AuthNav from "../AuthNav/AuthNav.jsx";
-import LogOutBtn from "../LogOutBtn/LogOutBtn.jsx";
+import React, { useEffect, useRef } from 'react';
+import css from './BurgerMenu.module.css';
+import Nav from '../Nav/Nav.jsx';
+import AuthNav from '../AuthNav/AuthNav.jsx';
+import LogOutBtn from '../LogOutBtn/LogOutBtn.jsx';
 const BurgerMenu = ({ onClose, isHome, isLoggedIn, onLogOutClick }) => {
   const menuRef = useRef(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         onClose();
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose]);
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     };
   }, []);
   return (
     <div
       ref={menuRef}
-      className={`${css.wrapper} ${isHome ? css.wrapperHome : ""}`}
+      className={`${css.wrapper} ${isHome ? css.wrapperHome : ''}`}
     >
       <button onClick={onClose} type="button" className={css.btnClose}>
-        <svg className={`${css.iconClose} ${isHome ? css.iconCloseHome : ""}`}>
+        <svg className={`${css.iconClose} ${isHome ? css.iconCloseHome : ''}`}>
           <use href="/images/icons.svg#icon-close"></use>
         </svg>
       </button>

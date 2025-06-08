@@ -1,3 +1,11 @@
+.wrapper {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: var(--background-color-btn-light);
+  border-radius: 30px;
+  display: grid;
+  grid-template-rows: auto;
+}
 .input {
   border: 1px solid #26262626;
   padding: 14px 30px 14px 14px;
@@ -27,6 +35,11 @@
 .input:hover {
   border: 1px solid var(--background-color-btn);
 }
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 40px 32px;
+  }
+}
 @media (min-width: 1280px) {
   .wrapper {
     margin-top: 40px;
@@ -34,12 +47,13 @@
     background-color: var(--background-color-btn-light);
     border-radius: 30px;
     display: grid;
-    grid-template-rows: 68px 68px;
+    grid-template-rows: auto;
   }
   .inputsWrapper {
     display: grid;
     grid-template-columns: 265px 200px 190px 190px 227px;
-    column-gap: 16px;
+    grid-template-rows: auto;
+    gap: 16px;
     padding-bottom: 20px;
     border-bottom: 1px solid #2626261a;
   }
