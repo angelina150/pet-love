@@ -24,7 +24,7 @@ const MainPage = () => {
         <img
           loading="lazy"
           className={css.img}
-          src="/images/mainImg/mainImg-tab.jpg"
+          src="/images/mainImg/mainImg-mob.jpg"
           alt="Main image"
         />
       </picture>
