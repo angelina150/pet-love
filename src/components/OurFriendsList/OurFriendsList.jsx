@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectFriends } from "../../redux/friends/selectors.js";
-import OurFriendsItem from "../OurFriendsItem/OurFriendsItem.jsx";
-import { fetchFriends } from "../../redux/friends/operations.js";
-import css from "./OurFriendsList.module.css";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import OurFriendsItem from '../OurFriendsItem/OurFriendsItem.jsx';
+import { fetchFriends } from '../../redux/friends/operations.js';
+import css from './OurFriendsList.module.css';
 
-const OurFriendsList = () => {
-  const friends = useSelector(selectFriends);
+const OurFriendsList = ({ friends }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +15,7 @@ const OurFriendsList = () => {
 
   return (
     <div className={css.wrapper}>
-      {friends?.map((friend) => (
+      {friends?.map(friend => (
         <OurFriendsItem key={friend?._id} friend={friend} />
       ))}
     </div>

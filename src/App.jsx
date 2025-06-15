@@ -5,8 +5,15 @@ import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectToken } from './redux/users/selectors.js';
+import {
+  selectIsLoggedIn,
+  selectLoading,
+  selectToken,
+} from './redux/users/selectors.js';
 import { fetchUserFullInfo, setToken } from './redux/users/operations.js';
+import { selectLoadingNotices } from './redux/notices/selectors.js';
+import { selectNewsLoading } from './redux/news/selectors.js';
+import { selectLoadingFriends } from './redux/friends/selectors.js';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const MainPage = lazy(() => import('./pages/MainPage/MainPage.jsx'));
@@ -28,7 +35,12 @@ function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
+  const loadingUser = useSelector(selectLoading);
+  const loadingNotices = useSelector(selectLoadingNotices);
+  const loadingNews = useSelector(selectNewsLoading);
+  const loadingFriends = useSelector(selectLoadingFriends);
+  const loading =
+    loadingUser || loadingNotices || loadingNews || loadingFriends;
   useEffect(() => {
     if (token && isLoggedIn) {
       setToken(token);
@@ -37,8 +49,9 @@ function App() {
   }, [dispatch, token, isLoggedIn]);
   return (
     <>
+      <Loader loading={loading} />
       <ToastContainer />
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader loading={loading} />}>
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route element={<MainLayout />}>

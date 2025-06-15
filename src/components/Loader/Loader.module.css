@@ -1,17 +1,62 @@
-.loader {
+.wrapper {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  font-size: 24px;
-  font-weight: bold;
-  color: black;
-  opacity: 0;
-  animation: fadeIn 1s forwards;
-  z-index: 2;
+  z-index: 1000;
+  overflow: hidden;
+  background-image: url(/images/mainImg/mainImg-mob.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.wrapperLoader {
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loaderWrapper {
+  width: 330px;
+  height: 330px;
+  position: relative;
+}
+.img {
+  width: 330px;
+  height: 330px;
+}
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 40px;
+  letter-spacing: 0;
+  color: #fff;
+}
+@media (min-width: 768px) {
+  .wrapper {
+    background-image: url(/images/mainImg/mainImg-tab.jpg);
+  }
+  .loaderWrapper {
+    width: 460px;
+    height: 460px;
+    position: relative;
+  }
+  .img {
+    width: 460px;
+    height: 460px;
+  }
+  .text {
+    font-size: 70px;
+    line-height: 70px;
+  }
+}
+@media (min-width: 1280px) {
+  .wrapper {
+    background-image: url(/images/mainImg/mainImg-desc.jpg);
+  }
 }

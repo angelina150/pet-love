@@ -22,7 +22,7 @@ const UserCard = () => {
       <button
         onClick={() => setIsModalApproveAction(true)}
         className={`${css.btn} ${
-          userFullInfo.pets.length === 0 ? css.btnIsPetsBlock : ''
+          userFullInfo?.pets?.length === 0 ? css.btnIsPetsBlock : ''
         }`}
       >
         Log out
