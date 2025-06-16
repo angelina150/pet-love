@@ -11,6 +11,7 @@ const Loader = ({ loading }) => {
       setCounter(0);
       setIsVisible(true);
 
+      clearInterval(intervalRef.current);
       intervalRef.current = setInterval(() => {
         setCounter(prev => {
           if (prev < 100) {
@@ -21,33 +22,23 @@ const Loader = ({ loading }) => {
           }
         });
       }, 50);
-    } else if (!loading && counter < 100) {
-      if (!intervalRef.current) {
-        intervalRef.current = setInterval(() => {
-          setCounter(prev => {
-            if (prev < 100) {
-              return prev + 1;
-            } else {
-              clearInterval(intervalRef.current);
-              return 100;
-            }
-          });
-        }, 5);
-      }
-    } else if (!loading && counter === 100) {
-      const timeout = setTimeout(() => {
-        setIsVisible(false);
-      }, 300);
-      return () => clearTimeout(timeout);
+    } else {
+      clearInterval(intervalRef.current);
+      intervalRef.current = setInterval(() => {
+        setCounter(prev => {
+          if (prev < 100) {
+            return prev + 2;
+          } else {
+            clearInterval(intervalRef.current);
+            setTimeout(() => setIsVisible(false), 300);
+            return 100;
+          }
+        });
+      }, 10);
     }
 
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, [loading, counter]);
+    return () => clearInterval(intervalRef.current);
+  }, [loading]);
 
   if (!isVisible) {
     return null;

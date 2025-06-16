@@ -133,6 +133,7 @@
   background-color: var(--background-color-btn-light-hover);
 }
 .inputAvatar {
+  min-width: 100px;
   width: 100%;
   border: 1px solid var(--background-color-btn);
   border-radius: 30px;

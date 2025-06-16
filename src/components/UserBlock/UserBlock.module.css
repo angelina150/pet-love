@@ -99,7 +99,7 @@
   stroke: var(--color-white);
   fill: var(--color-white);
 }
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .userBlock {
     top: 40px;
     left: 40px;
@@ -130,5 +130,12 @@
   .infoWrapper {
     gap: 14px;
     grid-template-columns: 1fr 1fr;
+  }
+}
+@media (width >= 1280px) {
+  .infoWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 }
