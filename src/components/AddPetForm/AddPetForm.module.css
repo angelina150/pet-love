@@ -4,7 +4,6 @@
   padding: 28px 20px 20px;
   background-color: var(--color-white);
   border-radius: 30px;
-  max-width: 335px;
   width: 100%;
 }
 .title {
@@ -12,7 +11,7 @@
   font-weight: 700;
   font-size: 28px;
   line-height: 28px;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.03rem;
   margin-bottom: 24px;
   display: flex;
   flex-direction: row;
@@ -28,7 +27,7 @@
   vertical-align: middle;
   color: #2b2b2a66;
 }
-.inputWrapper {
+.inputsWrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -38,12 +37,16 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
-  height: 36px;
 }
 .genderWrapper {
   display: flex;
   gap: 8px;
   margin-bottom: 8px;
+}
+.inputWrapperGender {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
 }
 .inputGender {
   position: absolute;
@@ -99,6 +102,7 @@
 .imgAnimal {
   width: 68px;
   height: 68px;
+  overflow: hidden;
   object-fit: cover;
   border-radius: 100px;
   margin-left: auto;
@@ -136,8 +140,9 @@
   border-radius: 30px;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.02rem;
   padding: 10px;
+  max-height: 36px;
 }
 .btnUpload:hover {
   background-color: var(--background-color-btn-light-hover);
@@ -146,12 +151,18 @@
   width: 16px;
   height: 16px;
 }
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: start;
+}
 .inputText,
 .inputTextImg {
   padding: 12px;
   font-size: 14px;
   line-height: 18px;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.03rem;
   border-radius: 30px;
   border: 1px solid #26262626;
   background-color: transparent;
@@ -170,11 +181,11 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.03rem;
   color: #26262680;
 }
 .inputTextImg::placeholder {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.02rem;
 }
 .inputTextImg {
   padding: 9px 20px 9px 10px;
@@ -183,7 +194,7 @@
   text-overflow: ellipsis;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.02rem;
 }
 .inputDownWrapper {
   display: grid;
@@ -222,27 +233,195 @@
 .submitButton:hover {
   background-color: var(--background-color-btn-hover);
 }
+.dropdownWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: start;
+  z-index: 2;
+}
+.dropdownMenu {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03rem;
+  width: 100%;
+  max-height: 80px;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #26262626;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  text-align: start;
+  color: #26262699;
+}
+.iconDropdown {
+  fill: none;
+  stroke: #262626;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+.iconDropdownOpen {
+  transform: rotate(180deg);
+}
+.dropdownItem {
+  cursor: pointer;
+}
 .dropdownItem::first-letter {
   text-transform: uppercase;
+}
+.iconCalendar {
+  stroke: #262626;
+  fill: none;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 .filled {
   border: 1px solid var(--background-color-btn);
 }
+.error {
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: -0.03em;
+  color: #ef2447;
+  vertical-align: middle;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+.inputDateWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: start;
+}
+:global(.react-datepicker) {
+  position: absolute !important;
+  top: 50px;
+  left: 0;
+  border-radius: 30px !important;
+  border: 1px solid var(--background-color-btn) !important;
+  background-color: #ffffff;
+  z-index: 4;
+}
 
+:global(.react-datepicker__month-container) {
+  background-color: #ffffff !important;
+  border-radius: 30px !important;
+}
+
+:global(.react-datepicker__header) {
+  background-color: #ffffff !important;
+  border: 1px solid var(--background-color-btn) !important;
+  border-top-right-radius: 30px !important;
+  border-top-left-radius: 30px !important;
+}
+
+:global(.react-datepicker__day) {
+  border-radius: 50%;
+}
+
+:global(.react-datepicker__day:hover) {
+  border-radius: 32px !important;
+  color: #f7f7f7;
+  background-color: var(--background-color-btn) !important;
+}
+
+:global(.react-datepicker__day--selected) {
+  background-color: var(--background-color-btn-hover) !important;
+  color: #f7f7f7;
+  border-radius: 50% !important;
+}
+
+:global(.react-datepicker__day--keyboard-selected) {
+  border-radius: 50% !important;
+  background-color: var(--background-color-btn-light) !important;
+  color: #f7f7f7;
+}
+
+:global(.react-datepicker__triangle) {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: none;
+}
+
+:global(.react-datepicker__navigation--next) {
+  right: 12px;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+  color: var(--background-color-btn) !important;
+  border-color: var(--background-color-btn) !important;
+}
+:global(.react-datepicker__navigation--previous) {
+  left: 12px;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+  border-color: var(--background-color-btn) !important;
+}
+
+:global(.react-datepicker__navigation--previous:hover),
+:global(.react-datepicker__navigation--next:hover) {
+  border-color: var(--background-color-btn) !important;
+  color: var(--background-color-btn) !important;
+  border-radius: 50%;
+}
+
+:global(
+    .react-datepicker__navigation--previous:hover
+      .react-datepicker__navigation-icon::before
+  ),
+:global(
+    .react-datepicker__navigation--next:hover
+      .react-datepicker__navigation-icon::before
+  ) {
+  border-color: var(--background-color-btn) !important;
+}
 @media (min-width: 768px) {
   .form {
     padding: 40px 136px;
     border-radius: 60px;
     max-width: 1280px;
+    position: relative;
   }
-  .inputWrapper {
+  .genderWrapper {
+    position: absolute;
+    top: 112px;
+    left: 136px;
+  }
+  .inputsWrapper {
     gap: 18px;
     margin-bottom: 40px;
   }
   .title {
     font-size: 32px;
     line-height: 32px;
-    margin-bottom: 40px;
+    margin-bottom: 58px;
   }
   .titlePath {
     font-size: 16px;
@@ -279,18 +458,18 @@
     padding: 16px;
     font-size: 16px;
     line-height: 20px;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.03rem;
   }
   .inputTextImg {
     font-size: 16px;
     line-height: 20px;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.03rem;
     padding: 12px;
   }
   .inputText::placeholder {
     font-size: 16px;
     line-height: 20px;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.03rem;
   }
   .btnUpload {
     gap: 8px;
@@ -298,6 +477,7 @@
     font-size: 14px;
     line-height: 18px;
     width: 146px;
+    max-height: 42px;
   }
   .iconUpload {
     width: 18px;
@@ -314,10 +494,43 @@
     font-size: 16px;
     line-height: 20px;
   }
+  .error {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  :global(.react-datepicker) {
+    top: 56px;
+  }
+  .iconDropdown {
+    top: 16px;
+    right: 16px;
+  }
+  .iconCalendar {
+    top: 16px;
+    right: 16px;
+  }
+  .dropdownMenu {
+    top: 56px;
+  }
+  .errorGender {
+    position: absolute;
+    top: 155px;
+    left: 136px;
+  }
 }
 
 @media (min-width: 1280px) {
   .form {
     padding: 60px 80px;
+    position: relative;
+  }
+  .genderWrapper {
+    top: 132px;
+    left: 80px;
+  }
+  .errorGender {
+    position: absolute;
+    top: 175px;
+    left: 80px;
   }
 }
