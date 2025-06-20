@@ -22,7 +22,6 @@ const MainPage = () => {
           srcSet="/images/mainImg/mainImg-mob.jpg 1x, /images/mainImg/mainImg-mob@2x.jpg 2x"
         />
         <img
-          loading="lazy"
           className={css.img}
           src="/images/mainImg/mainImg-mob.jpg"
           alt="Main image"
