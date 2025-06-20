@@ -1,9 +1,12 @@
-import React from "react";
-import Modal from "react-modal";
-import css from "./ModalNotice.module.css";
-import { formatDatePetsList } from "../../utils.js";
-import { toast } from "react-toastify";
-Modal.setAppElement("#root");
+import React, { useEffect } from 'react';
+import Modal from 'react-modal';
+import css from './ModalNotice.module.css';
+import { formatDatePetsList } from '../../utils.js';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNoticeById } from '../../redux/notices/operations.js';
+import { selectNoticeById } from '../../redux/notices/selectors.js';
+Modal.setAppElement('#root');
 
 const ModalNotice = ({
   onClose,
@@ -12,6 +15,15 @@ const ModalNotice = ({
   handleHeartClick,
   isFavorite,
 }) => {
+  const dispatch = useDispatch();
+  const noticeUser = useSelector(selectNoticeById);
+
+  const noticeUserEmail = noticeUser?.user?.email;
+
+  useEffect(() => {
+    dispatch(fetchNoticeById(notice._id));
+  }, [dispatch, notice]);
+  console.log('noticeUserEmail:', noticeUserEmail);
   return (
     <Modal
       overlayClassName={css.overlay}
@@ -70,7 +82,9 @@ const ModalNotice = ({
         <p className={css.desc}>{notice.comment}</p>
         {notice.price && <p className={css.price}>${notice.price}</p>}
       </div>
-      <div className={css.wrapperBtns}>
+      <div
+        className={`${css.wrapperBtns} ${isFavorite && css.wrapperBtnsActive}`}
+      >
         <button onClick={handleHeartClick} className={css.btnAdd} type="button">
           {isFavorite ? 'Remove from' : 'Add to'}
           <svg height="18" width="18">
@@ -81,14 +95,13 @@ const ModalNotice = ({
           </svg>
         </button>
         <button
-          onClick={() => {
-            toast.info(
-              'Contact information will be added soon. Thank you for your interest!'
-            );
-          }}
           type="button"
           className={css.btnContact}
-          aria-label="Contact button"
+          onClick={() => {
+            if (noticeUserEmail) {
+              window.location.href = `mailto:${noticeUserEmail}`;
+            }
+          }}
         >
           Contact
         </button>

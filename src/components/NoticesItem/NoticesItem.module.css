@@ -8,8 +8,7 @@
   padding: clamp(10px, 1.5vw, 24px);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  position: relative;
+  justify-content: space-between;
 }
 .img {
   object-fit: cover;
@@ -34,6 +33,9 @@
   font-size: clamp(14px, 0.75rem, 16px);
   vertical-align: middle;
   color: #2b2b2a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .infoWrap {
   display: grid;
@@ -72,11 +74,6 @@
 .nameInfoPart::first-letter {
   text-transform: uppercase;
 }
-.wrapperDesc {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
 
 .desc {
   letter-spacing: -0.02em;
@@ -85,7 +82,10 @@
   line-height: 18px;
   vertical-align: middle;
   text-align: start;
-  height: 36px;
+  max-height: 36px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 .price {
   font-weight: 700;
@@ -97,13 +97,11 @@
   text-align: start;
 }
 .btnWrapper {
+  margin-top: 12px;
   display: flex;
   flex-direction: row;
   gap: 10px;
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
+  width: 100%;
 }
 .btnLearnMore {
   flex-grow: 1;
@@ -150,6 +148,9 @@
   fill: var(--background-color-btn);
   stroke: var(--background-color-btn);
 }
+.downWrapper {
+  width: 100%;
+}
 @media (min-width: 375px) {
   .card {
     padding: 24px;
@@ -184,7 +185,7 @@
     line-height: 24px;
   }
   .infoWrap {
-    gap: clamp(10px, 1vw, 15px);
+    gap: clamp(10px, 0.5vw, 15px);
     margin-bottom: 16px;
   }
   .wrapperDesc {
@@ -210,5 +211,13 @@
 @media (min-width: 1280px) {
   .card {
     max-width: 342px;
+  }
+  .cardFav {
+    max-width: 320px;
+    padding: 14px;
+    height: 422px;
+  }
+  .imgFav {
+    width: 292px;
   }
 }

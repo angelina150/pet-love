@@ -1,8 +1,8 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { authInstance } from "../users/operations.js";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { authInstance } from '../users/operations.js';
 
 export const fetchNotices = createAsyncThunk(
-  "notices/fetchNotices",
+  'notices/fetchNotices',
   async (filters, thunkAPI) => {
     try {
       const params = {};
@@ -11,13 +11,14 @@ export const fetchNotices = createAsyncThunk(
       if (filters.species) params.species = filters.species;
       if (filters.locationId) params.locationId = filters.locationId;
       if (filters.sex) params.sex = filters.sex;
-      if (filters.byDate !== undefined) params.byDate = filters.byDate;
-      if (filters.byPrice !== undefined) params.byPrice = filters.byPrice;
-      if (filters.byPopularity !== undefined)
+      if (filters.byPrice !== undefined && filters.byPrice !== null)
+        params.byPrice = filters.byPrice;
+      if (filters.byPopularity !== undefined && filters.byPopularity !== null)
         params.byPopularity = filters.byPopularity;
       if (filters.page) params.page = filters.page;
       if (filters.limit) params.limit = filters.limit;
-      const { data } = await authInstance.get("/notices", {
+      console.log(params);
+      const { data } = await authInstance.get('/notices', {
         params,
       });
       return data;
@@ -28,10 +29,10 @@ export const fetchNotices = createAsyncThunk(
 );
 
 export const fetchNoticesCategories = createAsyncThunk(
-  "notices/fetchNoticesCategories",
+  'notices/fetchNoticesCategories',
   async (_, thunkAPI) => {
     try {
-      const { data } = await authInstance.get("/notices/categories");
+      const { data } = await authInstance.get('/notices/categories');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -39,10 +40,10 @@ export const fetchNoticesCategories = createAsyncThunk(
   }
 );
 export const fetchNoticesSex = createAsyncThunk(
-  "notices/fetchNoticesSex",
+  'notices/fetchNoticesSex',
   async (_, thunkAPI) => {
     try {
-      const { data } = await authInstance.get("/notices/sex");
+      const { data } = await authInstance.get('/notices/sex');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -50,10 +51,10 @@ export const fetchNoticesSex = createAsyncThunk(
   }
 );
 export const fetchNoticesSpecies = createAsyncThunk(
-  "notices/fetchNoticesSpecies",
+  'notices/fetchNoticesSpecies',
   async (_, thunkAPI) => {
     try {
-      const { data } = await authInstance.get("/notices/species");
+      const { data } = await authInstance.get('/notices/species');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -61,7 +62,7 @@ export const fetchNoticesSpecies = createAsyncThunk(
   }
 );
 export const addFavoritesNotices = createAsyncThunk(
-  "notices/addFavoritesNotices",
+  'notices/addFavoritesNotices',
   async (id, thunkAPI) => {
     try {
       const { data } = await authInstance.post(`/notices/favorites/add/${id}`);
@@ -72,12 +73,23 @@ export const addFavoritesNotices = createAsyncThunk(
   }
 );
 export const removeFavoritesNoticesById = createAsyncThunk(
-  "notices/removeFavoritesNoticesById",
+  'notices/removeFavoritesNoticesById',
   async (id, thunkAPI) => {
     try {
       const { data } = await authInstance.delete(
         `/notices/favorites/remove/${id}`
       );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const fetchNoticeById = createAsyncThunk(
+  'notices/fetchNoticesById',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await authInstance.get(`/notices/${id}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

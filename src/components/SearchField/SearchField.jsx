@@ -1,33 +1,33 @@
-import React from "react";
-import css from "./SearchField.module.css";
-import { toast } from "react-toastify";
+import React from 'react';
+import css from './SearchField.module.css';
+import { toast } from 'react-toastify';
 const SearchField = ({ onSearch, searchQuery, setSearchQuery, pageType }) => {
-  const handleSearch = (e) => {
+  const handleSearch = e => {
     e.preventDefault();
     const trimmedQuery = searchQuery.trim();
-    if (trimmedQuery === "") {
-      toast.warn("Please enter a search query!");
+    if (trimmedQuery === '') {
+      toast.warn('Please enter a search query!');
       return;
     }
     onSearch(trimmedQuery);
   };
   const clearSearch = () => {
-    setSearchQuery("");
-    onSearch("");
+    setSearchQuery('');
+    onSearch('');
   };
 
   return (
     <form
       onSubmit={handleSearch}
-      className={`${css.form} ${pageType === "notices" ? css.formNotices : ""}`}
+      className={`${css.form} ${pageType === 'notices' ? css.formNotices : ''}`}
     >
       <input
         type="text"
         placeholder="Search"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={e => setSearchQuery(e.target.value)}
         className={`${css.wrapper} ${
-          pageType === "notices" ? css.inputNotices : css.input
+          pageType === 'notices' ? css.inputNotices : css.input
         }`}
       />
 

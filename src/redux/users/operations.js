@@ -45,6 +45,7 @@ export const logout = createAsyncThunk('users/logout', async (_, thunkAPI) => {
     clearToken();
     return data;
   } catch (error) {
+    clearToken();
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -82,9 +83,11 @@ export const fetchUserFullInfo = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await authInstance.get('/users/current/full');
-
       return data;
     } catch (error) {
+      if (error.response?.status === 401) {
+        await thunkAPI.dispatch(logout());
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

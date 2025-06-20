@@ -7,7 +7,7 @@
   grid-template-rows: auto;
 }
 .input {
-  border: 1px solid #26262626;
+  border: 1px solid #ffffff;
   padding: 14px 30px 14px 14px;
   background-color: var(--color-white);
   border-radius: 30px;
@@ -16,29 +16,287 @@
   letter-spacing: -0.03em;
   height: 48px;
   color: var(--text-color);
+  width: 100%;
+}
+.inputsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  row-gap: 12px;
+  column-gap: 12px;
+  max-width: 767px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #2626261a;
+}
+
+.categoryWrapper {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  position: relative;
+}
+.sexWrapper {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  position: relative;
+}
+.speciesWrapper {
+  grid-column: 1 / 3;
+  width: 100%;
+  grid-row: 3 / 4;
+  position: relative;
 }
 .radioInput {
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
+
 .radioLabel {
+  border: 1px solid #fff;
   cursor: pointer;
   padding: 14px;
   background-color: var(--color-white);
   border-radius: 30px;
+  position: relative;
 }
-.input::placeholder {
+.radioLabel:hover {
+  border: 1px solid var(--background-color-btn);
+}
+.selectInput {
+  grid-column: 1 / 3;
+  grid-row: 4 / 5;
+  width: 100%;
+  height: 42px;
+  position: relative;
+}
+
+.input::placeholder,
+.selectInput .placeholder {
   color: var(--text-color);
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03rem;
+  vertical-align: middle;
 }
 .input:focus,
 .input:hover {
   border: 1px solid var(--background-color-btn);
 }
+.input::first-letter {
+  text-transform: uppercase;
+}
+
+.sortOptions {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03rem;
+}
+
+.dropdownMenu {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03rem;
+  width: 100%;
+  max-height: 216px;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #26262626;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  text-align: start;
+  color: #26262699;
+  z-index: 10;
+}
+.iconDropdown {
+  fill: none;
+  stroke: #262626;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 12px;
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.dropdownItemShowAll {
+  color: var(--background-color-btn);
+  cursor: pointer;
+}
+.dropdownItemShowAll:hover {
+  color: var(--background-color-btn-hover);
+}
+.iconDropdownOpen {
+  transform: rotate(180deg) translateY(50%);
+  top: 50%;
+}
+.dropdownItem {
+  cursor: pointer;
+}
+.dropdownItem:hover {
+  color: var(--text-color);
+}
+.dropdownItem::first-letter {
+  text-transform: uppercase;
+}
+.radioLabel {
+  padding: 12px;
+}
+.btnReset {
+  background-color: var(--background-color-btn);
+  border: 1px solid var(--background-color-btn);
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.03rem;
+  padding: 12px;
+  color: #fff;
+}
+.btnReset:hover {
+  background-color: var(--background-color-btn-hover);
+  border: 1px solid var(--background-color-btn-hover);
+}
+.iconClose {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  vertical-align: middle;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.iconClose:hover {
+  transform: rotate(90deg);
+}
+.active {
+  position: relative;
+  padding-right: 40px;
+  background-color: var(--background-color-btn);
+  color: #fff;
+}
+.iconSearch {
+  stroke: #262626;
+  fill: none;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.iconSearch:hover {
+  stroke: var(--background-color-btn);
+}
+
+.scustom-select__placeholder {
+  font-size: 14px !important;
+  background-color: red !important;
+}
+.custom-select__input-container {
+  padding: 12px !important;
+}
 @media (min-width: 768px) {
   .wrapper {
     padding: 40px 32px;
   }
+  .categoryWrapper {
+    max-width: 170px;
+  }
+  .sexWrapper {
+    max-width: 170px;
+  }
+  .speciesWrapper {
+    max-width: 190px;
+  }
+  .selectInput {
+    max-width: 227px;
+    height: 48px;
+  }
+  .inputsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 1279px;
+  }
+  .iconDropdown {
+    right: 14px;
+  }
+  .input::placeholder,
+  .selectInput::placeholder,
+  .selectInput .placeholder {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .sortOptions {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03rem;
+    gap: 8px;
+  }
+  .btnReset {
+    padding: 14px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .radioLabel {
+    padding: 14px;
+  }
+  .active {
+    padding-right: 40px;
+  }
+  .iconClose {
+    top: 15px;
+    right: 14px;
+  }
+  .dropdownMenu {
+    padding: 14px;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03rem;
+  }
+  /* .inputsWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+  }
+  .inputCategory {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .inputGender {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .inputSpecies {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .selectInput {
+    grid-column: auto;
+    grid-row: auto;
+  } */
 }
 @media (min-width: 1280px) {
   .wrapper {
@@ -50,10 +308,6 @@
     grid-template-rows: auto;
   }
   .inputsWrapper {
-    display: grid;
-    grid-template-columns: 265px 200px 190px 190px 227px;
-    grid-template-rows: auto;
-    gap: 16px;
     padding-bottom: 20px;
     border-bottom: 1px solid #2626261a;
   }
@@ -67,13 +321,14 @@
     flex-direction: row;
     gap: 8px;
     justify-content: flex-start;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: -0.03em;
   }
-}
-.selectInput {
-  max-height: 48px;
-  overflow-y: auto;
+  .categoryWrapper {
+    max-width: 200px;
+  }
+  .genderWrapper {
+    max-width: 190px;
+  }
+  .selectInput {
+    max-width: 227px;
+  }
 }

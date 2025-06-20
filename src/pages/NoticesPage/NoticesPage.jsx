@@ -1,95 +1,76 @@
-import React, { useEffect, useState } from "react";
-import Title from "../../components/Title/Title.jsx";
-import NoticesFilters from "../../components/NoticesFilters/NoticesFilters.jsx";
-import NoticesList from "../../components/NoticesList/NoticesList.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchNotices } from "../../redux/notices/operations.js";
-import Pagination from "../../components/Pagination/Pagination.jsx";
+import React, { useState, useEffect } from 'react';
+import Title from '../../components/Title/Title.jsx';
+import NoticesFilters from '../../components/NoticesFilters/NoticesFilters.jsx';
+import NoticesList from '../../components/NoticesList/NoticesList.jsx';
+import Pagination from '../../components/Pagination/Pagination.jsx';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNotices } from '../../redux/notices/operations.js';
 import {
   selectNotices,
   selectNoticesPage,
   selectTotalPages,
-} from "../../redux/notices/selectors.js";
-import css from "./NoticesPage.module.css";
-import { selectFavoritesNotices } from "../../redux/users/selectors.js";
+} from '../../redux/notices/selectors.js';
+import { selectFavoritesNotices } from '../../redux/users/selectors.js';
+
+import css from './NoticesPage.module.css';
 
 const NoticesPage = () => {
-  const notices = useSelector(selectNotices);
-  const totalPages = useSelector(selectTotalPages);
-  const currentPage = useSelector(selectNoticesPage);
-  const favoritesNotices = useSelector(selectFavoritesNotices);
-  const [keyword, setKeyword] = useState("");
-  const [category, setCategory] = useState("");
-  const [species, setSpecies] = useState("");
-  const [locationId, setLocationId] = useState("");
-  const [byDate, setByDate] = useState(null);
-  const [byPrice, setByPrice] = useState(null);
-  const [byPopularity, setByPopularity] = useState(null);
-  const [sex, setSex] = useState("");
-
-  const limit = 6;
-
   const dispatch = useDispatch();
+  const notices = useSelector(selectNotices) ?? [];
+  const totalPages = useSelector(selectTotalPages) ?? 0;
+  const currentPage = useSelector(selectNoticesPage) ?? 1;
+  const favoritesNotices = useSelector(selectFavoritesNotices) ?? [];
+  const [filters, setFilters] = useState({
+    keyword: '',
+    category: '',
+    species: '',
+    locationId: '',
+    sex: '',
+    byPrice: null,
+    byPopularity: null,
+    page: 1,
+    limit: 6,
+  });
 
   useEffect(() => {
-    const filters = {};
-
-    if (keyword) filters.keyword = keyword;
-    if (category) filters.category = category;
-    if (species) filters.species = species;
-    if (locationId) filters.locationId = locationId;
-    if (sex) filters.sex = sex;
-    if (byDate !== undefined) filters.byDate = byDate;
-    if (byPrice !== undefined) filters.byPrice = byPrice;
-    if (byPopularity !== undefined) filters.byPopularity = byPopularity;
-
-    filters.page = currentPage;
-    filters.limit = limit;
-
     dispatch(fetchNotices(filters));
-  }, [
-    dispatch,
-    keyword,
-    category,
-    species,
-    locationId,
-    byDate,
-    byPrice,
-    byPopularity,
-    currentPage,
-    sex,
-    limit,
-  ]);
-
+  }, [filters, dispatch]);
   const handleFilterChange = (name, value) => {
-    switch (name) {
-      case "keyword":
-        setKeyword(value);
-        break;
-      case "category":
-        setCategory(value);
-        break;
-      case "species":
-        setSpecies(value);
-        break;
-      case "locationId":
-        setLocationId(value);
-        break;
-      case "byDate":
-        setByDate(value);
-        break;
-      case "byPrice":
-        setByPrice(value);
-        break;
-      case "byPopularity":
-        setByPopularity(value);
-        break;
-      case "sex":
-        setSex(value);
-        break;
-      default:
-        break;
-    }
+    setFilters(prev => ({
+      ...prev,
+      [name]: value,
+      page: 1,
+    }));
+  };
+
+  const handleSortChange = (name, value) => {
+    setFilters(prev => ({
+      ...prev,
+      [name]: value,
+      page: 1,
+    }));
+  };
+
+  const handlePageChange = page => {
+    setFilters(prev => ({
+      ...prev,
+      page,
+    }));
+  };
+
+  const resetFilters = () => {
+    setFilters({
+      keyword: '',
+      category: '',
+      species: '',
+      locationId: '',
+      sex: '',
+      byPrice: null,
+      byPopularity: null,
+      page: 1,
+      limit: 6,
+    });
   };
 
   return (
@@ -97,44 +78,75 @@ const NoticesPage = () => {
       <div className={css.wrapper}>
         <Title>Find your favorite pet</Title>
       </div>
+
       <NoticesFilters
-        keyword={keyword}
-        category={category}
-        species={species}
-        locationId={locationId}
-        byDate={byDate}
-        byPrice={byPrice}
-        byPopularity={byPopularity}
-        sex={sex}
+        keyword={filters.keyword}
+        category={filters.category}
+        species={filters.species}
+        locationId={filters.locationId}
+        sex={filters.sex}
+        byPrice={filters.byPrice}
+        byPopularity={filters.byPopularity}
         handleFilterChange={handleFilterChange}
+        handleSortChange={e => {
+          const val = e.target.value;
+
+          if (val === 'popularity') {
+            setFilters(prev => ({
+              ...prev,
+              byPopularity: false,
+              byPrice: null,
+              page: 1,
+            }));
+          } else if (val === 'unpopularity') {
+            setFilters(prev => ({
+              ...prev,
+              byPopularity: true,
+              byPrice: null,
+              page: 1,
+            }));
+          } else if (val === 'cheap') {
+            setFilters(prev => ({
+              ...prev,
+              byPrice: true,
+              byPopularity: null,
+              page: 1,
+            }));
+          } else if (val === 'expensive') {
+            setFilters(prev => ({
+              ...prev,
+              byPrice: false,
+              byPopularity: null,
+              page: 1,
+            }));
+          } else {
+            setFilters(prev => ({
+              ...prev,
+              byPrice: null,
+              byPopularity: null,
+              page: 1,
+            }));
+          }
+        }}
+        resetFilters={resetFilters}
       />
+
       <div className={css.wrapper}>
         {notices.length > 0 ? (
-          <NoticesList notices={notices} favoritesNotices={favoritesNotices} />
+          <>
+            <NoticesList
+              notices={notices}
+              favoritesNotices={favoritesNotices}
+            />
+            <Pagination
+              totalPages={totalPages}
+              currentPage={filters.page}
+              setCurrentPage={handlePageChange}
+            />
+          </>
         ) : (
           <div>Not found</div>
         )}
-
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          setCurrentPage={(page) => {
-            dispatch(
-              fetchNotices({
-                keyword,
-                category,
-                species,
-                locationId,
-                sex,
-                byDate,
-                byPrice,
-                byPopularity,
-                page,
-                limit,
-              })
-            );
-          }}
-        />
       </div>
     </div>
   );
