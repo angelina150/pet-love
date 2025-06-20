@@ -7,17 +7,14 @@ const MainPage = () => {
     <div className={css.wrapper}>
       <picture>
         <source
-          className={css.img}
           media="(min-width: 1280px)"
           srcSet="/images/mainImg/mainImg-desc.jpg 1x, /images/mainImg/mainImg-desc@2x.jpg 2x"
         />
         <source
-          className={css.img}
           media="(min-width: 768px)"
           srcSet="/images/mainImg/mainImg-tab.jpg 1x, /images/mainImg/mainImg-tab@2x.jpg 2x"
         />
         <source
-          className={css.img}
           media="(min-width: 320px)"
           srcSet="/images/mainImg/mainImg-mob.jpg 1x, /images/mainImg/mainImg-mob@2x.jpg 2x"
         />
