@@ -23,7 +23,6 @@ const ModalNotice = ({
   useEffect(() => {
     dispatch(fetchNoticeById(notice._id));
   }, [dispatch, notice]);
-  console.log('noticeUserEmail:', noticeUserEmail);
   return (
     <Modal
       overlayClassName={css.overlay}

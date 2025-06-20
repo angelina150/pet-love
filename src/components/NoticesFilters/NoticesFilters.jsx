@@ -84,7 +84,6 @@ const NoticesFilters = ({
   const sexOptions = useSelector(selectNoticesSex);
   const speciesOptions = useSelector(selectNoticesSpecies);
   const locations = useSelector(selectLocations);
-  console.log(locations);
   const categoryRef = useRef();
   const sexRef = useRef();
   const speciesRef = useRef();

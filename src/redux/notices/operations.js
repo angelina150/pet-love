@@ -17,7 +17,6 @@ export const fetchNotices = createAsyncThunk(
         params.byPopularity = filters.byPopularity;
       if (filters.page) params.page = filters.page;
       if (filters.limit) params.limit = filters.limit;
-      console.log(params);
       const { data } = await authInstance.get('/notices', {
         params,
       });
