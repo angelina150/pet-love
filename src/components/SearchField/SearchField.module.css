@@ -19,8 +19,8 @@
   border: 1px solid var(--background-color-btn);
 }
 .btnClear {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
