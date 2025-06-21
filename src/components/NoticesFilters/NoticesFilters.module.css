@@ -206,17 +206,33 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
-.iconSearch:hover {
+.btnClear {
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 34px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.iconClear {
+  stroke: var(--text-color);
+  fill: none;
+  stroke-width: 2px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+.iconSearch:hover,
+.iconClear:hover {
   stroke: var(--background-color-btn);
 }
 
-.scustom-select__placeholder {
-  font-size: 14px !important;
-  background-color: red !important;
-}
-.custom-select__input-container {
-  padding: 12px !important;
-}
 @media (min-width: 768px) {
   .wrapper {
     padding: 40px 32px;

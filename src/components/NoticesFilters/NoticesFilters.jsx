@@ -27,19 +27,29 @@ const customStyles = {
     '&:hover': {
       borderColor: '#F6B83D',
     },
+    minHeight: window.innerWidth < 768 ? '42px' : '48px',
     height: '100%',
-    padding: '0',
-    textAlign: 'start',
   }),
-  // placeholder: provided => ({
-  //   ...provided,
-  //   color: '#262626',
-  //   padding: '12px',
-  // }),
+  placeholder: provided => ({
+    ...provided,
+    color: '#262626',
+    padding: ' 10px 6px',
+    textAlign: 'start',
+    fontSize: window.innerWidth < 768 ? '14px' : '16px',
+    lineHeight: window.innerWidth < 768 ? '18px' : '20px',
+    letterSpacing: '-0.03em',
+  }),
   singleValue: provided => ({
     ...provided,
     color: '#262626',
-    padding: '12px',
+    textAlign: 'start',
+    padding: '10px 40px 10px 6px',
+    whiteSpace: 'nowrap',
+    overflow: ' hidden',
+    textOverflow: 'ellipsis',
+    fontSize: window.innerWidth < 768 ? '14px' : '16px',
+    lineHeight: window.innerWidth < 768 ? '18px' : '20px',
+    letterSpacing: '-0.03em',
   }),
   menu: provided => ({
     ...provided,
@@ -47,6 +57,7 @@ const customStyles = {
     overflow: 'hidden',
     textAlign: 'start',
     color: '#26262666',
+    maxHeight: '200px',
   }),
   option: (provided, state) => ({
     ...provided,
@@ -62,6 +73,10 @@ const customStyles = {
     display: 'none',
   }),
   indicatorSeparator: provided => ({
+    ...provided,
+    display: 'none',
+  }),
+  clearIndicator: provided => ({
     ...provided,
     display: 'none',
   }),
@@ -278,7 +293,9 @@ const NoticesFilters = ({
         </div>
         <div className={css.selectInput}>
           <Select
-            classNamePrefix="custom-select"
+            classNames={{
+              placeholder: () => 'custom-select__placeholder',
+            }}
             styles={customStyles}
             value={
               locationId
@@ -314,6 +331,18 @@ const NoticesFilters = ({
           >
             <use href="/images/icons.svg#icon-search"></use>
           </svg>
+          {locationId.length > 0 && (
+            <button
+              className={css.btnClear}
+              type="button"
+              onClick={() => handleFilterChange('locationId', '')}
+              title="Clear"
+            >
+              <svg className={css.iconClear} width="18" height="18">
+                <use href="/images/icons.svg#icon-close"></use>
+              </svg>
+            </button>
+          )}
         </div>
       </div>
 
