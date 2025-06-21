@@ -15,7 +15,7 @@ const Loader = ({ loading }) => {
       intervalRef.current = setInterval(() => {
         setCounter(prev => {
           if (prev < 100) {
-            return prev + 1;
+            return prev + 2;
           } else {
             clearInterval(intervalRef.current);
             return 100;
@@ -27,7 +27,7 @@ const Loader = ({ loading }) => {
       intervalRef.current = setInterval(() => {
         setCounter(prev => {
           if (prev < 100) {
-            return prev + 2;
+            return prev + 5;
           } else {
             clearInterval(intervalRef.current);
             setTimeout(() => setIsVisible(false), 300);
