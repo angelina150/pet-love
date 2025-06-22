@@ -74,7 +74,7 @@ const NoticesPage = () => {
   };
 
   return (
-    <div>
+    <section aria-label="Search favorite pets">
       <div className={css.wrapper}>
         <Title>Find your favorite pet</Title>
       </div>
@@ -148,7 +148,7 @@ const NoticesPage = () => {
           <div>Not found</div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

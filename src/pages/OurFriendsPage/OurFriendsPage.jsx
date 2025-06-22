@@ -7,10 +7,10 @@ import { selectFriends } from '../../redux/friends/selectors.js';
 const OurFriendsPage = () => {
   const friends = useSelector(selectFriends);
   return (
-    <div className={css.wrapper}>
+    <section className={css.wrapper}>
       <Title>Our friends</Title>
       <OurFriendsList friends={friends} />
-    </div>
+    </section>
   );
 };
 

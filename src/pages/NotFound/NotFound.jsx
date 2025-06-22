@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const NotFound = () => {
   const navigate = useNavigate();
   return (
-    <div className={css.wrapper}>
+    <section className={css.wrapper}>
       <div className={css.imgBlockWrapper}>
         <span className={css.number}>4</span>
         <div className={css.imgWrapper}>
@@ -26,7 +26,7 @@ const NotFound = () => {
       >
         To home page
       </button>
-    </div>
+    </section>
   );
 };
 

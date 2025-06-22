@@ -74,39 +74,53 @@ const NoticesItem = ({ notice, className }) => {
           src={notice.imgURL}
           alt={notice.title ? notice.title : 'Pet image'}
         />
+
         <div className={css.titleWrap}>
           <h3 className={css.title}>{notice.title}</h3>
-          <div className={css.rating}>
-            <svg height="16" width="16" className={css.iconStar}>
-              <use href="/images/icons.svg#icon-star"></use>
+          <div
+            className={css.rating}
+            aria-label={`Popularity: ${notice.popularity}`}
+          >
+            <svg
+              height="16"
+              width="16"
+              className={css.iconStar}
+              aria-hidden="true"
+            >
+              <use href="/images/icons.svg#icon-star" />
             </svg>
-            <span> {notice.popularity}</span>
+            <span>{notice.popularity}</span>
           </div>
         </div>
+
         <div className={css.infoWrap}>
           <p className={css.nameInfo}>
-            Name <span className={css.nameInfoPart}>{notice.name}</span>
+            Name: <span className={css.nameInfoPart}>{notice.name}</span>
           </p>
           <p className={css.nameInfo}>
-            Birthday
+            Birthday:{' '}
             <span className={css.nameInfoPart}>
               {formatDatePetsList(notice.birthday)}
             </span>
           </p>
           <p className={css.nameInfo}>
-            Sex <span className={css.nameInfoPart}>{notice.sex}</span>
+            Sex: <span className={css.nameInfoPart}>{notice.sex}</span>
           </p>
           <p className={css.nameInfo}>
-            Species <span className={css.nameInfoPart}>{notice.species}</span>
+            Species: <span className={css.nameInfoPart}>{notice.species}</span>
           </p>
           <p className={css.nameInfo}>
-            Category <span className={css.nameInfoPart}>{notice.category}</span>
+            Category:{' '}
+            <span className={css.nameInfoPart}>{notice.category}</span>
           </p>
         </div>
+
         <p className={css.desc}>{removeExtraSpaces(notice.comment)}</p>
       </div>
+
       <div className={css.downWrapper}>
         {notice.price && <p className={css.price}>${notice.price}</p>}
+
         <div className={css.btnWrapper}>
           <button
             className={css.btnLearnMore}
@@ -116,17 +130,25 @@ const NoticesItem = ({ notice, className }) => {
                 ? () => setIsOpenModalNotice(true)
                 : () => setShowModalAttention(true)
             }
+            aria-label="Learn more about this notice"
           >
             Learn more
           </button>
+
           {className === 'listNoticesUserFav' ? (
             <button
               type="button"
               className={css.btnTrash}
               onClick={() => toggleFavorite()}
+              aria-label="Remove from favorites"
             >
-              <svg className={css.trash} height="18" width="18">
-                <use href="/images/icons.svg#icon-trash"></use>
+              <svg
+                className={css.trash}
+                height="18"
+                width="18"
+                aria-hidden="true"
+              >
+                <use href="/images/icons.svg#icon-trash" />
               </svg>
             </button>
           ) : (
@@ -134,17 +156,23 @@ const NoticesItem = ({ notice, className }) => {
               type="button"
               className={css.btnHeart}
               onClick={handleHeartClick}
+              aria-pressed={isFavorite}
+              aria-label={
+                isFavorite ? 'Remove from favorites' : 'Add to favorites'
+              }
             >
               <svg
                 className={isFavorite ? css.heartActive : css.heart}
                 height="18"
                 width="18"
+                aria-hidden="true"
               >
-                <use href="/images/icons.svg#icon-heart"></use>
+                <use href="/images/icons.svg#icon-heart" />
               </svg>
             </button>
           )}
         </div>
+
         {isOpenModalNotice && (
           <ModalNotice
             notice={notice}

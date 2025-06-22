@@ -2,7 +2,7 @@ import React from 'react';
 import css from './HomePage.module.css';
 const HomePage = () => {
   return (
-    <div className={css.wrapper}>
+    <section className={css.wrapper}>
       <div className={css.container}>
         <div className={css.titleWrapper}>
           <h1 className={css.title}>
@@ -38,7 +38,7 @@ const HomePage = () => {
           alt="Girl and dog"
         />
       </picture>
-    </div>
+    </section>
   );
 };
 

@@ -1,49 +1,48 @@
-import React from "react";
-import css from "./Nav.module.css";
-import { NavLink } from "react-router-dom";
-const Nav = ({ isHome, variant = "default", onClose }) => {
-  const isBurger = variant === "burger";
+import React from 'react';
+import css from './Nav.module.css';
+import { NavLink } from 'react-router-dom';
+const Nav = ({ isHome, variant = 'default', onClose }) => {
+  const isBurger = variant === 'burger';
 
-  const getLinkClass = (isActive) => {
+  const getLinkClass = isActive => {
     if (isHome && isBurger) return css.linkHomeBurger;
     if (isHome) return css.linkHome;
     if (isBurger) return css.linkBurger;
-    return `${css.link} ${isActive ? css.active : ""}`.trim();
+    return `${css.link} ${isActive ? css.active : ''}`.trim();
   };
   return (
-    <>
-      <nav
-        className={
-          isBurger
-            ? isHome
-              ? css.navWrapperOpenHome
-              : css.navWrapperOpen
-            : css.navWrapper
-        }
+    <nav
+      aria-label="Main navigation"
+      className={
+        isBurger
+          ? isHome
+            ? css.navWrapperOpenHome
+            : css.navWrapperOpen
+          : css.navWrapper
+      }
+    >
+      <NavLink
+        onClick={onClose}
+        to="/news"
+        className={({ isActive }) => getLinkClass(isActive)}
       >
-        <NavLink
-          onClick={onClose}
-          to="/news"
-          className={({ isActive }) => getLinkClass(isActive)}
-        >
-          News
-        </NavLink>
-        <NavLink
-          onClick={onClose}
-          to="/notices"
-          className={({ isActive }) => getLinkClass(isActive)}
-        >
-          Find pet
-        </NavLink>
-        <NavLink
-          onClick={onClose}
-          to="/friends"
-          className={({ isActive }) => getLinkClass(isActive)}
-        >
-          Our friends
-        </NavLink>
-      </nav>
-    </>
+        News
+      </NavLink>
+      <NavLink
+        onClick={onClose}
+        to="/notices"
+        className={({ isActive }) => getLinkClass(isActive)}
+      >
+        Find pet
+      </NavLink>
+      <NavLink
+        onClick={onClose}
+        to="/friends"
+        className={({ isActive }) => getLinkClass(isActive)}
+      >
+        Our friends
+      </NavLink>
+    </nav>
   );
 };
 

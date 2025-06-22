@@ -19,8 +19,17 @@ const ModalAttention = ({ isOpen, onClose }) => {
       onAfterClose={() => {
         document.body.style.overflow = 'auto';
       }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      aria-describedby="modal-desc"
     >
-      <button type="button" className={css.btnClose} onClick={onClose}>
+      <button
+        type="button"
+        className={css.btnClose}
+        onClick={onClose}
+        aria-label="Close modal"
+      >
         <svg width="24" height="24" className={css.iconClose}>
           <use href="/images/icons.svg#icon-close"></use>
         </svg>
@@ -33,15 +42,18 @@ const ModalAttention = ({ isOpen, onClose }) => {
           loading="lazy"
         />
       </div>
-      <h2 className={css.title}>Attention</h2>
-      <p className={css.desc}>
+      <h2 id="modal-title" className={css.title}>
+        Attention
+      </h2>
+      <p id="modal-desc" className={css.desc}>
         We would like to remind you that certain functionality is available only
-        to authorized users.If you have an account, please log in with your
+        to authorized users. If you have an account, please log in with your
         credentials. If you do not already have an account, you must register to
         access these features.
       </p>
       <div className={css.btnsWrapper}>
         <button
+          type="button"
           className={css.btnLogin}
           onClick={() => {
             navigate('/login');
@@ -50,6 +62,7 @@ const ModalAttention = ({ isOpen, onClose }) => {
           Log In
         </button>
         <button
+          type="button"
           className={css.btnRegister}
           onClick={() => {
             navigate('/register');

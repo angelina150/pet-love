@@ -1,15 +1,15 @@
-import React, { useEffect, useRef } from "react";
-import Modal from "react-modal";
-import css from "./ModalEditUser.module.css";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, Controller, useWatch } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { fetchUserFullInfo, updateUser } from "../../redux/users/operations.js";
-import { selectUserFullInfo } from "../../redux/users/selectors.js";
-import { IMaskInput } from "react-imask";
-Modal.setAppElement("#root");
+import React, { useEffect, useRef } from 'react';
+import Modal from 'react-modal';
+import css from './ModalEditUser.module.css';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, Controller, useWatch } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { fetchUserFullInfo, updateUser } from '../../redux/users/operations.js';
+import { selectUserFullInfo } from '../../redux/users/selectors.js';
+import { IMaskInput } from 'react-imask';
+Modal.setAppElement('#root');
 
 const schema = yup.object().shape({
   name: yup.string(),
@@ -17,19 +17,19 @@ const schema = yup.object().shape({
     .string()
     .matches(
       /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-      "Email must be in a valid format (example@example.com)"
+      'Email must be in a valid format (example@example.com)'
     ),
   avatar: yup
     .string()
     .matches(
       /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
-      "Avatar must be a valid image URL (png, jpg, jpeg, gif, bmp, webp)"
+      'Avatar must be a valid image URL (png, jpg, jpeg, gif, bmp, webp)'
     ),
   phone: yup
     .string()
     .matches(
       /^\+38\d{10}$/,
-      "Phone number must be in the format +380XXXXXXXXX"
+      'Phone number must be in the format +380XXXXXXXXX'
     ),
 });
 
@@ -47,20 +47,20 @@ const ModalEditUser = ({ onClose, isOpen }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      name: "",
-      email: "",
-      avatar: "",
-      phone: "",
+      name: '',
+      email: '',
+      avatar: '',
+      phone: '',
     },
   });
-  const avatarValue = useWatch({ control, name: "avatar" });
+  const avatarValue = useWatch({ control, name: 'avatar' });
   useEffect(() => {
     if (userFullInfo) {
       reset({
-        name: userFullInfo.name ?? "",
-        email: userFullInfo.email ?? "",
-        avatar: userFullInfo.avatar ?? "",
-        phone: userFullInfo.phone ?? "",
+        name: userFullInfo.name ?? '',
+        email: userFullInfo.email ?? '',
+        avatar: userFullInfo.avatar ?? '',
+        phone: userFullInfo.phone ?? '',
       });
     }
   }, [userFullInfo, reset]);
@@ -75,41 +75,41 @@ const ModalEditUser = ({ onClose, isOpen }) => {
     return changed;
   };
 
-  const onSubmit = async (values) => {
+  const onSubmit = async values => {
     const changedFields = getChangedFields(userFullInfo, values);
     if (Object.keys(changedFields).length === 0) {
-      toast.info("No changes detected!");
+      toast.info('No changes detected!');
       return;
     }
     try {
       await dispatch(updateUser(changedFields)).unwrap();
       await dispatch(fetchUserFullInfo());
-      toast.success("Data updated successfully!");
+      toast.success('Data updated successfully!');
       onClose();
     } catch (error) {
-      toast.error(error.message || "Error while updating");
+      toast.error(error.message || 'Error while updating');
     }
   };
-  const handleUpload = async (event) => {
+  const handleUpload = async event => {
     const file = event.target.files[0];
     const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "pet-love");
+    formData.append('file', file);
+    formData.append('upload_preset', 'pet-love');
 
     try {
       const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dxmqb54k2/image/upload",
+        'https://api.cloudinary.com/v1_1/dxmqb54k2/image/upload',
         {
-          method: "POST",
+          method: 'POST',
           body: formData,
         }
       );
       const data = await response.json();
       await dispatch(fetchUserFullInfo());
-      setValue("avatar", data.secure_url);
+      setValue('avatar', data.secure_url);
     } catch (error) {
-      console.error("Upload error:", error);
-      toast.error("Failed to upload image.");
+      console.error('Upload error:', error);
+      toast.error('Failed to upload image.');
     }
   };
   return (
@@ -124,14 +124,24 @@ const ModalEditUser = ({ onClose, isOpen }) => {
       onAfterClose={() => {
         document.body.style.overflow = 'auto';
       }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
     >
-      <button type="button" className={css.btnClose} onClick={onClose}>
+      <button
+        type="button"
+        className={css.btnClose}
+        onClick={onClose}
+        aria-label="Close modal"
+      >
         <svg width="24" height="24" className={css.iconClose}>
           <use href="/images/icons.svg#icon-close"></use>
         </svg>
       </button>
 
-      <h2 className={css.title}>Edit information</h2>
+      <h2 id="modal-title" className={css.title}>
+        Edit information
+      </h2>
 
       <form className={css.formEdit} onSubmit={handleSubmit(onSubmit)}>
         {avatarValue ? (
@@ -152,11 +162,14 @@ const ModalEditUser = ({ onClose, isOpen }) => {
                     placeholder="Avatar URL"
                     value={field.value || ''}
                     className={css.inputAvatar}
+                    aria-invalid={Boolean(errors.avatar)}
                   />
                 )}
               />
               {errors.avatar && (
-                <span className={css.error}>{errors.avatar.message}</span>
+                <span className={css.error} role="alert">
+                  {errors.avatar.message}
+                </span>
               )}
               <button
                 className={css.btnUpload}
@@ -199,7 +212,9 @@ const ModalEditUser = ({ onClose, isOpen }) => {
 
         <label className={css.label}>
           {errors.name && (
-            <span className={css.error}>{errors.name.message}</span>
+            <span className={css.error} role="alert">
+              {errors.name.message}
+            </span>
           )}
           <Controller
             name="name"
@@ -209,6 +224,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
                 {...field}
                 placeholder="Name"
                 className={`${css.input} ${field?.value ? '' : css.inputEmpty}`}
+                aria-invalid={Boolean(errors.name)}
               />
             )}
           />
@@ -216,7 +232,9 @@ const ModalEditUser = ({ onClose, isOpen }) => {
 
         <label className={css.label}>
           {errors.email && (
-            <span className={css.error}>{errors.email.message}</span>
+            <span className={css.error} role="alert">
+              {errors.email.message}
+            </span>
           )}
           <Controller
             name="email"
@@ -226,6 +244,7 @@ const ModalEditUser = ({ onClose, isOpen }) => {
                 {...field}
                 placeholder="name@gmail.com"
                 className={css.input}
+                aria-invalid={Boolean(errors.email)}
               />
             )}
           />
@@ -233,13 +252,20 @@ const ModalEditUser = ({ onClose, isOpen }) => {
 
         <label className={css.label}>
           {errors.phone && (
-            <span className={css.error}>{errors.phone.message}</span>
+            <span className={css.error} role="alert">
+              {errors.phone.message}
+            </span>
           )}
           <Controller
             name="phone"
             control={control}
             render={({ field }) => (
-              <input {...field} placeholder="+380" className={css.input} />
+              <input
+                {...field}
+                placeholder="+380"
+                className={css.input}
+                aria-invalid={Boolean(errors.phone)}
+              />
             )}
           />
         </label>

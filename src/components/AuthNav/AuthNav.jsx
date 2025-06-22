@@ -1,25 +1,26 @@
-import React from "react";
-import css from "./AuthNav.module.css";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import css from './AuthNav.module.css';
+import { useNavigate } from 'react-router-dom';
 const AuthNav = ({ className, isHome }) => {
   const navigate = useNavigate();
   return (
-    <div
+    <nav
+      aria-label="Authentication navigation"
       className={`${css.wrapper} ${
-        className === "header" && css.wrapperHeader
+        className === 'header' && css.wrapperHeader
       }`}
     >
       <button
         type="button"
         className={`${css.btnLogin} ${isHome && css.btnLoginHome} ${
-          className === "header"
+          className === 'header'
             ? isHome
               ? css.btnLoginHeaderHome
               : css.btnLoginHeader
-            : ""
+            : ''
         }`}
         onClick={() => {
-          navigate("/login");
+          navigate('/login');
         }}
       >
         Log in
@@ -28,12 +29,12 @@ const AuthNav = ({ className, isHome }) => {
         type="button"
         className={css.btnRegister}
         onClick={() => {
-          navigate("/register");
+          navigate('/register');
         }}
       >
         Registration
       </button>
-    </div>
+    </nav>
   );
 };
 

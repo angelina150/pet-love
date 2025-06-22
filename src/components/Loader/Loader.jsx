@@ -46,9 +46,20 @@ const Loader = ({ loading }) => {
 
   return (
     <div className={css.wrapper}>
-      <div className={css.wrapperLoader}>
+      <div
+        className={css.wrapperLoader}
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={counter}
+        aria-label="Loading progress"
+      >
         <div className={css.loaderWrapper}>
-          <img className={css.img} src="/images/loader.svg" alt="loader" />
+          <img
+            className={css.img}
+            src="/images/loader.svg"
+            alt="Loading icon"
+          />
           <span className={css.text}>{counter}%</span>
         </div>
       </div>

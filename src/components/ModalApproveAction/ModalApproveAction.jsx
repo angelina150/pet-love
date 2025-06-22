@@ -33,8 +33,17 @@ const ModalApproveAction = ({ onClose, isOpen }) => {
       onAfterClose={() => {
         document.body.style.overflow = 'auto';
       }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      aria-describedby="modal-desc"
     >
-      <button type="button" className={css.btnClose} onClick={onClose}>
+      <button
+        type="button"
+        className={css.btnClose}
+        onClick={onClose}
+        aria-label="Close modal"
+      >
         <svg width="24" height="24" className={css.iconClose}>
           <use href="/images/icons.svg#icon-close"></use>
         </svg>
@@ -47,8 +56,10 @@ const ModalApproveAction = ({ onClose, isOpen }) => {
           alt="Log out illustration"
         />
       </div>
-      <h2 className={css.title}>Already leaving?</h2>
-      <div className={css.actions}>
+      <h2 id="modal-title" className={css.title}>
+        Already leaving?
+      </h2>
+      <div id="modal-desc" className={css.actions}>
         <button onClick={handleLogout} type="button" className={css.btnYes}>
           Yes
         </button>

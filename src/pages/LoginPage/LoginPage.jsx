@@ -1,13 +1,13 @@
-import React from "react";
-import PetBlock from "../../components/PetBlock/PetBlock.jsx";
-import Title from "../../components/Title/Title.jsx";
-import LoginForm from "../../components/LoginForm/LoginForm.jsx";
-import css from "./LoginPage.module.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PetBlock from '../../components/PetBlock/PetBlock.jsx';
+import Title from '../../components/Title/Title.jsx';
+import LoginForm from '../../components/LoginForm/LoginForm.jsx';
+import css from './LoginPage.module.css';
+import { Link } from 'react-router-dom';
 
 function LoginPage() {
   return (
-    <div className={css.wrapper}>
+    <section className={css.wrapper}>
       <div className={css.petBlockWrapper}>
         <PetBlock
           sources={[
@@ -65,7 +65,7 @@ function LoginPage() {
           </Link>
         </p>
       </div>
-    </div>
+    </section>
   );
 }
 

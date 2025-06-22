@@ -120,8 +120,12 @@ const AddPetForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-      <h2 className={css.title}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={css.form}
+      aria-labelledby="add-pet-title"
+    >
+      <h2 className={css.title} id="add-pet-title">
         Add my pet / <span className={css.titlePath}>Personal details</span>
       </h2>
 

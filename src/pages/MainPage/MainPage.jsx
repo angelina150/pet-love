@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const MainPage = () => {
   const navigate = useNavigate();
   return (
-    <div className={css.wrapper}>
+    <section className={css.wrapper}>
       <picture>
         <source
           media="(min-width: 1280px)"
@@ -27,7 +27,7 @@ const MainPage = () => {
       <svg className={css.logo} onClick={() => navigate('/home')}>
         <use href="/images/icons.svg#icon-logo-main"></use>
       </svg>
-    </div>
+    </section>
   );
 };
 

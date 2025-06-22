@@ -1,6 +1,6 @@
-import React from "react";
-import css from "./Pagination.module.css";
-import useWindowWidth from "../../utils.js";
+import React from 'react';
+import css from './Pagination.module.css';
+import useWindowWidth from '../../utils.js';
 
 const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   const width = useWindowWidth();
@@ -23,17 +23,17 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
         pages.push(i);
       }
 
-      pages.push("...");
+      pages.push('...');
     } else if (currentPage >= totalPages - visiblePages + 1) {
-      pages.push("...");
+      pages.push('...');
       for (let i = totalPages - visiblePages + 1; i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
-      if (visiblePages > 1) pages.push("...");
+      if (visiblePages > 1) pages.push('...');
       pages.push(currentPage);
       if (visiblePages > 2) pages.push(currentPage + 1);
-      pages.push("...");
+      pages.push('...');
     }
 
     return pages;
@@ -41,8 +41,8 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
 
   const pages = generatePages();
 
-  const handlePageChange = (page) => {
-    if (page !== currentPage && page !== "...") {
+  const handlePageChange = page => {
+    if (page !== currentPage && page !== '...') {
       setCurrentPage(page);
     }
   };
@@ -64,12 +64,13 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   };
 
   return (
-    <div className={css.wrapper}>
+    <nav className={css.wrapper} aria-label="Pagination">
       <div className={css.btnWrap}>
         <button
           onClick={handleFirst}
-          className={`${css.btn} ${currentPage === 1 ? css.noActive : ""}`}
+          className={`${css.btn} ${currentPage === 1 ? css.noActive : ''}`}
           disabled={currentPage === 1}
+          aria-label="First page"
         >
           <svg className={css.icon}>
             <use href="/images/icons.svg#icon-angle"></use>
@@ -80,8 +81,9 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
         </button>
         <button
           onClick={handlePrev}
-          className={`${css.btn} ${currentPage === 1 ? css.noActive : ""}`}
+          className={`${css.btn} ${currentPage === 1 ? css.noActive : ''}`}
           disabled={currentPage === 1}
+          aria-label="Previous page"
         >
           <svg className={css.iconSolo}>
             <use href="/images/icons.svg#icon-angle"></use>
@@ -94,8 +96,8 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           <li
             key={index}
             className={`${css.pageItem} ${
-              page === currentPage ? css.active : ""
-            } ${page === "..." ? css.dots : ""}`}
+              page === currentPage ? css.active : ''
+            } ${page === '...' ? css.dots : ''}`}
             onClick={() => handlePageChange(page)}
           >
             {page}
@@ -107,9 +109,10 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
         <button
           onClick={handleNext}
           className={`${css.btn} ${
-            currentPage === totalPages ? css.noActive : ""
+            currentPage === totalPages ? css.noActive : ''
           }`}
           disabled={currentPage === totalPages}
+          aria-label="Last page"
         >
           <svg className={css.iconSoloRight}>
             <use href="/images/icons.svg#icon-angle"></use>
@@ -118,7 +121,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
         <button
           onClick={handleLast}
           className={`${css.btn} ${
-            currentPage === totalPages ? css.noActive : ""
+            currentPage === totalPages ? css.noActive : ''
           }`}
           disabled={currentPage === totalPages}
         >
@@ -130,7 +133,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           </svg>
         </button>
       </div>
-    </div>
+    </nav>
   );
 };
 

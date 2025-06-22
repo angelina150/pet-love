@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import css from "./Header.module.css";
-import Nav from "../Nav/Nav.jsx";
-import UserNav from "../UserNav/UserNav.jsx";
-import AuthNav from "../AuthNav/AuthNav.jsx";
-import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/users/selectors.js";
-import BurgerMenu from "../BurgerMenu/BurgerMenu.jsx";
-import ModalApproveAction from "../ModalApproveAction/ModalApproveAction.jsx";
+import React, { useEffect, useState } from 'react';
+import css from './Header.module.css';
+import Nav from '../Nav/Nav.jsx';
+import UserNav from '../UserNav/UserNav.jsx';
+import AuthNav from '../AuthNav/AuthNav.jsx';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/users/selectors.js';
+import BurgerMenu from '../BurgerMenu/BurgerMenu.jsx';
+import ModalApproveAction from '../ModalApproveAction/ModalApproveAction.jsx';
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -19,10 +19,10 @@ const Header = () => {
   }, [location?.pathname]);
 
   const toggleMenu = () => {
-    setIsMenuOpen((prevState) => !prevState);
+    setIsMenuOpen(prevState => !prevState);
   };
 
-  const isHome = location?.pathname === "/home";
+  const isHome = location?.pathname === '/home';
 
   if (!location) {
     return null;
@@ -30,10 +30,10 @@ const Header = () => {
 
   return (
     <header className={isHome ? css.headerHome : css.headerDefault}>
-      <Link className={css.logo} to="/home">
+      <Link className={css.logo} to="/home" aria-label="Go to homepage">
         <svg className={css.iconLogo}>
           <use
-            href={`/images/icons.svg#icon-logo-header${isHome ? "-home" : ""}`}
+            href={`/images/icons.svg#icon-logo-header${isHome ? '-home' : ''}`}
           ></use>
         </svg>
       </Link>
@@ -54,8 +54,11 @@ const Header = () => {
         )}
       </div>
       <button
-        className={`${css.burger} ${isHome ? css.burgerHome : ""}`.trim()}
+        className={`${css.burger} ${isHome ? css.burgerHome : ''}`.trim()}
         onClick={toggleMenu}
+        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={isMenuOpen}
+        aria-controls="burger-menu"
       >
         <svg className={css.iconBurger}>
           <use href="/images/icons.svg#icon-menu"></use>

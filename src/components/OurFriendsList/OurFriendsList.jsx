@@ -14,11 +14,11 @@ const OurFriendsList = ({ friends }) => {
   }, [dispatch, friends]);
 
   return (
-    <div className={css.wrapper}>
+    <ul className={css.list} aria-label="Our friends list">
       {friends?.map(friend => (
         <OurFriendsItem key={friend?._id} friend={friend} />
       ))}
-    </div>
+    </ul>
   );
 };
 

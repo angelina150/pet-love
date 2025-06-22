@@ -19,7 +19,7 @@ function NewsItem({ newsItem }) {
         <img
           className={css.img}
           src={newsItem.imgUrl}
-          alt="News"
+          alt={newsItem.title || 'News image'}
           loading="lazy"
         />
         <h3 className={css.title}>{newsItem.title}</h3>
@@ -29,6 +29,7 @@ function NewsItem({ newsItem }) {
       <div className={css.downPartWrap}>
         <p className={css.date}>{formatDate(newsItem.date)}</p>
         <button
+          aria-label={`Read more about ${newsItem.title}`}
           type="button"
           className={css.btnReadMore}
           onClick={handleReadMoreClick}

@@ -26,11 +26,17 @@ const BurgerMenu = ({ onClose, isHome, isLoggedIn, onLogOutClick }) => {
     };
   }, []);
   return (
-    <div
+    <nav
+      aria-label="Burger menu"
       ref={menuRef}
       className={`${css.wrapper} ${isHome ? css.wrapperHome : ''}`}
     >
-      <button onClick={onClose} type="button" className={css.btnClose}>
+      <button
+        onClick={onClose}
+        type="button"
+        className={css.btnClose}
+        aria-label="Close menu"
+      >
         <svg className={`${css.iconClose} ${isHome ? css.iconCloseHome : ''}`}>
           <use href="/images/icons.svg#icon-close"></use>
         </svg>
@@ -49,7 +55,7 @@ const BurgerMenu = ({ onClose, isHome, isLoggedIn, onLogOutClick }) => {
       ) : (
         <AuthNav isHome={isHome} />
       )}
-    </div>
+    </nav>
   );
 };
 

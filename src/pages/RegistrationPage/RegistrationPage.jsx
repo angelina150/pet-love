@@ -1,12 +1,12 @@
-import React from "react";
-import PetBlock from "../../components/PetBlock/PetBlock.jsx";
-import Title from "../../components/Title/Title.jsx";
-import RegistrationForm from "../../components/RegistrationForm/RegistrationForm.jsx";
-import css from "./RegistrationPage.module.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PetBlock from '../../components/PetBlock/PetBlock.jsx';
+import Title from '../../components/Title/Title.jsx';
+import RegistrationForm from '../../components/RegistrationForm/RegistrationForm.jsx';
+import css from './RegistrationPage.module.css';
+import { Link } from 'react-router-dom';
 const RegistrationPage = () => {
   return (
-    <div className={css.wrapper}>
+    <section className={css.wrapper}>
       <div className={css.petBlockWrapper}>
         <PetBlock
           sources={[
@@ -62,7 +62,7 @@ const RegistrationPage = () => {
           </Link>
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 

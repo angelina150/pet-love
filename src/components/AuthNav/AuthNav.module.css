@@ -14,7 +14,7 @@
   border-radius: 30px;
   font-weight: 700;
   line-height: 18px;
-  font-size: 18px;
+  font-size: 14px;
   letter-spacing: -0.03em;
   border: 1px solid #ffffff66;
 }
@@ -54,6 +54,11 @@
     display: flex;
     flex-direction: row;
     gap: 8px;
+  }
+  .wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
   .btnLogin,
   .btnRegister {

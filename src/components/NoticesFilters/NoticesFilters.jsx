@@ -162,14 +162,17 @@ const NoticesFilters = ({
 
         <div className={css.categoryWrapper} ref={categoryRef}>
           <input
-            readOnly
-            className={`${css.input} ${css.inputCategory}`}
             type="text"
             placeholder="Category"
             value={category}
+            readOnly
+            aria-haspopup="listbox"
+            aria-expanded={openDropdown === 'category'}
+            aria-controls="category-listbox"
             onClick={() =>
               setOpenDropdown(openDropdown === 'category' ? null : 'category')
             }
+            className={`${css.input} ${css.inputCategory}`}
             autoComplete="off"
           />
           <svg
@@ -182,20 +185,37 @@ const NoticesFilters = ({
           >
             <use href="/images/icons.svg#icon-chevron-down" />
           </svg>
+
           {openDropdown === 'category' && (
-            <ul className={css.dropdownMenu}>
+            <ul
+              id="category-listbox"
+              role="listbox"
+              className={css.dropdownMenu}
+              tabIndex={-1}
+            >
               <li
-                key="show-all"
+                role="option"
+                aria-selected={category === ''}
+                tabIndex={0}
                 className={css.dropdownItemShowAll}
-                onClick={() => handleDropdownSelect('category', '')}
+                onClick={() => {
+                  handleDropdownSelect('category', '');
+                  setOpenDropdown(null);
+                }}
               >
                 Show all
               </li>
               {categories.map(cat => (
                 <li
                   key={cat}
+                  role="option"
+                  aria-selected={category === cat}
+                  tabIndex={0}
                   className={css.dropdownItem}
-                  onClick={() => handleDropdownSelect('category', cat)}
+                  onClick={() => {
+                    handleDropdownSelect('category', cat);
+                    setOpenDropdown(null);
+                  }}
                 >
                   {cat}
                 </li>
@@ -206,14 +226,17 @@ const NoticesFilters = ({
 
         <div className={css.sexWrapper} ref={sexRef}>
           <input
-            readOnly
-            className={`${css.input} ${css.inputGender}`}
             type="text"
             placeholder="By gender"
             value={sex}
+            readOnly
+            aria-haspopup="listbox"
+            aria-expanded={openDropdown === 'sex'}
+            aria-controls="sex-listbox"
             onClick={() =>
               setOpenDropdown(openDropdown === 'sex' ? null : 'sex')
             }
+            className={`${css.input} ${css.inputGender}`}
             autoComplete="off"
           />
           <svg
@@ -227,19 +250,35 @@ const NoticesFilters = ({
             <use href="/images/icons.svg#icon-chevron-down" />
           </svg>
           {openDropdown === 'sex' && (
-            <ul className={css.dropdownMenu}>
+            <ul
+              id="sex-listbox"
+              role="listbox"
+              className={css.dropdownMenu}
+              tabIndex={-1}
+            >
               <li
-                key="show-all"
+                role="option"
+                aria-selected={sex === ''}
+                tabIndex={0}
                 className={css.dropdownItemShowAll}
-                onClick={() => handleDropdownSelect('sex', '')}
+                onClick={() => {
+                  handleDropdownSelect('sex', '');
+                  setOpenDropdown(null);
+                }}
               >
                 Show all
               </li>
               {sexOptions.map(option => (
                 <li
                   key={option}
+                  role="option"
+                  aria-selected={sex === option}
+                  tabIndex={0}
                   className={css.dropdownItem}
-                  onClick={() => handleDropdownSelect('sex', option)}
+                  onClick={() => {
+                    handleDropdownSelect('sex', option);
+                    setOpenDropdown(null);
+                  }}
                 >
                   {option}
                 </li>
@@ -250,14 +289,17 @@ const NoticesFilters = ({
 
         <div className={css.speciesWrapper} ref={speciesRef}>
           <input
-            readOnly
-            className={`${css.input} ${css.inputSpecies}`}
             type="text"
             placeholder="By type"
             value={species}
+            readOnly
+            aria-haspopup="listbox"
+            aria-expanded={openDropdown === 'species'}
+            aria-controls="species-listbox"
             onClick={() =>
               setOpenDropdown(openDropdown === 'species' ? null : 'species')
             }
+            className={`${css.input} ${css.inputSpecies}`}
             autoComplete="off"
           />
           <svg
@@ -271,19 +313,35 @@ const NoticesFilters = ({
             <use href="/images/icons.svg#icon-chevron-down" />
           </svg>
           {openDropdown === 'species' && (
-            <ul className={css.dropdownMenu}>
+            <ul
+              id="species-listbox"
+              role="listbox"
+              className={css.dropdownMenu}
+              tabIndex={-1}
+            >
               <li
-                key="show-all"
+                role="option"
+                aria-selected={species === ''}
+                tabIndex={0}
                 className={css.dropdownItemShowAll}
-                onClick={() => handleDropdownSelect('species', '')}
+                onClick={() => {
+                  handleDropdownSelect('species', '');
+                  setOpenDropdown(null);
+                }}
               >
                 Show all
               </li>
               {speciesOptions.map(option => (
                 <li
                   key={option}
+                  role="option"
+                  aria-selected={species === option}
+                  tabIndex={0}
                   className={css.dropdownItem}
-                  onClick={() => handleDropdownSelect('species', option)}
+                  onClick={() => {
+                    handleDropdownSelect('species', option);
+                    setOpenDropdown(null);
+                  }}
                 >
                   {option}
                 </li>
@@ -291,6 +349,7 @@ const NoticesFilters = ({
             </ul>
           )}
         </div>
+
         <div className={css.selectInput}>
           <Select
             classNames={{
@@ -314,6 +373,7 @@ const NoticesFilters = ({
             }))}
             placeholder="Location"
             isClearable
+            aria-label="Select location"
           />
           <svg
             className={css.iconSearch}
@@ -331,12 +391,12 @@ const NoticesFilters = ({
           >
             <use href="/images/icons.svg#icon-search"></use>
           </svg>
-          {locationId.length > 0 && (
+          {locationId && (
             <button
               className={css.btnClear}
               type="button"
               onClick={() => handleFilterChange('locationId', '')}
-              title="Clear"
+              title="Clear location filter"
             >
               <svg className={css.iconClear} width="18" height="18">
                 <use href="/images/icons.svg#icon-close"></use>
@@ -377,6 +437,7 @@ const NoticesFilters = ({
                     handleSortChange({ target: { value: '' } });
                   }}
                   style={{ cursor: 'pointer' }}
+                  aria-label={`Clear sort ${option}`}
                 >
                   <use href="/images/icons.svg#icon-close" />
                 </svg>
@@ -396,6 +457,7 @@ const NoticesFilters = ({
             className={`${css.btnReset} ${css.radioLabel}`}
             type="button"
             onClick={resetFilters}
+            aria-label="Reset all filters"
           >
             Reset
           </button>

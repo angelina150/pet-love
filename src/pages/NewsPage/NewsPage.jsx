@@ -40,7 +40,7 @@ const NewsPage = () => {
     }
   };
   return (
-    <div className={css.wrapper}>
+    <section className={css.wrapper}>
       <div className={css.titleWrap}>
         <Title>News</Title>
         <SearchField
@@ -65,7 +65,7 @@ const NewsPage = () => {
           }}
         />
       )}
-    </div>
+    </section>
   );
 };
 

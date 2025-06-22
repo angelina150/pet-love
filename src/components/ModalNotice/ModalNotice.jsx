@@ -35,12 +35,21 @@ const ModalNotice = ({
       onAfterClose={() => {
         document.body.style.overflow = 'auto';
       }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
     >
-      <button type="button" className={css.btnClose} onClick={onClose}>
+      <button
+        type="button"
+        className={css.btnClose}
+        onClick={onClose}
+        aria-label="Close modal"
+      >
         <svg width="24" height="24" className={css.iconClose}>
           <use href="/images/icons.svg#icon-close"></use>
         </svg>
       </button>
+
       <div className={css.imgWrapper}>
         <p className={css.category}>{notice.category}</p>
         <img
@@ -52,7 +61,9 @@ const ModalNotice = ({
       </div>
 
       <div className={css.titleWrap}>
-        <h3 className={css.title}>{notice.title}</h3>
+        <h3 id="modal-title" className={css.title}>
+          {notice.title}
+        </h3>
         <div className={css.rating}>
           <svg height="16" width="16" className={css.iconStar}>
             <use href="/images/icons.svg#icon-star"></use>
@@ -60,6 +71,7 @@ const ModalNotice = ({
           <span> {notice.popularity}</span>
         </div>
       </div>
+
       <div className={css.infoWrap}>
         <p className={css.nameInfo}>
           Name <span className={css.nameInfoPart}>{notice.name}</span>
@@ -77,12 +89,16 @@ const ModalNotice = ({
           Species <span className={css.nameInfoPart}>{notice.species}</span>
         </p>
       </div>
+
       <div className={css.wrapperDesc}>
         <p className={css.desc}>{notice.comment}</p>
         {notice.price && <p className={css.price}>${notice.price}</p>}
       </div>
+
       <div
-        className={`${css.wrapperBtns} ${isFavorite && css.wrapperBtnsActive}`}
+        className={`${css.wrapperBtns} ${
+          isFavorite ? css.wrapperBtnsActive : ''
+        }`}
       >
         <button onClick={handleHeartClick} className={css.btnAdd} type="button">
           {isFavorite ? 'Remove from' : 'Add to'}

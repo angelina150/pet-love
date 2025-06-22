@@ -12,11 +12,9 @@ const NoticesList = ({ notices, className }) => {
           : ''
       }`}
     >
-      {notices?.map(notice => {
-        return (
-          <NoticesItem className={className} key={notice._id} notice={notice} />
-        );
-      })}
+      {notices?.map(notice => (
+        <NoticesItem className={className} key={notice._id} notice={notice} />
+      ))}
     </ul>
   );
 };
