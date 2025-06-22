@@ -1,12 +1,86 @@
-# React + Vite
+# 🐾 Petlove
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Petlove** is a web application designed to help users find news, notices, and
+useful contacts related to pets. Users can also register and manage their
+profiles and favorite listings.
 
-Currently, two official plugins are available:
+## 🔗 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Frontend Preview on Vercel](https://pet-love-hub.vercel.app/)
+- [Design in Figma](https://www.figma.com/file/puMNfZVg4YI8UZoJ1QiLLi/Petl%F0%9F%92%9Bve?type=design&node-id=55838-750&mode=design&t=Xg1IwIcKebTl5xGs-0)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Tech Stack
+
+**Frontend:**
+
+- React
+- Redux Toolkit
+- React Router
+- React Hook Form + Yup
+- Styled Components
+- Axios
+- React Select
+- Sprite icons + retina image support
+- Responsive HTML5 + CSS3 (Desktop, Tablet, Mobile)
+
+---
+
+## 🚀 Features
+
+### Public Pages
+
+- **Home** – Intro and hero image
+- **News** – News search with pagination
+- **Notices** – Advanced filtering (by category, gender, type, city, etc.),
+  favorites, details modal
+- **Friends** – List of useful contacts with working hours and links
+
+### Auth Pages
+
+- **Register/Login** – With form validation (react-hook-form + Yup)
+- **Authorization** – With JWT token, persisted in Redux
+
+### Private Pages
+
+- **Profile** – User data, editable fields, avatar upload
+- **User Notices** – Viewed and favorited listings
+- **Pet Management** – Add/remove personal pets
+
+---
+
+## 📱 Responsive Design
+
+- Mobile-first adaptive layout
+- Breakpoints:
+  - Mobile: `320px+` (fluid) / `375px+` (adaptive)
+  - Tablet: `768px+`
+  - Desktop: `1280px+`
+- Optimized images (web, retina)
+- SVG sprites and favicon included
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Node.js (v16+)
+- npm or yarn
+
+### Installation
+
+```bash
+git clone https://github.com/angelina150/pet-love
+cd petlove
+npm install
+npm start
+
+
+🧑‍💻 Developer
+@angelina150
+
+---
+
+```
