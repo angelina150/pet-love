@@ -185,7 +185,7 @@
     line-height: 24px;
   }
   .infoWrap {
-    gap: clamp(10px, 0.5vw, 15px);
+    gap: clamp(10px, 1.5vmin, 15px);
     margin-bottom: 16px;
   }
   .wrapperDesc {
@@ -219,6 +219,6 @@
   }
   .imgFav {
     width: 292px;
-     object-fit: cover;
+    object-fit: cover;
   }
 }
