@@ -65,12 +65,15 @@ const usersSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(logout.fulfilled, () => {
-        return initialState;
+      .addCase(logout.fulfilled, state => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
       })
       .addCase(logout.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        state.isLoggedIn = false;
       })
       .addCase(fetchUserFullInfo.pending, state => {
         state.loadingUserInfo = true;
