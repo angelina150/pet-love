@@ -5,7 +5,12 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn, selectToken } from './redux/users/selectors.js';
-import { fetchUserFullInfo, setToken } from './redux/users/operations.js';
+import {
+  clearToken,
+  fetchUserFullInfo,
+  setToken,
+} from './redux/users/operations.js';
+import { getTokenExpiration } from './utils.js';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const MainPage = lazy(() => import('./pages/MainPage/MainPage.jsx'));
@@ -27,8 +32,17 @@ function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
   useEffect(() => {
-    if (token && isLoggedIn) {
+    if (!token) return;
+
+    const exp = getTokenExpiration(token);
+    if (exp && Date.now() > exp) {
+      dispatch(clearToken());
+      return;
+    }
+
+    if (isLoggedIn) {
       setToken(token);
       dispatch(fetchUserFullInfo());
     }

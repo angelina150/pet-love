@@ -37,3 +37,22 @@ const useWindowWidth = () => {
 };
 
 export default useWindowWidth;
+export const getTokenExpiration = token => {
+  if (!token) return null;
+
+  try {
+    const payloadBase64 = token.split('.')[1];
+    if (!payloadBase64) return null;
+
+    const payload = JSON.parse(atob(payloadBase64));
+
+    if (payload && typeof payload.exp === 'number') {
+      return payload.exp * 1000;
+    }
+
+    return null;
+  } catch (e) {
+    console.error('Ошибка при разборе токена:', e);
+    return null;
+  }
+};
