@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { clearUserState } from './slice.js';
 
 export const authInstance = axios.create({
   baseURL: 'https://petlove.b.goit.study/api',
 });
 export const setToken = token => {
-  authInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  authInstance.defaults.headers.common.Authorization = ` Bearer ${token}`;
 };
 
 export const clearToken = () => {
@@ -81,17 +82,20 @@ export const fetchUserInfo = createAsyncThunk(
 export const fetchUserFullInfo = createAsyncThunk(
   'users/fetchUserFullInfo',
   async (_, thunkAPI) => {
+    const { dispatch } = thunkAPI;
     try {
       const { data } = await authInstance.get('/users/current/full');
       return data;
     } catch (error) {
       if (error.response?.status === 401) {
-        await thunkAPI.dispatch(logout());
+        clearToken();
+        dispatch(clearUserState());
       }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
 export const addPets = createAsyncThunk(
   'users/addPets',
   async (formData, thunkAPI) => {

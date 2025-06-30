@@ -26,6 +26,9 @@ const initialState = {
 const usersSlice = createSlice({
   name: 'users',
   initialState,
+  reducers: {
+    clearUserState: () => initialState,
+  },
   extraReducers: builder => {
     builder
       .addCase(registerUser.pending, state => {
@@ -137,3 +140,4 @@ const usersSlice = createSlice({
 });
 
 export const usersReducer = usersSlice.reducer;
+export const { clearUserState } = usersSlice.actions;

@@ -4,13 +4,14 @@ import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectToken } from './redux/users/selectors.js';
+import { selectToken } from './redux/users/selectors.js';
 import {
   clearToken,
   fetchUserFullInfo,
   setToken,
 } from './redux/users/operations.js';
 import { getTokenExpiration } from './utils.js';
+import { clearUserState } from './redux/users/slice.js';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const MainPage = lazy(() => import('./pages/MainPage/MainPage.jsx'));
@@ -31,22 +32,19 @@ const NotFound = lazy(() => import('./pages/NotFound/NotFound.jsx'));
 function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
   useEffect(() => {
     if (!token) return;
 
     const exp = getTokenExpiration(token);
     if (exp && Date.now() > exp) {
-      dispatch(clearToken());
+      clearToken();
+      dispatch(clearUserState());
       return;
     }
 
-    if (isLoggedIn) {
-      setToken(token);
-      dispatch(fetchUserFullInfo());
-    }
-  }, [dispatch, token, isLoggedIn]);
+    setToken(token);
+    dispatch(fetchUserFullInfo());
+  }, [dispatch, token]);
   return (
     <>
       <ToastContainer />

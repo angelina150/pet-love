@@ -44,7 +44,6 @@ const NoticesItem = ({ notice, className }) => {
       toast.error(error?.message || 'Something went wrong');
     } finally {
       setIsFavoriteLoading(false);
-      // необязательно ждать
       dispatch(fetchUserFullInfo()).catch(err =>
         console.error('User info update failed:', err)
       );
