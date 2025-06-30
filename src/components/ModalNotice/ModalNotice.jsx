@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
 import css from './ModalNotice.module.css';
 import { formatDatePetsList } from '../../utils.js';
 import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchNoticeById } from '../../redux/notices/operations.js';
+import { useSelector } from 'react-redux';
 import { selectNoticeById } from '../../redux/notices/selectors.js';
 Modal.setAppElement('#root');
 
@@ -15,14 +14,10 @@ const ModalNotice = ({
   handleHeartClick,
   isFavorite,
 }) => {
-  const dispatch = useDispatch();
   const noticeUser = useSelector(selectNoticeById);
 
   const noticeUserEmail = noticeUser?.user?.email;
 
-  useEffect(() => {
-    dispatch(fetchNoticeById(notice._id));
-  }, [dispatch, notice]);
   return (
     <Modal
       overlayClassName={css.overlay}

@@ -22,6 +22,7 @@ const NoticesItem = ({ notice, className }) => {
   const favorites = useSelector(selectFavoritesNotices);
   const favoriteId = fav => fav._id === notice._id;
   const isFavorite = favorites?.some(favoriteId);
+  const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
   function removeExtraSpaces(str) {
     return str.trim();
   }
@@ -32,6 +33,7 @@ const NoticesItem = ({ notice, className }) => {
     setShowModalAttention(false);
   };
   const toggleFavorite = async () => {
+    setIsFavoriteLoading(true);
     try {
       if (isFavorite) {
         await dispatch(removeFavoritesNoticesById(notice._id)).unwrap();
@@ -41,11 +43,11 @@ const NoticesItem = ({ notice, className }) => {
     } catch (error) {
       toast.error(error?.message || 'Something went wrong');
     } finally {
-      try {
-        await dispatch(fetchUserFullInfo()).unwrap();
-      } catch (fetchError) {
-        console.error('Error updating user information:', fetchError);
-      }
+      setIsFavoriteLoading(false);
+      // необязательно ждать
+      dispatch(fetchUserFullInfo()).catch(err =>
+        console.error('User info update failed:', err)
+      );
     }
   };
 
@@ -156,6 +158,7 @@ const NoticesItem = ({ notice, className }) => {
               type="button"
               className={css.btnHeart}
               onClick={handleHeartClick}
+              disabled={isFavoriteLoading}
               aria-pressed={isFavorite}
               aria-label={
                 isFavorite ? 'Remove from favorites' : 'Add to favorites'

@@ -19,6 +19,8 @@ const initialState = {
   error: null,
   loading: false,
   isLoggedIn: false,
+  loadingRemovePet: false,
+  loadingUserInfo: false,
 };
 
 const usersSlice = createSlice({
@@ -68,17 +70,17 @@ const usersSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(fetchUserFullInfo.pending, state => {
-        state.loading = true;
+        state.loadingUserInfo = true;
         state.error = null;
       })
       .addCase(fetchUserFullInfo.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.loading = false;
+        state.loadingUserInfo = false;
         state.error = null;
         state.userFullInfo = action.payload;
       })
       .addCase(fetchUserFullInfo.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingUserInfo = false;
         state.error = action.payload;
       })
       .addCase(updateUser.pending, state => {
@@ -95,16 +97,16 @@ const usersSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(fetchUserInfo.pending, state => {
-        state.loading = true;
+        state.loadingUserInfo = true;
         state.error = null;
       })
       .addCase(fetchUserInfo.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingUserInfo = false;
         state.error = null;
         state.userInfo = action.payload;
       })
       .addCase(fetchUserInfo.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingUserInfo = false;
         state.error = action.payload;
       })
       .addCase(addPets.pending, state => {
@@ -120,15 +122,15 @@ const usersSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(removePet.pending, state => {
-        state.loading = true;
+        state.loadingRemovePet = true;
         state.error = null;
       })
       .addCase(removePet.fulfilled, state => {
-        state.loading = false;
+        state.loadingRemovePet = false;
         state.error = null;
       })
       .addCase(removePet.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingRemovePet = false;
         state.error = action.payload;
       });
   },

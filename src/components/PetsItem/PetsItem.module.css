@@ -31,6 +31,7 @@
   width: 66px;
   height: 66px;
   border-radius: 50px;
+  object-fit: cover;
 }
 .infoWrapper {
   display: flex;

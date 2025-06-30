@@ -19,7 +19,7 @@ const initialState = {
   noticeById: [],
   error: null,
   loading: false,
-  isFetched: false,
+  loadingFavorites: false,
 };
 
 const noticesSlice = createSlice({
@@ -81,15 +81,15 @@ const noticesSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(addFavoritesNotices.pending, state => {
-        state.loading = true;
+        state.loadingFavorites = true;
         state.error = null;
       })
       .addCase(addFavoritesNotices.fulfilled, state => {
-        state.loading = false;
+        state.loadingFavorites = false;
         state.error = null;
       })
       .addCase(addFavoritesNotices.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingFavorites = false;
         state.error = action.payload;
       })
       .addCase(fetchNoticeById.pending, state => {
@@ -106,15 +106,15 @@ const noticesSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(removeFavoritesNoticesById.pending, state => {
-        state.loading = true;
+        state.loadingFavorites = true;
         state.error = null;
       })
       .addCase(removeFavoritesNoticesById.fulfilled, state => {
-        state.loading = false;
+        state.loadingFavorites = false;
         state.error = null;
       })
       .addCase(removeFavoritesNoticesById.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingFavorites = false;
         state.error = action.payload;
       });
   },

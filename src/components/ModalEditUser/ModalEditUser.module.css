@@ -70,6 +70,7 @@
   background-color: #eeeeee;
   margin-right: auto;
   margin-left: auto;
+   object-fit: cover;
 }
 .labelAvatar {
   display: grid;

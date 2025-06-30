@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectViewedNotices } from '../../redux/users/selectors.js';
-import NoticesItem from '../NoticesItem/NoticesItem.jsx';
 import { selectFavoritesNotices } from '../../redux/users/selectors.js';
 import css from './MyNotices.module.css';
 import { fetchUserFullInfo } from '../../redux/users/operations.js';
